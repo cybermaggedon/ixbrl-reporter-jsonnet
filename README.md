@@ -62,6 +62,16 @@ regulatory compliance in various parts of Europe.
 
 Output in `esef.xhtml` and `esef-fr.xhtml`.
 
+### Test suite / examples
+
+See the `test` directory.
+
+```
+sh test/run_all
+```
+
+Output in `test/output`.
+
 ## Warranty
 
 This code comes with no warranty.  See the [LICENSE](LICENCE) file for
