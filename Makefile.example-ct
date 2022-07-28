@@ -1,0 +1,12 @@
+
+TEMPLATE=example-ct
+INPUTS=$(wildcard ${TEMPLATE}/*)
+
+all: example-ct.xhtml
+
+%.xhtml: %.json
+	ixbrl-reporter $< report ixbrl > $@
+
+example-ct.json: ${INPUTS}
+	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . > $@
+

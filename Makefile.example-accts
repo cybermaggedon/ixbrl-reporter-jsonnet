@@ -1,0 +1,13 @@
+
+TEMPLATE=example-accts
+INPUTS=$(wildcard ${TEMPLATE}/*)
+
+all: example-accts.xhtml
+
+%.xhtml: %.json
+	ixbrl-reporter $< report ixbrl > $@
+
+example-accts.json: ${INPUTS}
+	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . > $@
+
+

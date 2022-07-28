@@ -1,0 +1,13 @@
+
+TEMPLATE=example-vat
+INPUTS=$(wildcard ${TEMPLATE}/*)
+
+all: vat.xhtml
+
+%.xhtml: %.json
+	ixbrl-reporter $< report ixbrl > $@
+
+vat.json: ${INPUTS}
+	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . > $@
+
+

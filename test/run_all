@@ -1,0 +1,39 @@
+#!/bin/bash
+
+log=test/log
+output=test/output
+
+mkdir -p ${output}
+
+cfgs="unaud-micro.jsonnet unaud-micro-rev.jsonnet aud-micro.jsonnet
+    aud-micro-rev.jsonnet aud-small.jsonnet aud-small-rev.jsonnet 
+    unaud-abr.jsonnet unaud-abr-rev.jsonnet unaud-full.jsonnet
+    unaud-full-rev.jsonnet aud-full.jsonnet aud-full-rev.jsonnet
+    ct.jsonnet esef.jsonnet esef-fr.jsonnet"
+
+for cfg in ${cfgs}
+do
+    echo ${cfg}...
+    json=${output}/tmp.json
+    out=${output}/${cfg%.jsonnet}.html
+    kv=${output}/${cfg%.jsonnet}.kv
+    cmp=${log}/${cfg%.jsonnet}.kv
+    jsonnet -J . test/${cfg} > ${json}
+    ixbrl-reporter ${json} report ixbrl > ${out}
+    ixbrl-to-kv ${out} | \
+	egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' | \
+	sort > ${kv}
+    egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' ${cmp} | \
+	sort | cmp ${kv} -
+    if [ $? -ne 0 ]
+    then
+        echo 'File comparison fail...'
+	echo 'diff ${kv} ${cmp} >>>>'
+	egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' \
+	      ${cmp} | \
+	    sort | cmp ${kv} -
+	sort ${cmp} | diff ${kv} -
+	exit 1
+    fi
+done
+

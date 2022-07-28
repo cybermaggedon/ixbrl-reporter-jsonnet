@@ -1,0 +1,106 @@
+{
+    "schema": [],
+    "namespaces": {
+        "cp-vat": "http://cyberapocalyp.se/vat"
+    },
+    "contexts": [
+        {
+            "id": "business",
+            "entity": "metadata.business.company-number",
+            "scheme": "metadata.business.entity-scheme"
+        },
+        {
+            "id": "report-period",
+            "from": "business",
+            "period": "metadata.accounting.periods.0"
+        },
+        {
+            "id": "report-date",
+            "from": "business",
+            "date": "metadata.accounting.date"
+        }
+    ],
+    "document-metadata": [
+        "report-date",
+        "period-start",
+        "period-end",
+        "company-name",
+        "company-number",
+        "vat-registration",
+        "software-name",
+        "software-version"
+    ],
+    "metadata": [
+        {
+            "id": "report-date",
+            "kind": "date",
+            "context": "report-date",
+            "config": "metadata.accounting.date"
+        },
+        {
+            "id": "period-start",
+            "kind": "date",
+            "context": "report-date",
+            "config": "metadata.accounting.periods.0.start"
+        },
+        {
+            "id": "period-end",
+            "kind": "date",
+            "context": "report-date",
+            "config": "metadata.accounting.periods.0.end"
+        },
+        {
+            "id": "company-name",
+            "context": "report-period",
+            "config": "metadata.business.company-name"
+        },
+        {
+            "id": "company-number",
+            "context": "report-period",
+            "config": "metadata.business.company-number"
+        },
+        {
+            "id": "vat-registration",
+            "context": "report-period",
+            "config": "metadata.business.vat-registration"
+        },
+        {
+            "id": "software-name",
+            "context": "report-period",
+            "config": "internal.software-name"
+        },
+        {
+            "id": "software-version",
+            "context": "report-period",
+            "config": "internal.software-version"
+        }
+    ],
+    "note-templates": [],
+    "sign-reversed": {
+        "vat1": true,
+        "vat2": true,
+        "vat3": true,
+        "vat7": true,
+        "vat9": true
+    },
+    "tags": {
+        "vat1": "cp-vat:VatDueSales",
+        "vat2": "cp-vat:VatDueAcquisitions",
+        "vat3": "cp-vat:TotalVatDue",
+        "vat4": "cp-vat:VatReclaimedCurrPeriod",
+        "vat5": "cp-vat:NetVatDue",
+        "vat6": "cp-vat:TotalValueSalesExVAT",
+        "vat7": "cp-vat:TotalValuePurchasesExVAT",
+        "vat8": "cp-vat:TotalValueGoodsSuppliedExVAT",
+        "vat9": "cp-vat:TotalAcquisitionsExVAT",
+        "report-date": "cp-vat:report-date",
+        "period-start": "cp-vat:PeriodStart",
+        "period-end": "cp-vat:PeriodEnd",
+        "company-name": "cp-vat:CompanyName",
+        "company-number": "cp-vat:CompanyNumber",
+        "vat-registration": "cp-vat:VatRegistration",
+        "software-name": "cp-vat:SoftwareName",
+        "software-version": "cp-vat:SoftwareVersion"
+    },
+    "segment": {}
+}

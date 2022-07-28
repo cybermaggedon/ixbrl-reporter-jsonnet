@@ -1,0 +1,809 @@
+{
+    "id": "notes",
+    "kind": "composite",
+    "elements": [
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Company information",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "template:company"
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Accounting policies",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The following accounting policies have been applied consistently in dealing with items which are considered material in relation to the company's accounts:"
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Basis of preparation",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{statement-of-compliance-reporting-framework= These financial statements have been prepared in accordance with applicable United Kingdom accounting standards, including Financial Reporting Standard 102, and the Companies Act 2006.} ~{description-of-basis-used-in-financial-statements= The financial statements have been prepared on the historical cost basis except for the modification to a fair value basis for certain financial instruments as specified in the accounting policies below.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The financial statements are presented in Sterling (\u00a3)."
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Revenue recognition",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{revenue-recognition-policy= Where the company agrees to provide a service for a fixed period, revenue is allocated on a monthly basis, for the period of the contract. Revenue which is transactional is invoiced and recognised in the month it is generated.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "For larger development projects, revenue is recognised when all of the following has occurred:"
+                                    },
+                                    {
+                                        "tag": "ul",
+                                        "content": [
+                                            {
+                                                "tag": "li",
+                                                "content": "can be reliably measured;"
+                                            },
+                                            {
+                                                "tag": "li",
+                                                "content": "is probable that the economic benefits will flowb to the company;"
+                                            },
+                                            {
+                                                "tag": "li",
+                                                "content": "at the balance sheet date the stage of completion can be measured reliably;"
+                                            },
+                                            {
+                                                "tag": "li",
+                                                "content": " transaction costs and costs to completion can be measured reliably."
+                                            },
+                                            {
+                                                "tag": "li",
+                                                "content": "All revenue arises on the sale of products and services relating to the principal activities of the company."
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "Interest income is recognised on an accruals basis."
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Going concern",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The financial statements have been prepared on a going concern basis assuming the continued support of the company's ultimate parent undertaking. The directors have reviewed the results of the company's operations in the period 1 January 2009 to the date of approval of the financial statements and have made forecasts of its performance in the subsequent 12 months. They have also received assurances of continued financial support from the ultimate parent undertaking. In view of this the director's consider that the company will continue to be able to meet its liabilities as they fall due and that the financial statements can therefore be prepared on the going concern basis."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Plant and equipment",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand: ~{description-of-measurement-property-plant-equipment= Property, plant and equipment are stated in the Statement of Financial Position at cost less accumulated depreciation.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand: ~{description-of-depreciation-method-property-plant-equipment= Depreciation is charged so as to write off the cost of assets over their estimated useful lives on the following bases:}"
+                                    },
+                                    {
+                                        "tag": "table",
+                                        "content": [
+                                            {
+                                                "tag": "tr",
+                                                "content": [
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "Fixtures and fittings - Office Equipment"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "25% reducing balance"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "tag": "tr",
+                                                "content": [
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "Fixtures and fittings - Computer Equipment"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "33% per annum"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Intangible assets",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand: ~{description-recognition-basis-intangible-assets= Intangible assets include software development costs that in the opinion of the directors meets the definition of an intangible asset.  Amortisation is charged to the Statement of Comprehensive Income on a straight-line basis over the estimated useful lives of intangible assets. Intangible assets are amortised from the day they are available for use or sale. The estimated useful lives are as follows:}"
+                                    },
+                                    {
+                                        "tag": "table",
+                                        "content": [
+                                            {
+                                                "tag": "tr",
+                                                "content": [
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "Deferred Development costs"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "content": "33% per annum"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "In accordance with IAS36: Impairment, an impairment review of those products under development, which are not yet available for sale at the Statement of Financial Position date is undertaken by the company."
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The results of this review performed at 31 December 2020 confirmed there were no indications of impairment.\""
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Operating leases",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{lessee-operating-lease-policy= Costs of operating leases are charged to the Statement of Comprehensive Income on a straight line basis over the lease term.}"
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Taxation",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{current-income-tax-policy= Income tax on the profits for the year comprises current tax and deferred tax. Income tax is recognised in the Statement of Comprehensive Income except where items are recognised directly in equity, in which case the associated income tax asset or liability is recognised.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": " Current tax is the expected tax payable on the income for the year, using tax rates enacted or substantially enacted at the Statement of Financial Position date, and any adjustment to tax payable in respect of previous years."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{deferred-tax-policy= Deferred tax is provided using the Statement of Financial Position liability method, which recognises temporary differences between the carrying amounts of assets and liabilities for financial reporting purposes and the amounts used for taxation purposes. It is measured on an undiscounted basis at the tax rates that are expected to apply in the periods in which temporary differences reverse, based on tax rates and laws enacted or substantively enacted at the Statement of Financial Position date.}"
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Pensions",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{defined-contribution-pensions-policy= All company employees are entitled to be members of the Example Limited stakeholder pension scheme, the assets of which are held in an independently administered scheme.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "Contributions are charged to the Statement of Comprehensive Income and are included in staff costs."
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Cash and cash equivalents",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "expand:~{cash-and-cash-equivalents-policy= For the purpose of the Statement of Cash Flows, cash comprises cash in hand and loans and advances to credit institutions repayable on demand, and cash and cash equivalents comprise highly liquid investments that are convertible into cash with an insignificant risk of changes in value with original maturities of three months or less.}"
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The Statement of Cash Flows has been prepared using the indirect method."
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Net financing costs",
+                                            "level": 2
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "Interest income is recognised in the Statement of Comprehensive Income as it accrues, using the effective interest rate method."
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "profit-note",
+                                            "kind": "noteheading",
+                                            "title": "Profit from operations",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "Profit from operations has been arrived at after charging:"
+                                    },
+                                    {
+                                        "worksheet": "charges",
+                                        "hide-notes": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "id": "financial-income-note",
+                                            "kind": "noteheading",
+                                            "title": "Financial income",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "financial-income",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "financial-costs-note",
+                                            "kind": "noteheading",
+                                            "title": "Finance costs",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "financial-costs",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "staff-costs-note",
+                                            "kind": "noteheading",
+                                            "title": "Staff numbers and costs",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The average monthly number of persons employed by the company (including directors) during the period was as follows:"
+                                    },
+                                    {
+                                        "tag": "table",
+                                        "attributes": {
+                                            "class": "sheet table"
+                                        },
+                                        "content": [
+                                            {
+                                                "tag": "tr",
+                                                "content": [
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "label"
+                                                        },
+                                                        "content": ""
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "period periodname"
+                                                        },
+                                                        "content": "This period"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "period periodname"
+                                                        },
+                                                        "content": "Previous period"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "tag": "tr",
+                                                "content": [
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "label header"
+                                                        },
+                                                        "content": "Employees"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "period value"
+                                                        },
+                                                        "content": "expand:~[average-employees-this]"
+                                                    },
+                                                    {
+                                                        "tag": "td",
+                                                        "attributes": {
+                                                            "class": "period value"
+                                                        },
+                                                        "content": "expand:~[average-employees-previous]"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The aggregate payroll costs of these persons was as follows:"
+                                    },
+                                    {
+                                        "worksheet": "staff-costs",
+                                        "hide-notes": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Directors' renumeration and transactions",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "tag": "p",
+                                        "content": "The remuneration of the directors was as follows:"
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "taxation-note",
+                                            "kind": "noteheading",
+                                            "title": "Taxation",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "corporation-tax",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Intangible fixed assets",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "equipment-note",
+                                            "kind": "noteheading",
+                                            "title": "Property, plant and equipment",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "fixed-assets",
+                                        "hide-notes": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Trade and other receivables",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "id": "cash-note",
+                                            "kind": "noteheading",
+                                            "title": "Cash and cash equivalents",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "cash",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Trade and other payables",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Deferred tax assets and liabilities",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "kind": "page",
+            "elements": [
+                {
+                    "kind": "html",
+                    "root": {
+                        "tag": "div",
+                        "content": [
+                            {
+                                "tag": "div",
+                                "attributes": {
+                                    "class": "header"
+                                },
+                                "content": [
+                                    {
+                                        "tag": "div",
+                                        "content": "expand:~[company-name]"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "content": "Notes to the accounts"
+                                    },
+                                    {
+                                        "tag": "div",
+                                        "attributes": {
+                                            "class": "subtitle"
+                                        },
+                                        "content": "expand:For the year ended ~[period-end]"
+                                    },
+                                    {
+                                        "tag": "hr"
+                                    }
+                                ]
+                            },
+                            {
+                                "tag": "div",
+                                "content": [
+                                    {
+                                        "element": {
+                                            "id": "share-capital-note",
+                                            "kind": "noteheading",
+                                            "title": "Share capital",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "share-capital",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Operating leases and commitments",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    },
+                                    {
+                                        "element": {
+                                            "kind": "noteheading",
+                                            "title": "Related party transactions",
+                                            "level": 1
+                                        }
+                                    },
+                                    {
+                                        "worksheet": "zero",
+                                        "hide-notes": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ]
+}

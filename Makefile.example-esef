@@ -1,0 +1,15 @@
+
+TEMPLATE=example-esef
+INPUTS=$(wildcard ${TEMPLATE}/*)
+
+all: esef.xhtml esef-fr.xhtml
+
+%.xhtml: %.json
+	ixbrl-reporter $< report ixbrl > $@
+
+esef.json: ${INPUTS}
+	jsonnet ${TEMPLATE}/example.jsonnet -J . > $@
+
+esef-fr.json: ${INPUTS}
+	jsonnet ${TEMPLATE}/example-fr.jsonnet -J . > $@
+
