@@ -4,30 +4,40 @@
     [
 	{
 	    "id": "vat1",
-	    "kind": "sum",
+	    "kind": "factor",
 	    "description": "VAT 1: VAT due on sales",
-	    "inputs": [
-		{
-		    "kind": "line",
-		    "description": "VAT 1",
-		    "accounts": mappings["vat-output-sales"],
-		    "period": "in-year"
-		}
-	    ],
+	    "factor": -1,
+	    "input": {
+		"kind": "sum",
+		"inputs": [
+		    {
+			"kind": "line",
+			"description": "VAT 1",
+			"accounts": mappings["vat-output-sales"],
+			"period": "in-year"
+		    }
+		],
+		"period": "in-year"
+	    },
 	    "period": "in-year"
 	},
 	{
 	    "id": "vat2",
-	    "kind": "sum",
+	    "kind": "factor",
 	    "description": "VAT 2: VAT due on acquisitions",
-	    "inputs": [
-		{
-		    "kind": "line",
-		    "description": "VAT 2",
-		    "accounts":  mappings["vat-output-acquisitions"],
-		    "period": "in-year"
-		}
-	    ],
+	    "factor": -1,
+	    "input": {
+		"kind": "sum",
+		"inputs": [
+		    {
+			"kind": "line",
+			"description": "VAT 2",
+			"accounts":  mappings["vat-output-acquisitions"],
+			"period": "in-year"
+		    }
+		],
+		"period": "in-year",
+	    },
 	    "period": "in-year"
 	},
 	{
@@ -89,15 +99,21 @@
 	    "direction": "down",
 	    "description": "VAT 7: Purchases ex. VAT",
 	    "input": {
-		"kind": "sum",
-		"inputs": [
-		    {
-			"kind": "line",
-			"description": "VAT 7",
-			"accounts": mappings["total-vatex-purchases"],
-			"period": "in-year"
-		    }
-		]
+		"kind": "factor",
+		"factor": -1,
+		"input": {
+		    "kind": "sum",
+		    "inputs": [
+			{
+			    "kind": "line",
+			    "description": "VAT 7",
+			    "accounts": mappings["total-vatex-purchases"],
+			    "period": "in-year"
+			}
+		    ],
+		    "period": "in-year"
+		},
+		"period": "in-year"
 	    },
 	    "period": "in-year"
 	},
@@ -107,15 +123,21 @@
 	    "direction": "down",
 	    "description": "VAT 8: Goods supplied ex. VAT",
 	    "input": {
-		"kind": "sum",
-		"inputs": [
-		    {
-			"kind": "line",
-			"description": "VAT 8",
-			"accounts": mappings["total-vatex-goods-supplied"],
-			"period": "in-year"
-		    }
-		]
+		"kind": "factor",
+		"factor": -1,
+		"input": {
+		    "kind": "sum",
+		    "inputs": [
+			{
+			    "kind": "line",
+			    "description": "VAT 8",
+			    "accounts": mappings["total-vatex-goods-supplied"],
+			    "period": "in-year"
+			},
+		    ],
+		    "period": "in-year"
+		},
+		"period": "in-year"
 	    },
 	    "period": "in-year"
 	},
