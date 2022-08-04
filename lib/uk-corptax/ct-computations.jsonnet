@@ -280,7 +280,11 @@
         "id": "ct-trading-profits",
         "kind": "round",
         "description": "Taxable profits",
-        "input": "ct-trading-profits-raw",
+        "input": {
+	    "kind": "compare",
+	    "comparison": "greater",
+	    "input": "ct-trading-profits-raw",
+	},
         "direction": "down",
         "period": "in-year",
         "segments": [
@@ -288,8 +292,24 @@
         ]
     },
     {
+        "id": "ct-trading-losses",
+        "kind": "sum",
+        "description": "Trading losses",
+        "inputs": [
+	    {
+		"kind": "compare",
+		"comparison": "less",
+		"input": "ct-trading-profits-raw"
+	    }
+	],
+        "period": "in-year",
+        "segments": [
+            { "business-type": "company" }
+        ]
+    },
+    {
         "id": "ct-net-trading-profits",
-        "kind": "group",
+        "kind": "sum",
         "description": "Profits chargeable to corporation tax",
         "period": "in-year",
         "segments": [

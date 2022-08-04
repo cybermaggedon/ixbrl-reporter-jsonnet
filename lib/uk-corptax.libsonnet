@@ -60,6 +60,10 @@ base + {
 	    local obj = import "uk-corptax/profits.libsonnet";
 	    obj.element(c),
 
+	"losses"(c)::
+	    local obj = import "uk-corptax/losses.libsonnet";
+	    obj.element(c),
+
 	"tax-chargeable"(c)::
 	    local obj = import "uk-corptax/tax-chargeable.libsonnet";
 	    obj.element(c),

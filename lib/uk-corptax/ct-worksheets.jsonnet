@@ -14,6 +14,7 @@
 	"computations": [
 	    "ct-trading-profits-raw",
 	    "ct-net-trading-profits",
+	    "ct-trading-losses",
 	    "ct-profit-before-tax-total",
 	    "ct-tax-total"
 	]

@@ -23,6 +23,9 @@ local elts = {
 		    "element": "profits"
 		},
 		{
+		    "element": "losses"
+		},
+		{
 		    "element": "tax-chargeable"
 		},
 		{
