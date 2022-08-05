@@ -1,0 +1,37 @@
+#!/bin/bash
+
+json2yaml() {
+    python -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))'
+}
+
+JSONNET="jsonnet -J .. -J ../test"
+
+outdir=../../ixbrl-reporter
+test=${outdir}/test
+taxonomy=${outdir}/taxonomy
+report=${outdir}/report
+
+#${JSONNET} template-config.jsonnet | json2yaml > tmp/corptax-config.yaml
+#${JSONNET} template-metadata.jsonnet | json2yaml > tmp/metadata-corptax.yaml
+#${JSONNET} template-report.jsonnet | json2yaml > tmp/report-corptax.yaml
+#${JSONNET} ../lib/style.jsonnet | json2yaml > tmp/style.yaml
+#${JSONNET} ../taxonomy/ct-dpl.jsonnet | json2yaml > tmp/ct-dpl.yaml
+
+md() {
+    ${JSONNET} ../test/metadata$1.jsonnet | json2yaml > ${test}/metadata$1.yaml
+}
+
+md ''
+md '-rev'
+md '-acc-aud'
+md '-acc-aud-rev'
+md '-acc'
+md '-acc-rev'
+md '-aud'
+md '-aud-rev'
+md '-esef'
+md '-ct'
+
+#${JSONNET} ../test/metadata.jsonnet | json2yaml > ${test}/metadata.yaml
+#${JSONNET} ../test/metadata-rev.jsonnet | json2yaml > ${test}/metadata-rev.yaml
+#${JSONNET} ../test/metadata-acc-aud.jsonnet | json2yaml > ${test}/metadata-acc-aud.yaml
