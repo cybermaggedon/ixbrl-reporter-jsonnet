@@ -37,9 +37,6 @@ md '-aud-rev'
 md '-esef'
 md '-ct'
 
-#${JSONNET} unaud-micro.jsonnet | json2yaml > ${test}/unaud-micro.yaml
-#${JSONNET} unaud-micro-rev.jsonnet | json2yaml > ${test}/unaud-micro-rev.jsonnet
-
 cfg unaud-micro
 cfg unaud-micro-rev
 cfg aud-micro
@@ -56,8 +53,6 @@ cfg ct
 cfg esef
 cfg esef-fr
 
-#${JSONNET} ../test/metadata.jsonnet | json2yaml > ${test}/metadata.yaml
-#${JSONNET} ../test/metadata-rev.jsonnet | json2yaml > ${test}/metadata-rev.yaml
-#${JSONNET} ../test/metadata-acc-aud.jsonnet | json2yaml > ${test}/metadata-acc-aud.yaml
-
-
+${JSONNET} ../lib/style.jsonnet | json2yaml > ${test}/../report/style.yaml
+${JSONNET} report-unaudited-micro.jsonnet | \
+    json2yaml > ${test}/../report/ch/unaudited-micro.yaml
