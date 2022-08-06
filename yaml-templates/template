@@ -18,7 +18,12 @@ report=${outdir}/report
 #${JSONNET} ../taxonomy/ct-dpl.jsonnet | json2yaml > tmp/ct-dpl.yaml
 
 md() {
-    ${JSONNET} ../test/metadata$1.jsonnet | json2yaml > ${test}/metadata$1.yaml
+    ${JSONNET} ../test/metadata${1}.jsonnet | \
+	json2yaml > ${test}/metadata${1}.yaml
+}
+
+cfg() {
+    ${JSONNET} ${1}.jsonnet | json2yaml > ${test}/${1}.yaml
 }
 
 md ''
@@ -32,6 +37,27 @@ md '-aud-rev'
 md '-esef'
 md '-ct'
 
+#${JSONNET} unaud-micro.jsonnet | json2yaml > ${test}/unaud-micro.yaml
+#${JSONNET} unaud-micro-rev.jsonnet | json2yaml > ${test}/unaud-micro-rev.jsonnet
+
+cfg unaud-micro
+cfg unaud-micro-rev
+cfg aud-micro
+cfg aud-micro-rev
+cfg aud-small
+cfg aud-small-rev
+cfg unaud-abr
+cfg unaud-abr-rev
+cfg unaud-full
+cfg unaud-full-rev
+cfg aud-full
+cfg aud-full-rev
+cfg ct
+cfg esef
+cfg esef-fr
+
 #${JSONNET} ../test/metadata.jsonnet | json2yaml > ${test}/metadata.yaml
 #${JSONNET} ../test/metadata-rev.jsonnet | json2yaml > ${test}/metadata-rev.yaml
 #${JSONNET} ../test/metadata-acc-aud.jsonnet | json2yaml > ${test}/metadata-acc-aud.yaml
+
+
