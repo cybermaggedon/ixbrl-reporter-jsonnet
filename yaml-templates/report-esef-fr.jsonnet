@@ -115,8 +115,7 @@ local elts = {
 };
 
 local accts = {
-    metadata: import "test/metadata-esef.jsonnet",
-    accounts:: l.from_element_def(elts, self).with_metadata(self.metadata),
+    accounts:: l.from_element_def(elts, self),
     resource(x):: {
 	"logo": "//ref logo",
 	"notes": notes
