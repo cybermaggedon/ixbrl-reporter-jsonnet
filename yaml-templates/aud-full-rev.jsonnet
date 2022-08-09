@@ -8,5 +8,6 @@
     "directors-report": "//import directors-report.yaml",
     "auditors-report": "//import revised-auditors-report.yaml",
     "accountants-report": "//import accountants-report.yaml",
+    "revision-info": "//import revision-info.yaml",
     "notes": "//import notes.yaml",
 }

@@ -279,7 +279,7 @@
                 }
             ]
         },
-/*        {
+        {
             "id": "directors-report-signing-officer",
             "from": "report-period",
             "segments": [
@@ -287,7 +287,7 @@
                     "officer": "metadata.accounting.directors-report-signing-officer"
                 }
             ]
-        },*/
+        },
         {
             "from": "report-period",
             "id": "contact-country",
@@ -740,11 +740,11 @@
             "context": "end-of-reporting-period",
             "config": "metadata.directors.report-date"
         },
-/*        {
+        {
             "id": "directors-report-signing-officer",
             "context": "directors-report-signing-officer",
             "value": ""
-        },*/
+        },
         {
             "id": "is-revised",
             "kind": "bool",

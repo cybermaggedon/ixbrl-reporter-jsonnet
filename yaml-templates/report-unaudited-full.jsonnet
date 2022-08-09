@@ -3,10 +3,10 @@ local l = import "lib/frs102.libsonnet";
 
 local elts = {
     "element": "frs102",
-    "accounting_standards": "micro-entities",
-    "accounts_status": "audit-exempt-no-accountants-report",
-    "accounts_type": "abridged-accounts",
-    "title": "Unaudited Micro-Entity Accounts",
+    "accounting_standards": "frs102",
+    "accounts_status": "audit-exempt-with-accountants-report",
+    "accounts_type": "full-accounts",
+    "title": "Unaudited Full Accounts",
     "accounts_file": "example2.gnucash",
     "accounts_kind": "piecash",
     "elements": [
@@ -21,15 +21,27 @@ local elts = {
 		{
 		    "element": "company-info"
 		},	    
+		{
+		    "element": "directors-report"
+		},	    
+		{
+		    "element": "accountants-report"
+		},	    
 		{	    
-		    "element": "balance-sheet-unaudited-micro",
+		    "element": "balance-sheet",
 		    "signature": "signature"
+		},
+		{
+		    "element": "cash-flows"
+		},
+		{
+		    "element": "comprehensive-income"
 		},
 		{
 		    "element": "maybe-revision-info"
 		},
 		{
-		    "element": "simple-notes"
+		    "element": "notes"
 		}
 	    ]
 	}
@@ -51,7 +63,10 @@ local accts = {
     resource(x):: {
 	"logo": import "detail/logo.jsonnet",
 	"signature": import "detail/signature.jsonnet",
-	"revision-info": "//ref revision-info",
+	"revision-info": import "detail/revision-info.jsonnet",
+	"directors-report": import "detail/directors-report.jsonnet",
+	"accountants-report": import "detail/accountants-report.jsonnet",
+	"notes": import "detail/notes.jsonnet",
     }[x]
 };
 

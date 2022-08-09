@@ -3,10 +3,10 @@ local l = import "lib/frs102.libsonnet";
 
 local elts = {
     "element": "frs102",
-    "accounting_standards": "micro-entities",
-    "accounts_status": "audit-exempt-no-accountants-report",
+    "accounting_standards": "small-entities-regime",
+    "accounts_status": "audit-exempt-with-accountants-report",
     "accounts_type": "abridged-accounts",
-    "title": "Unaudited Micro-Entity Accounts",
+    "title": "Unaudited Abridged Accounts",
     "accounts_file": "example2.gnucash",
     "accounts_kind": "piecash",
     "elements": [
@@ -19,11 +19,23 @@ local elts = {
 		    "logo": "logo"
 		},
 		{
+		    "element": "consent"
+		},	    
+		{
 		    "element": "company-info"
 		},	    
+		{
+		    "element": "directors-report"
+		},	    
+		{
+		    "element": "accountants-report"
+		},	    
 		{	    
-		    "element": "balance-sheet-unaudited-micro",
+		    "element": "balance-sheet",
 		    "signature": "signature"
+		},
+		{
+		    "element": "profit-and-loss"
 		},
 		{
 		    "element": "maybe-revision-info"
@@ -52,6 +64,9 @@ local accts = {
 	"logo": import "detail/logo.jsonnet",
 	"signature": import "detail/signature.jsonnet",
 	"revision-info": "//ref revision-info",
+	"directors-report": "//ref directors-report",
+	"accountants-report": "//ref accountants-report",
+	"notes": "//ref notes",
     }[x]
 };
 

@@ -54,5 +54,24 @@ cfg esef
 cfg esef-fr
 
 ${JSONNET} ../lib/style.jsonnet | json2yaml > ${test}/../report/style.yaml
+
 ${JSONNET} report-unaudited-micro.jsonnet | \
     json2yaml > ${test}/../report/ch/unaudited-micro.yaml
+
+${JSONNET} report-unaudited-abridged.jsonnet | \
+    json2yaml > ${test}/../report/ch/unaudited-abridged.yaml
+
+${JSONNET} report-unaudited-full.jsonnet | \
+    json2yaml > ${test}/../report/ch/unaudited-full.yaml
+
+${JSONNET} report-audited-full.jsonnet | \
+    json2yaml > ${test}/../report/ch/audited-full.yaml
+
+${JSONNET} report-audited-small.jsonnet | \
+    json2yaml > ${test}/../report/ch/audited-small.yaml
+
+${JSONNET} report-audited-micro.jsonnet | \
+    json2yaml > ${test}/../report/ch/audited-micro.yaml
+
+${JSONNET} ../test/detail/revision-info.jsonnet | \
+    json2yaml > ${test}/../revision-info.yaml
