@@ -52,11 +52,12 @@ local accts = {
     accounts:: $.library.from_element_def(elts, self),
 
     resource(x):: {
-	"logo": import "detail/logo.jsonnet",
-	"signature": import "detail/signature.jsonnet",
+	"logo": "//ref logo",
+	"signature": "//ref signature",
 	"revision-info": "//ref revision-info",
 	"directors-report": "//ref directors-report",
 	"auditors-report": "//ref auditors-report",
+	"notes": "//ref notes",
     }[x]
 };
 

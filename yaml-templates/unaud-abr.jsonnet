@@ -5,7 +5,9 @@
     },
     report: "//import report/ch/unaudited-abridged.yaml",
     metadata: "//import test/metadata-acc.yaml",
-    "directors-report": "//import directors-report.yaml",
-    "accountants-report": "//import accountants-report.yaml",
-    "revision-info": "//ref revision-info",
+    "directors-report": "//import detail/directors-report.yaml",
+    "accountants-report": "//import detail/accountants-report.yaml",
+    "revision-info": "//import detail/revision-info.yaml",
+    "logo": "//import detail/logo.yaml",
+    "signature": "//import detail/signature.yaml",
 }

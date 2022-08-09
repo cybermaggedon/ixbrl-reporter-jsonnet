@@ -6,4 +6,6 @@
     report: "//import report/ch/unaudited-micro.yaml",
     metadata: "//import test/metadata-rev.yaml",
     "revision-info": "//import revision-info.yaml",
+    "logo": "//import detail/logo.yaml",
+    "signature": "//import detail/signature.yaml",
 }

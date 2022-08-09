@@ -55,6 +55,11 @@ cfg esef-fr
 
 ${JSONNET} ../lib/style.jsonnet | json2yaml > ${test}/../report/style.yaml
 
+${JSONNET} ../test/detail/revision-info.jsonnet | \
+    json2yaml > ${test}/../revision-info.yaml
+
+# ------
+
 ${JSONNET} report-unaudited-micro.jsonnet | \
     json2yaml > ${test}/../report/ch/unaudited-micro.yaml
 
@@ -73,5 +78,9 @@ ${JSONNET} report-audited-small.jsonnet | \
 ${JSONNET} report-audited-micro.jsonnet | \
     json2yaml > ${test}/../report/ch/audited-micro.yaml
 
-${JSONNET} ../test/detail/revision-info.jsonnet | \
-    json2yaml > ${test}/../revision-info.yaml
+${JSONNET} report-esef.jsonnet | \
+    json2yaml > ${test}/../report/esef/esef.yaml
+
+${JSONNET} report-esef-fr.jsonnet | \
+    json2yaml > ${test}/../report/esef/esef-fr.yaml
+
