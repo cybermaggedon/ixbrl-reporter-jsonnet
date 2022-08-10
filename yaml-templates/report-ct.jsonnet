@@ -47,11 +47,9 @@ local elts = {
 
 local accts = {
 
-    metadata: import "test/metadata-ct.jsonnet",
+    accounts:: l.from_element_def(elts, self),
 
-    accounts:: l.from_element_def(elts, self).with_metadata(self.metadata),
-
-    local comp_updates = import "test/ct-comps.jsonnet",
+    local comp_updates = import "ct-comps.jsonnet",
 
     local comps = computations.update($.accounts.report.computations, comp_updates),
 
@@ -98,5 +96,5 @@ local accts = {
     }
 };
 
-accts.tailored
+accts.tailored.report
 

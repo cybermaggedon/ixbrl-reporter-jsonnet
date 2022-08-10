@@ -11,12 +11,6 @@ test=${outdir}/test
 taxonomy=${outdir}/taxonomy
 report=${outdir}/report
 
-#${JSONNET} template-config.jsonnet | json2yaml > tmp/corptax-config.yaml
-#${JSONNET} template-metadata.jsonnet | json2yaml > tmp/metadata-corptax.yaml
-#${JSONNET} template-report.jsonnet | json2yaml > tmp/report-corptax.yaml
-#${JSONNET} ../lib/style.jsonnet | json2yaml > tmp/style.yaml
-#${JSONNET} ../taxonomy/ct-dpl.jsonnet | json2yaml > tmp/ct-dpl.yaml
-
 md() {
     ${JSONNET} ../test/metadata${1}.jsonnet | \
 	json2yaml > ${test}/metadata${1}.yaml
@@ -83,4 +77,7 @@ ${JSONNET} report-esef.jsonnet | \
 
 ${JSONNET} report-esef-fr.jsonnet | \
     json2yaml > ${test}/../report/esef/esef-fr.yaml
+
+${JSONNET} report-ct.jsonnet | \
+    json2yaml > ${test}/../report/hmrc/corp-tax.yaml
 
