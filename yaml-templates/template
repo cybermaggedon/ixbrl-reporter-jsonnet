@@ -54,6 +54,20 @@ ${JSONNET} ../test/detail/revision-info.jsonnet | \
 
 # ------
 
+${JSONNET} ../taxonomy/ct-dpl.jsonnet | \
+    json2yaml > ${test}/../taxonomy/ct-dpl.yaml
+
+${JSONNET} ../taxonomy/esef-fr.jsonnet | \
+    json2yaml > ${test}/../taxonomy/esef-fr.yaml
+
+${JSONNET} ../taxonomy/esef.jsonnet | \
+    json2yaml > ${test}/../taxonomy/esef.yaml
+
+${JSONNET} ../taxonomy/frs102.jsonnet | \
+    json2yaml > ${test}/../taxonomy/frs102.yaml
+
+# ------
+
 ${JSONNET} report-unaudited-micro.jsonnet | \
     json2yaml > ${test}/../report/ch/unaudited-micro.yaml
 
@@ -80,4 +94,3 @@ ${JSONNET} report-esef-fr.jsonnet | \
 
 ${JSONNET} report-ct.jsonnet | \
     json2yaml > ${test}/../report/hmrc/corp-tax.yaml
-
