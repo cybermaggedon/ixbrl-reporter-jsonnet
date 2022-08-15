@@ -45,7 +45,8 @@
             { "expense-type": "administrative-expenses" }
         ],
         "accounts": [
-            "Expenses:Emoluments:Employees"
+            "Expenses:Emoluments:Employees",
+            "Expenses:Emoluments:Employer's NICs"
         ]
     },
     {
