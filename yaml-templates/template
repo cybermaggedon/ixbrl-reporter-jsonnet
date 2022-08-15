@@ -50,7 +50,7 @@ cfg esef-fr
 ${JSONNET} ../lib/style.jsonnet | json2yaml > ${test}/../report/style.yaml
 
 ${JSONNET} ../test/detail/revision-info.jsonnet | \
-    json2yaml > ${test}/../revision-info.yaml
+    json2yaml > ${test}/../detail/revision-info.yaml
 
 # ------
 
