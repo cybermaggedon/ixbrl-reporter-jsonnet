@@ -8,9 +8,11 @@
 	    "inputs": [
 		{
 		    "kind": "line",
-		    "accounts": mappings["vat-output-sales"],
-		    "period": "in-year"
+		    "accounts": [acct.account],
+		    "period": "in-year",
+		    "reverse-sign": acct.reversed,
 		}
+		for acct in mappings["vat-output-sales"]
 	    ],
 	    "period": "in-year"
 	},
@@ -20,9 +22,11 @@
 	    "inputs": [
 		{
 		    "kind": "line",
-		    "accounts": mappings["vat-output-acquisitions"],
-		    "period": "in-year"
+		    "accounts": [acct.account],
+		    "period": "in-year",
+		    "reverse-sign": acct.reversed,
 		}
+		for acct in mappings["vat-output-acquisitions"]
 	    ],
 	    "period": "in-year"
 	},
@@ -41,9 +45,11 @@
 		{
 		    "kind": "line",
 		    "description": "VAT 4",
-		    "accounts": mappings["vat-input"],
-		    "period": "in-year"
+		    "accounts": [acct.account],
+		    "period": "in-year",
+		    "reverse-sign": acct.reversed,
 		}
+		for acct in mappings["vat-input"]
 	    ],
 	    "period": "in-year"
 	},
@@ -63,9 +69,11 @@
 		{
 		    "kind": "line",
 		    "description": "VAT 6",
-		    "accounts": mappings["total-vatex-sales"],
-		    "period": "in-year"
+		    "accounts": [acct.account],
+		    "period": "in-year",
+		    "reverse-sign": acct.reversed,
 		}
+		for acct in mappings["total-vatex-sales"]
 	    ],
 	    "period": "in-year"
 	},
@@ -83,9 +91,11 @@
 			{
 			    "kind": "line",
 			    "description": "VAT 7",
-			    "accounts": mappings["total-vatex-purchases"],
-			    "period": "in-year"
+			    "accounts": [acct.account],
+			    "period": "in-year",
+			    "reverse-sign": acct.reversed,
 			}
+			for acct in mappings["total-vatex-purchases"]
 		    ],
 		    "period": "in-year"
 		},
@@ -107,9 +117,11 @@
 			{
 			    "kind": "line",
 			    "description": "VAT 8",
-			    "accounts": mappings["total-vatex-goods-supplied"],
-			    "period": "in-year"
-			},
+			    "accounts": [acct.account],
+			    "period": "in-year",
+			    "reverse-sign": acct.reversed,
+			}
+			for acct in mappings["total-vatex-goods-supplied"]
 		    ],
 		    "period": "in-year"
 		},
@@ -128,9 +140,11 @@
 		    {
 			"kind": "line",
 			"description": "VAT 9",
-			"accounts": mappings["total-vatex-acquisitions"],
-			"period": "in-year"
+			"accounts": [acct.account],
+			"period": "in-year",
+			"reverse-sign": acct.reversed,
 		    }
+		    for acct in mappings["total-vatex-acquisitions"]
 		]
 	    },
 	    "period": "in-year"
