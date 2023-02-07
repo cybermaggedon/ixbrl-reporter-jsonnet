@@ -788,7 +788,17 @@
         "trade-creditors": true,
         "depreciation-charge": true,
         "depreciation-total": true,
-        "depreciation-adjustment": true
+        "depreciation-adjustment": true,
+	"depreciation": true,
+	"other-charges": true,
+	"staff-costs": true,
+	"purchase-equipment": true,
+	"net-cash-from-investing-activities": true,
+	"interest-paid": true,
+	"interest-expense": true,
+	"corporation-tax-paid": true,
+	"dividends-paid": true,
+	"trade-and-other-receivables": true
     },
     "tags": {
         "accounting-standards": "uk-bus:AccountingStandardsApplied",

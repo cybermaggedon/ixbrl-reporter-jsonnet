@@ -88,7 +88,19 @@
         }
     ],
     "note-templates": [],
-    "sign-reversed": {},
+    "sign-reversed": {
+	"purchase-equipment": true,
+	"other-operating-costs": true,
+	"income-tax": true,
+	"income-tax-paid": true,
+	"interest-paid": true,
+	"depreciation-and-amortisation": true,
+	"dividends-paid": true,
+	"personnel-costs": true,
+	"trade-and-other-receivables": true,
+	"financial-items-adjustment": true,
+	"net-cash-from-investing-activities": true,
+    },
     "tags": {
         "name-of-reporting-entity": "ifrs-full:NameOfReportingEntityOrOtherMeansOfIdentification",
         "domicile-of-entity": "ifrs-full:DomicileOfEntity",
