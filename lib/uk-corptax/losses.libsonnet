@@ -7,23 +7,6 @@
 		"title": "Losses",
 		"facts": [
 		    {
-			"id": "trading-losses-of-this-or-later-ap",
-			"context": "report-period",
-			"description": "Trading losses",
-			"field": "275",
-			"computation": "ct-trading-losses",
-			"kind": "computation",
-			"period-config": "metadata.tax.period"
-		    },
-		    {
-			"context": "report-period",
-			"description": "Loss amounts carried back",
-			"field": "280",
-			"id": "loss-amounts-carried-back",
-			"kind": "bool",
-			"value": false
-		    },
-		    {
 			"id": "losses-of-trades-in-the-uk",
 			"context": "report-period",
 			"description": "Losses of trades in the UK",
