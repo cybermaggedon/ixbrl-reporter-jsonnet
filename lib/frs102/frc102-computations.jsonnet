@@ -44,7 +44,8 @@
         "id": "salaries-expense",
         "kind": "line",
         "accounts": [
-            "Expenses:Emoluments:Employees"
+            "Expenses:Emoluments:Employees",
+            "Expenses:Emoluments:Employer's NICs"
         ],
         "description": "Salaries",
         "period": "in-year"
@@ -276,7 +277,7 @@
         ]
     },
     {
-        "id": "vat-refund-owed",
+        "id": "vat-refund-due",
         "kind": "line",
         "description": "VAT Refund Due",
         "period": "at-end",
@@ -301,7 +302,7 @@
         "description": "Current Assets",
         "inputs": [
             "debtors",
-            "vat-refund-owed",
+            "vat-refund-due",
             "bank"
         ]
     },
