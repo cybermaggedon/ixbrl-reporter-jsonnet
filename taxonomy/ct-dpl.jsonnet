@@ -128,7 +128,11 @@
                 "item9": "dpl:Item9",
                 "item10": "dpl:Item10",
                 "item11": "dpl:Item11",
-                "item12": "dpl:Item12"
+                "item12": "dpl:Item12",
+                "item13": "dpl:Item13",
+                "item14": "dpl:Item14",
+                "item15": "dpl:Item15",
+                "item16": "dpl:Item16"
             }
         },
         "expense-type": {

@@ -32,8 +32,8 @@ do
 	grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' \
 	      ${cmp} | \
 	    sort | cmp ${kv} -
-	sort ${cmp} | diff ${kv} -
-	exit 1
+ 	sort ${cmp} | diff ${kv} -
+ 	exit 1
     fi
 done
 
