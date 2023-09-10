@@ -21,15 +21,15 @@ do
     jsonnet -J . test/${cfg} > ${json}
     ixbrl-reporter ${json} report ixbrl > ${out}
     ixbrl-to-kv ${out} | \
-	egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' | \
+	grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' | \
 	sort > ${kv}
-    egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' ${cmp} | \
+    grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' ${cmp} | \
 	sort | cmp ${kv} -
     if [ $? -ne 0 ]
     then
         echo 'File comparison fail...'
 	echo 'diff ${kv} ${cmp} >>>>'
-	egrep -v 'VersionProductionSoftware|VersionOfProductionSoftware' \
+	grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' \
 	      ${cmp} | \
 	    sort | cmp ${kv} -
 	sort ${cmp} | diff ${kv} -
