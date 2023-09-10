@@ -329,7 +329,8 @@
         "accounts": [
             "VAT:Output",
 	    "VAT:Settlement:Output",
-	    "Liabilities:Credit Cards"
+	    "Liabilities:Credit Cards",
+            "Liabilities:Owed Corporation Tax"
         ]
     },
     {
@@ -338,7 +339,7 @@
         "description": "Creditors: falling due within one year",
         "inputs": [
             "trade-creditors",
-            "other-creditors"
+            "other-creditors",
         ],
         "segments": [
             { "matures": "within-1-year" }
@@ -375,20 +376,10 @@
         ]
     },
     {
-        "id": "corporation-tax-owed",
-        "kind": "line",
-        "description": "Corporation tax",
-        "period": "at-end",
-        "accounts": [
-            "Liabilities:Owed Corporation Tax"
-        ]
-    },
-    {
         "description": "Provisions For Liabilities",
         "id": "provisions-for-liabilities",
         "kind": "sum",
         "inputs": [
-            "corporation-tax-owed"
         ]
     },
     {
