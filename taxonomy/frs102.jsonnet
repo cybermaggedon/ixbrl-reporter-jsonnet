@@ -1,14 +1,14 @@
 {
     "schema": [
-        "https://xbrl.frc.org.uk/FRS-102/2021-01-01/FRS-102-2021-01-01.xsd"
+        "https://xbrl.frc.org.uk/FRS-102/2023-01-01/FRS-102-2023-01-01.xsd"
     ],
     "namespaces": {
-        "uk-bus": "http://xbrl.frc.org.uk/cd/2021-01-01/business",
-        "uk-core": "http://xbrl.frc.org.uk/fr/2021-01-01/core",
-        "uk-direp": "http://xbrl.frc.org.uk/reports/2021-01-01/direp",
-        "uk-geo": "http://xbrl.frc.org.uk/cd/2021-01-01/countries",
-        "uk-aurep": "http://xbrl.frc.org.uk/reports/2021-01-01/aurep",
-        "uk-accrep": "http://xbrl.frc.org.uk/reports/2021-01-01/accrep"
+        "uk-bus": "http://xbrl.frc.org.uk/cd/2023-01-01/business",
+        "uk-core": "http://xbrl.frc.org.uk/fr/2023-01-01/core",
+        "uk-direp": "http://xbrl.frc.org.uk/reports/2023-01-01/direp",
+        "uk-geo": "http://xbrl.frc.org.uk/cd/2023-01-01/countries",
+        "uk-aurep": "http://xbrl.frc.org.uk/reports/2023-01-01/aurep",
+        "uk-accrep": "http://xbrl.frc.org.uk/reports/2023-01-01/accrep"
     },
     "contexts": [
         {
@@ -803,7 +803,7 @@
     "tags": {
         "accounting-standards": "uk-bus:AccountingStandardsApplied",
         "accounts-status": "uk-bus:AccountsStatusAuditedOrUnaudited",
-        "accounts-type": "uk-bus:AccountsTypeFullOrAbbreviated",
+        "accounts-type": "uk-bus:AccountsType",
         "accruals-and-deferred-income": "uk-core:AccruedLiabilitiesDeferredIncome",
         "activities": "uk-bus:DescriptionPrincipalActivities",
         "administrative-expenses": "uk-core:AdministrativeExpenses",
