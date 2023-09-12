@@ -163,14 +163,14 @@
         }
     },
     "namespaces": {
-        "ct-comp": "http://www.hmrc.gov.uk/schemas/ct/comp/2021-01-01",
+        "ct-comp": "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01",
         "dpl": "http://www.hmrc.gov.uk/schemas/ct/dpl/2021-01-01",
         "uk-core": "http://xbrl.frc.org.uk/fr/2021-01-01/core",
         "uk-bus": "http://xbrl.frc.org.uk/cd/2021-01-01/business",
         "uk-geo": "http://xbrl.frc.org.uk/cd/2021-01-01/countries"
     },
     "schema": [
-        "http://www.hmrc.gov.uk/schemas/ct/comp/2021-01-01/ct-comp-2021.xsd",
+        "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01/ct-comp-2023.xsd",
         "http://www.hmrc.gov.uk/schemas/ct/dpl/2021-01-01/dpl-2021.xsd"
     ],
     "sign-reversed": {
