@@ -4,6 +4,7 @@
 	"kind": "simple",
 	"description": "SME R&D",
 	"computations": [
+	    "rnd-qualifying-expenditure",
 	    "rnd-enhanced-expenditure"
 	]
     },

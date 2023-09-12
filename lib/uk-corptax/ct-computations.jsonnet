@@ -214,9 +214,9 @@
         ]
     },
     {
-        "id": "rnd-enhanced-expenditure",
+        "id": "rnd-qualifying-expenditure",
         "kind": "group",
-        "description": "SME R&D tax relief (130%)",
+        "description": "SME R&D qualifying expenditure",
         "period": "in-year",
         "segments": [
             { "business-name": "metadata.business.company-name" },
@@ -225,6 +225,35 @@
             { "territory": "uk" }
         ],
         "inputs": [
+        ]
+    },
+    {
+        "id": "rnd-enhanced-expenditure",
+        "kind": "factor",
+        "description": "SME R&D enhanced expenditure (130%)",
+        "factor": 1.3,
+        "period": "in-year",
+        "input": "rnd-qualifying-expenditure",
+        "segments": [
+            { "business-name": "metadata.business.company-name" },
+            { "business-type": "trade" },
+            { "loss-reform": "post-loss-reform" },
+            { "territory": "uk" }
+        ]
+    },
+    {
+        "id": "rnd-creative-enhanced-expenditure",
+        "kind": "sum",
+        "description": "SME R&D / Creative enhanced expenditure (130%)",
+        "period": "in-year",
+        "inputs": [
+	    "rnd-enhanced-expenditure",
+	],
+        "segments": [
+            { "business-name": "metadata.business.company-name" },
+            { "business-type": "trade" },
+            { "loss-reform": "post-loss-reform" },
+            { "territory": "uk" }
         ]
     },
     {

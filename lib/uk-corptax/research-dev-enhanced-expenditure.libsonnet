@@ -23,6 +23,31 @@
 			"value": false
 		    },
 		    {
+			"id": "rnd-claim-notification",
+			"description": "Claim notification submitted",
+			"field": "656",
+			"context": "report-period",
+			"kind": "config-bool",
+			"key": "metadata.tax.rnd-claim-notification-submitted"
+		    },
+		    {
+			"id": "rnd-additional-information",
+			"description": "Additional information form submitted",
+			"field": "657",
+			"context": "report-period",
+			"kind": "config-bool",
+			"key": "metadata.tax.rnd-additional-notification-submitted"
+		    },
+		    {
+			"id": "rnd-enhanced-expenditure",
+			"kind": "computation",
+			"description": "R&D expenditure qualifying for relief",
+			"field": "659",
+			"context": "trade-period",
+			"computation": "rnd-qualifying-expenditure",
+			"period-config": "metadata.tax.period"
+		    },
+		    {
 			"id": "rnd-enhanced-expenditure",
 			"kind": "computation",
 			"description": "R&D enhanced expenditure",
@@ -46,7 +71,7 @@
 			"description": "R&D / Creative enhanced expenditure",
 			"field": "670",
 			"context": "report-period",
-			"computation": "rnd-enhanced-expenditure",
+			"computation": "rnd-creative-enhanced-expenditure",
 			"period-config": "metadata.tax.period"
 		    },
 		    {
