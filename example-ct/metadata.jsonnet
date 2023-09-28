@@ -107,6 +107,8 @@
 	    "year": "2020",
             "start": "2020-04-01",
             "end": "2020-12-31"
-        }
+        },
+	"rnd-claim-notification-submitted": true,
+	"rnd-additional-notification-submitted": true
     }
 }
