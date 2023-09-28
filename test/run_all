@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Sorting strings depends on Locale.  Don't want this test script to fail
+# because sort works differently.  This affects MacOS vs Linux.
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+# export LC_ALL=en_GB.UTF-8
+
 log=test/log
 output=test/output
 
