@@ -3,51 +3,7 @@ local base = import "base.libsonnet";
 
 base + {
 
-    accounts(line):: {
-	salaries: [
-	    "Expenses:Emoluments:Employees",
-            "Expenses:Emoluments:Employer's NICs"
-	],
-	income: [
-            "Income"
-        ],
-	pensions: [
-            "Expenses:Emoluments:Employer Pension Contribution"
-        ],
-	"bank-charges": [
-            "Expenses:VAT Purchases:Bank Charges"
-        ],
-	office: [
-            "Expenses:VAT Purchases:Office"
-        ],
-	"software-expenses": [
-            "Expenses:VAT Purchases:Software"
-        ],
-	sundries: [
-            "Expenses:VAT Purchases:Sundries"
-	],
-	travel: [
-            "Expenses:VAT Purchases:Travel/Accom"
-        ],
-	accountancy: [
-            "Expenses:VAT Purchases:Accountant"
-        ],
-	"subscriptions-costs": [
-            "Expenses:VAT Purchases:Subscriptions"
-        ],
-	telecoms: [
-            "Expenses:VAT Purchases:Telecoms"
-        ],
-	"corporation-tax": [
-            "Equity:Corporation Tax"
-        ],
-	"tax-due": [
-            "corporation-tax"
-        ],
-	"ct-annual-investment-allowance": [
-            "Assets:Capital Equipment:Computer Equipment"
-        ],
-    }[line],
+    accounts(line):: base.accounts.mapping[line],
 
     components:: {
 

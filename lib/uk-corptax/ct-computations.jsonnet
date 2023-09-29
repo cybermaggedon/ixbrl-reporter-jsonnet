@@ -175,7 +175,9 @@ function(ct)
         "description": "Corporation tax",
         "kind": "sum",
         "period": "in-year",
-        "inputs": ct.accounts($.id)
+        "inputs": [
+	    "corporation-tax"
+	]
     },
     {
         "id": "profit",
