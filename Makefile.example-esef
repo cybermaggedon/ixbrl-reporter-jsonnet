@@ -7,9 +7,11 @@ all: esef.xhtml esef-fr.xhtml
 %.xhtml: %.json
 	ixbrl-reporter $< report ixbrl > $@
 
-esef.json: ${INPUTS}
-	jsonnet ${TEMPLATE}/example.jsonnet -J . > $@
+FORCE:
 
-esef-fr.json: ${INPUTS}
+esef.json: ${INPUTS} FORCE
+	jsonnet ${TEMPLATE}/example-en.jsonnet -J . > $@
+
+esef-fr.json: ${INPUTS} FORCE
 	jsonnet ${TEMPLATE}/example-fr.jsonnet -J . > $@
 
