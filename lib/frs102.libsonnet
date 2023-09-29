@@ -11,7 +11,17 @@ base + {
         id: id,
 	description: description,
 	in_year():: self + { period: "in-year" },
+	at_end():: self + { period: "at-end" },
+	at_start():: self + { period: "at-start" },
 	note(n):: self + { note: n },
+	segment(k, v)::
+	    local elt = { [k]: v };
+  	    if std.objectHas(self, "segments") then
+	        local segs = self.segments + [{ [k]: v }];
+		self + { segments: segs }
+	    else
+	        self + { segments: [ { [k]: v } ] },
+
     },
 
     line(id, description):: $.computation(id, description) + {

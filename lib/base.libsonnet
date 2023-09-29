@@ -304,7 +304,109 @@
 		"interest-paid"
 	    ],
 	    zero: [],
-	    
+	    "fixed-assets": [ "tangible-assets" ],
+            "current-assets": [
+		"debtors",
+		"vat-refund-due",
+		"bank"
+	    ],
+	    "prepayments-and-accrued-income": [],
+	    "creditors-within-1-year": [
+		"trade-creditors",
+		"other-creditors",
+	    ],
+	    "net-current-assets": [
+		"current-assets",
+		"prepayments-and-accrued-income",
+		"creditors-within-1-year"
+	    ],
+	    "total-assets-less-liabilities": [
+		"fixed-assets",
+		"current-assets",
+		"prepayments-and-accrued-income",
+		"creditors-within-1-year"
+	    ],
+	    "creditors-after-1-year": [
+	    ],
+	    "provisions-for-liabilities": [
+	    ],
+	    "accruals-and-deferred-income": [
+	    ],
+	    "net-assets": [
+		"total-assets-less-liabilities",
+		"creditors-after-1-year",
+		"provisions-for-liabilities",
+		"accruals-and-deferred-income"
+	    ],
+	    "capital-and-reserves": [
+		"share-capital-equity",
+		"profit-loss",
+		"dividends",
+		"corporation-tax"
+	    ],
+	    "total-capital-and-reserves": [
+		"capital-and-reserves"
+	    ],
+	    "fixed-assets-total": [
+		"fixed-assets-initial",
+		"fixed-assets-additions"
+	    ],
+            "deprectiation-total": [
+		"depreciation-initial",
+		"depreciation-charge"
+	    ],
+	    "carrying-final": [
+		"fixed-assets-total",
+		"depreciation-total"
+	    ],
+	    "share-capital": [
+		"shares-at-start",
+		"shares-issued"
+	    ],
+	    "cash-inflow": [
+		"profit"
+	    ],
+	    "cash-from-operations": [
+		"cash-inflow",
+		"depreciation-adjustment",
+		"trade-and-other-receivables",
+		"inventories",
+		"trade-payables"
+	    ],
+	    "net-cash-from-operating-activities": [
+		"profit",
+		"depreciation-adjustment",
+		"trade-and-other-receivables",
+		"inventories",
+		"trade-payables",
+		"corporation-tax-paid"
+	    ],
+	    "net-cash-from-investing-activities": [
+		"proceeds-sale-equipment",
+		"purchase-equipment",
+		"purchase-intangible-assets",
+		"interest-received"
+	    ],
+	    "proceeds-from-issuing-shares": [
+		"shares-issued"
+	    ],
+	    "net-cash-from-financing-activities": [
+		"interest-paid",
+		"proceeds-from-issuing-shares",
+		"purchase-of-non-controlling-interest",
+		"dividends-paid"
+	    ],
+	    "cash-at-end-of-year": [
+	    ],
+	    "net-cash-change": [
+                "net-cash-from-operating-activities",
+                "net-cash-from-investing-activities",
+                "net-cash-from-financing-activities"
+	    ],
+	    "cash": [
+		"current-account",
+                "reserve-account"
+	    ],
 	}
 
     }

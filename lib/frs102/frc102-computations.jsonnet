@@ -34,140 +34,44 @@ function(accts)
 	.note("financial-costs-note"),
     accts.group("interest-expense", "Interest expense").in_year(),
     accts.group("zero", "No information").in_year(),
-    {
-        "id": "tangible-assets",
-        "kind": "line",
-        "description": "Tangible Assets",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "fixed-assets",
-        "description": "Fixed Assets",
-        "kind": "sum",
-        "period": "at-end",
-        "note": "equipment-note",
-        "inputs": [
-            "tangible-assets"
-        ]
-    },
-    {
-        "id": "debtors",
-        "kind": "line",
-        "description": "Debtors",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "vat-refund-due",
-        "kind": "line",
-        "description": "VAT Refund Due",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "bank",
-        "kind": "line",
-        "description": "Bank",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "current-assets",
-        "kind": "sum",
-        "description": "Current Assets",
-        "inputs": [
-            "debtors",
-            "vat-refund-due",
-            "bank"
-        ]
-    },
-    {
-        "id": "prepayments-and-accrued-income",
-        "kind": "group",
-        "description": "Prepayments and Accrued Income",
-        "inputs": []
-    },
-    {
-        "id": "trade-creditors",
-        "kind": "line",
-        "description": "Trade Creditors",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "other-creditors",
-        "kind": "line",
-        "description": "Other Creditors",
-        "period": "at-end",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "creditors-within-1-year",
-        "kind": "sum",
-        "description": "Creditors: falling due within one year",
-        "inputs": [
-            "trade-creditors",
-            "other-creditors",
-        ],
-        "segments": [
-            { "matures": "within-1-year" }
-        ]
-    },
-    {
-        "id": "net-current-assets",
-        "kind": "sum",
-        "description": "Net Current Assets",
-        "inputs": [
-            "current-assets",
-            "prepayments-and-accrued-income",
-            "creditors-within-1-year"
-        ]
-    },
-    {
-        "id": "total-assets-less-liabilities",
-        "kind": "sum",
-        "description": "Total Assets Less Liabilities",
-        "inputs": [
-            "fixed-assets",
-            "current-assets",
-            "prepayments-and-accrued-income",
-            "creditors-within-1-year"
-        ]
-    },
-    {
-        "id": "creditors-after-1-year",
-        "kind": "group",
-        "description": "Creditors: falling due after one year",
-        "inputs": [],
-        "segments": [
-            { "matures": "after-1-year" }
-        ]
-    },
-    {
-        "description": "Provisions For Liabilities",
-        "id": "provisions-for-liabilities",
-        "kind": "sum",
-        "inputs": [
-        ]
-    },
-    {
-        "id": "accruals-and-deferred-income",
-        "kind": "group",
-        "description": "Accrued liabilities and deferred income",
-        "inputs": []
-    },
-    {
-        "id": "net-assets",
-        "kind": "sum",
-        "description": "Net Assets",
-        "inputs": [
-            "total-assets-less-liabilities",
-            "creditors-after-1-year",
-            "provisions-for-liabilities",
-            "accruals-and-deferred-income"
-        ]
-    },
+    accts.line("tangible-assets", "Tangible Assets").at_end(),
+    accts.sum("fixed-assets", "Fixed Assets")
+	.at_end()
+	.note("equipment-note"),
+    accts.line("debtors", "Debtors").at_end(),
+    accts.line("vat-refund-due", "VAT Refund Due").at_end(),
+    accts.line("bank", "Bank").at_end(),
+    accts.sum("current-assets", "Current Assets").at_end(),
+    accts.group(
+	"prepayments-and-accrued-income",
+	"Prepayments and Accrued Income"
+    ).at_end(),
+    accts.line("trade-creditors", "Trade Creditors").at_end(),
+    accts.line("other-creditors", "Other Creditors").at_end(),
+    accts.sum(
+	"creditors-within-1-year",
+	"Creditors: falling due within one year"
+    )
+	.at_end()
+	.segment("matures", "within-1-year"),
+    accts.sum("net-current-assets", "Net Current Assets").at_end(),
+    accts.sum(
+	"total-assets-less-liabilities",
+	"Total Assets Less Liabilities"
+    ).at_end(),
+    accts.group(
+	"creditors-after-1-year",
+	"Creditors: falling due after one year"
+    )
+	.at_end()
+	.segment("matures", "after-1-year"),
+    accts.sum("provisions-for-liabilities", "Provisions For Liabilities")
+	.at_end(),
+    accts.group(
+	"accruals-and-deferred-income",
+        "Accrued liabilities and deferred income"
+    ).at_end(),
+    accts.sum("net-assets", "Net Assets").at_end(),
     {
         "id": "share-capital-equity",
         "kind": "line",
