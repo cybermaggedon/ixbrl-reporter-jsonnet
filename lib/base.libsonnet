@@ -263,6 +263,50 @@
 
 	},
 
+	compound: {
+	    turnover: [
+		"consultancy"
+	    ],
+	    "other-operating-income": [],
+	    "raw-materials-consumables": [],
+	    "gross-profit": ["turnover"],
+	    "staff-costs": [
+		"salaries-expense",
+		"pensions-expense"
+	    ],
+	    "other-charges": [
+		"accountancy",
+		"bank-charges",
+		"office",
+		"software",
+		"subscriptions",
+		"sundries",
+		"telecoms",
+		"travel"
+	    ],
+	    profit: [
+		"turnover",
+		"other-operating-income",
+		"raw-materials-consumables",
+		"staff-costs",
+		"depreciation",
+		"other-charges"
+	    ],
+	    charges: [
+		"depreciation",
+		"staff-costs",
+		"other-charges"
+	    ],
+	    "interest-income": [
+		"interest-received"
+	    ],
+	    "interest-expense": [
+		"interest-paid"
+	    ],
+	    zero: [],
+	    
+	}
+
     }
 
 }

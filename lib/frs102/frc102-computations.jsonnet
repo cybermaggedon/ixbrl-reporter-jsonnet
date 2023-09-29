@@ -1,222 +1,39 @@
 function(accts)
 [
-    {
-        "id": "consultancy",
-        "kind": "line",
-        "description": "Consultancy",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "turnover",
-        "kind": "sum",
-        "description": "Turnover / revenue",
-        "period": "in-year",
-        "inputs": [
-            "consultancy"
-        ]
-    },
-    {
-        "id": "other-operating-income",
-        "kind": "sum",
-        "description": "Other income",
-        "period": "in-year",
-        "inputs": []
-    },
-    {
-        "id": "raw-materials-consumables",
-        "kind": "sum",
-        "description": "Cost of raw materials",
-        "period": "in-year",
-        "inputs": []
-    },
-    {
-        "id": "gross-profit",
-        "kind": "sum",
-        "description": "Gross Profit",
-        "period": "in-year",
-        "inputs": [
-            "turnover"
-        ]
-    },
-    {
-        "id": "salaries-expense",
-        "kind": "line",
-        "description": "Salaries",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "pensions-expense",
-        "kind": "line",
-        "description": "Pension contributions",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "staff-costs",
-        "kind": "group",
-        "note": "staff-costs-note",
-        "inputs": [
-            "salaries-expense",
-            "pensions-expense"
-        ],
-        "description": "Staff costs",
-        "period": "in-year"
-    },
-    {
-        "id": "depreciation",
-        "kind": "line",
-        "description": "Depreciation",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "accountancy",
-        "kind": "line",
-        "description": "Accountancy services",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "bank-charges",
-        "kind": "line",
-        "description": "Bank charges",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "office",
-        "kind": "line",
-        "description": "Office costs",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "software",
-        "kind": "line",
-        "description": "Software",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "subscriptions",
-        "kind": "line",
-        "description": "Subscriptions",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "sundries",
-        "kind": "line",
-        "description": "Sundries",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "telecoms",
-        "kind": "line",
-        "description": "Telecoms",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "travel",
-        "kind": "line",
-        "description": "Travel",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "other-charges",
-        "kind": "sum",
-        "description": "Other charges",
-        "inputs": [
-            "accountancy",
-            "bank-charges",
-            "office",
-            "software",
-            "subscriptions",
-            "sundries",
-            "telecoms",
-            "travel"
-        ],
-        "period": "in-year"
-    },
-    {
-        "id": "tax",
-        "kind": "line",
-        "description": "Tax",
-        "period": "in-year",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "profit",
-        "kind": "group",
-        "note": "profit-note",
-        "description": "Profit (Loss)",
-        "period": "in-year",
-        "inputs": [
-            "turnover",
-            "other-operating-income",
-            "raw-materials-consumables",
-            "staff-costs",
-            "depreciation",
-            "other-charges"
-        ]
-    },
-    {
-        "id": "charges",
-        "kind": "group",
-        "description": "Charges against profits",
-        "period": "in-year",
-        "inputs": [
-            "depreciation",
-            "staff-costs",
-            "other-charges"
-        ]
-    },
-    {
-        "id": "interest-received",
-        "kind": "line",
-        "note": "financial-income-note",
-        "period": "in-year",
-        "description": "Interest on current account",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "interest-income",
-        "kind": "group",
-        "description": "Interest income",
-        "period": "in-year",
-        "inputs": [
-            "interest-received"
-        ]
-    },
-    {
-        "id": "interest-paid",
-        "kind": "line",
-        "period": "in-year",
-        "note": "financial-costs-note",
-        "description": "Interest on bank loans",
-        "accounts": accts.accounts(self.id)
-    },
-    {
-        "id": "interest-expense",
-        "kind": "group",
-        "description": "Interest expense",
-        "period": "in-year",
-        "inputs": [
-            "interest-paid"
-        ]
-    },
-    {
-        "id": "zero",
-        "kind": "group",
-        "description": "No information",
-        "period": "in-year",
-        "inputs": []
-    },
+    accts.line("consultancy", "Consultancy").in_year(),
+    accts.sum("turnover", "Turnover / revenue").in_year(),
+    accts.sum("other-operating-income", "Other income").in_year(),
+    accts.sum("raw-materials-consumables", "Cost of raw materials").in_year(),
+    accts.sum("gross-profit", "Gross Profit").in_year(),
+    accts.line("salaries-expense", "Salaries").in_year(),
+    accts.line("pensions-expense", "Pension contributions").in_year(),
+    accts.group("staff-costs", "Staff costs")
+	.in_year()
+	.note("staff-costs-note"),
+    accts.line("depreciation", "Depreciation").in_year(),
+    accts.line("accountancy", "Accountancy services").in_year(),
+    accts.line("bank-charges", "Bank charges").in_year(),
+    accts.line("office", "Office costs").in_year(),
+    accts.line("software", "Software").in_year(),
+    accts.line("subscriptions", "Subscriptions").in_year(),
+    accts.line("sundries", "Sundries").in_year(),
+    accts.line("telecoms", "Telecoms").in_year(),
+    accts.line("travel", "Travel").in_year(),
+    accts.sum("other-charges", "Other charges").in_year(),
+    accts.line("tax", "Tax").in_year(),
+    accts.group("profit", "Profit (Loss)")
+	.in_year()
+	.note("profit-note"),
+    accts.group("charges", "Charges against profits").in_year(),
+    accts.line("interest-received", "Interest on current account")
+	.in_year()
+	.note("financial-income-note"),
+    accts.group("interest-income", "Interest income").in_year(),
+    accts.line("interest-paid", "Interest on bank loans")
+	.in_year()
+	.note("financial-costs-note"),
+    accts.group("interest-expense", "Interest expense").in_year(),
+    accts.group("zero", "No information").in_year(),
     {
         "id": "tangible-assets",
         "kind": "line",

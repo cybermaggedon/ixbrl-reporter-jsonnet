@@ -5,6 +5,30 @@ base + {
 
     accounts(line):: base.accounts.mapping[line],
 
+    inputs(id):: base.accounts.compound[id],
+
+    computation(id, description):: {
+        id: id,
+	description: description,
+	in_year():: self + { period: "in-year" },
+	note(n):: self + { note: n },
+    },
+
+    line(id, description):: $.computation(id, description) + {
+        kind: "line",
+        accounts: $.accounts(id),
+    },
+
+    sum(id, description):: $.computation(id, description) + {
+        kind: "sum",
+        inputs: $.inputs(self.id),
+    },
+
+    group(id, description):: $.computation(id, description) + {
+        kind: "group",
+        inputs: $.inputs(self.id),
+    },
+
     components:: {
 
 	frs102(c)::
