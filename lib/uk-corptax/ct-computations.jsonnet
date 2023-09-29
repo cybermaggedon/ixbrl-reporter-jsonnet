@@ -1,3 +1,4 @@
+function(ct)
 [
     {
         "id": "income",
@@ -9,9 +10,7 @@
             { "countries-regions": "UK" }
 	],
         "kind": "line",
-        "accounts": [
-            "Income"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "turnover",
@@ -44,10 +43,7 @@
         "segments": [
             { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:Emoluments:Employees",
-            "Expenses:Emoluments:Employer's NICs"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "pensions",
@@ -57,9 +53,7 @@
         "segments": [
             { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:Emoluments:Employer Pension Contribution"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "bank-charges",
@@ -69,9 +63,7 @@
         "segments": [
 	    { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Bank Charges"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "office",
@@ -81,9 +73,7 @@
         "segments": [
 	    { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Office"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "software-expenses",
@@ -93,9 +83,7 @@
         "segments": [
 	    { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Software"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "sundries",
@@ -105,9 +93,7 @@
         "segments": [
 	    { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Sundries"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "travel",
@@ -117,9 +103,7 @@
         "segments": [
             { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Travel/Accom"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "accountancy",
@@ -129,9 +113,7 @@
         "segments": [
 	    { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Accountant"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "subscriptions-costs",
@@ -141,9 +123,7 @@
         "segments": [
             { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Subscriptions"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "telecoms",
@@ -153,9 +133,7 @@
         "segments": [
             { "expense-type": "administrative-expenses" }
         ],
-        "accounts": [
-            "Expenses:VAT Purchases:Telecoms"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "total-costs",
@@ -190,18 +168,14 @@
         "kind": "line",
         "description": "Corporation tax",
         "period": "in-year",
-        "accounts": [
-            "Equity:Corporation Tax"
-        ]
+        "accounts": ct.accounts($.id)
     },
     {
         "id": "tax-due",
         "description": "Corporation tax",
         "kind": "sum",
         "period": "in-year",
-        "inputs": [
-            "corporation-tax"
-        ]
+        "inputs": ct.accounts($.id)
     },
     {
         "id": "profit",
@@ -272,9 +246,7 @@
             "segments": [
                 { "business-type": "management-expenses" }
             ],
-            "accounts": [
-                "Assets:Capital Equipment:Computer Equipment"
-            ]
+            "accounts": ct.accounts($.id)
         }
     },
     {
