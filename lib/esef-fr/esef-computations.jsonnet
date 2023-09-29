@@ -1,12 +1,11 @@
+function(accts)
 [
     {
         "id": "consultancy",
         "kind": "line",
         "description": "Consultance",
         "period": "in-year",
-        "accounts": [
-            "Income:Sales"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "operating-revenue",
@@ -21,92 +20,71 @@
         "id": "personnel-costs",
         "description": "Co\u00fbts de personnel",
         "kind": "line",
-        "accounts": [
-            "Expenses:Emoluments:Employees",
-            "Expenses:Emoluments:Employer Pension Contribution"
-        ],
-        "period": "in-year"
+        "period": "in-year",
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "depreciation-and-amortisation",
         "kind": "line",
         "description": "D\u00e9pr\u00e9ciation et amortissement",
-        "accounts": [
-            "Expenses:Depreciation"
-        ],
-        "period": "in-year"
+        "period": "in-year",
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "accountancy",
         "kind": "line",
         "description": "Services de comptabilit\u00e9",
-        "accounts": [
-            "Expenses:VAT Purchases:Accountant"
-        ],
-        "period": "in-year"
+        "period": "in-year",
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "bank-charges",
         "kind": "line",
         "description": "Charges bancaires",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Bank Charges"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "office",
         "kind": "line",
         "description": "Frais de bureau",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Office"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "software",
         "kind": "line",
         "description": "Logiciel",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Software"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "subscriptions",
         "kind": "line",
         "description": "Abonnements",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Subscriptions"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "sundries",
         "kind": "line",
         "description": "Articles divers",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Sundries"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "telecoms",
         "kind": "line",
         "description": "T\u00e9l\u00e9coms",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Telecoms"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "travel",
         "kind": "line",
         "description": "Voyage",
         "period": "in-year",
-        "accounts": [
-            "Expenses:VAT Purchases:Travel/Accom"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "other-operating-costs",
@@ -140,18 +118,14 @@
         "kind": "line",
         "period": "in-year",
         "description": "Int\u00e9r\u00eats sur le compte courant",
-        "accounts": [
-            "Income:Interest"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "interest-paid",
         "kind": "line",
         "period": "in-year",
         "description": "Int\u00e9r\u00eats sur les pr\u00eats bancaires",
-        "accounts": [
-            "Expenses:Interest Paid"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "net-financial-items",
@@ -168,9 +142,7 @@
         "kind": "line",
         "description": "Imp\u00f4ts sur le revenu",
         "period": "in-year",
-        "accounts": [
-            "Equity:Corporation Tax"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "net-profit",
@@ -206,9 +178,7 @@
         "kind": "line",
         "description": "Actifs corporels",
         "period": "at-end",
-        "accounts": [
-            "Assets:Capital Equipment"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "fixed-assets",
@@ -249,28 +219,21 @@
         "kind": "line",
         "description": "D\u00e9biteurs",
         "period": "at-end",
-        "accounts": [
-            "Accounts Receivable",
-            "Assets:Owed To Us"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "vat-refund-owed",
         "kind": "line",
         "description": "Remboursement de la TVA d\u00fb",
         "period": "at-end",
-        "accounts": [
-            "VAT:Input"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "bank",
         "kind": "line",
         "description": "Liquidit\u00e9s en banque",
         "period": "at-end",
-        "accounts": [
-            "Bank Accounts"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "current-assets",
@@ -298,21 +261,14 @@
         "kind": "line",
         "description": "Capital",
         "period": "at-end",
-        "accounts": [
-            "Equity:Shareholdings"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "retained-profit",
         "kind": "line",
         "description": "B\u00e9n\u00e9fice non distribu\u00e9",
         "period": "at-end",
-        "accounts": [
-            "Income",
-            "Expenses",
-            "Equity:Corporation Tax",
-            "Equity:Dividends"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "equity",
@@ -337,9 +293,7 @@
         "description": "Cr\u00e9anciers commerciaux",
         "reverse-sign": true,
         "period": "at-end",
-        "accounts": [
-            "Accounts Payable"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "other-creditors",
@@ -347,10 +301,7 @@
         "description": "Autres cr\u00e9anciers",
         "reverse-sign": true,
         "period": "at-end",
-        "accounts": [
-            "VAT:Output",
-            "Liabilities:Owed Corporation Tax"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "current-liabilities",
@@ -387,9 +338,7 @@
         "kind": "line",
         "description": "Imp\u00f4ts sur le revenu",
         "period": "in-year",
-        "accounts": [
-            "Equity:Corporation Tax"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "depreciation-adjustment",
@@ -397,9 +346,7 @@
         "description": "Ajustement pour d\u00e9pr\u00e9ciation",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": [
-            "Expenses:Depreciation"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "financial-items-adjustment",
@@ -407,10 +354,7 @@
         "description": "Ajustement pour les \u00e9l\u00e9ments financiers",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": [
-            "Income:Interest",
-            "Expenses:Interest Paid"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "income-tax-adjustment",
@@ -418,9 +362,7 @@
         "description": "Ajustement pour l'imp\u00f4t sur le revenu",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": [
-            "Equity:Corporation Tax"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "trade-and-other-receivables",
@@ -428,11 +370,7 @@
         "description": "Diminution (augmentation) des cr\u00e9ances commerciales et autres cr\u00e9ances",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": [
-            "Accounts Receivable",
-            "Assets:Owed To Us",
-            "VAT:Input"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "inventories",
@@ -440,7 +378,7 @@
         "description": "Decrease (increase) in inventories",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": []
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "trade-payables",
@@ -448,11 +386,7 @@
         "description": "Diminution (augmentation) des stocks",
         "period": "in-year",
         "reverse-sign": true,
-        "accounts": [
-            "Accounts Payable",
-            "VAT:Output",
-            "Liabilities:Owed Corporation Tax"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "net-cash-from-operating-activities",
@@ -475,7 +409,7 @@
         "kind": "line",
         "period": "in-year",
         "description": "Produit de la vente d'\u00e9quipements",
-        "accounts": []
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "purchase-equipment",
@@ -483,16 +417,14 @@
         "period": "in-year",
         "reverse-sign": true,
         "description": "Achat de biens, d'installations et d'\u00e9quipements",
-        "accounts": [
-            "Assets:Capital Equipment:Computer Equipment"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "purchase-intangible-assets",
         "kind": "line",
         "period": "in-year",
         "description": "Achat d'actifs incorporels",
-        "accounts": []
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "net-cash-from-investing-activities",
@@ -511,18 +443,14 @@
         "kind": "line",
         "period": "in-year",
         "description": "\u00c9mission de capital social",
-        "accounts": [
-            "Equity:Shareholdings"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "dividends-paid",
         "kind": "line",
         "description": "Dividendes",
         "period": "in-year",
-        "accounts": [
-            "Equity:Dividends"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "net-cash-from-financing-activities",
@@ -540,9 +468,7 @@
         "kind": "line",
         "period": "at-start",
         "description": "Liquidit\u00e9s au d\u00e9but de l'ann\u00e9e",
-        "accounts": [
-            "Bank Accounts"
-        ]
+        "accounts": accts.accounts(self.id)
     },
     {
         "id": "cash-at-end-of-year",

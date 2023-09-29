@@ -3,6 +3,8 @@ local base = import "base.libsonnet";
 
 base + {
 
+    accounts(line):: base.accounts.mapping[line],
+
     components:: {
 
 	esef(c)::
@@ -10,8 +12,10 @@ base + {
 	    {
 		report +: {
 		    "title": "none",
-		    "computations": import "esef-en/esef-computations.jsonnet",
-		    "worksheets": import "esef/esef-worksheets.jsonnet",
+		    local comps = import "esef-en/esef-computations.jsonnet",
+		    local ws = import "esef/esef-worksheets.jsonnet",
+		    "computations": comps($),
+		    "worksheets": ws,
 		},
 
 		with_title(val):: self + {

@@ -220,6 +220,47 @@
 	    "reserve-account": [
                 "Bank Accounts:Reserve Account"
             ],
+
+	    // ESEF
+            "personnel-costs": [
+		"Expenses:Emoluments:Employees",
+		"Expenses:Emoluments:Employer Pension Contribution"
+            ],
+
+	    "depreciation-and-amortisation": [
+		"Expenses:Depreciation"
+            ],
+            "income-tax": [
+		"Equity:Corporation Tax"
+            ],
+            "capital": [
+		"Equity:Shareholdings"
+            ],
+	    "vat-refund-owed": [
+		"VAT:Input",
+		"VAT:Settlement:Input",
+		"Assets:VAT Repayments Due"
+            ],
+	    "retained-profit": [
+		"Income",
+		"Expenses",
+		"Equity:Corporation Tax",
+		"Equity:Dividends"
+            ],
+            "income-tax-paid": [
+		"Equity:Corporation Tax"
+	    ],
+	    "financial-items-adjustment": [
+		"Income:Interest",
+		"Expenses:Interest Paid"
+            ],
+	    "income-tax-adjustment": [
+		"Equity:Corporation Tax"
+            ],
+	    "proceeds-from-issuing-shares": [
+		"Equity:Shareholdings"
+            ],
+
 	},
 
     }
