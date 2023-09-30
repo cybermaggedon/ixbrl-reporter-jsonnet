@@ -8,8 +8,8 @@ all: esef.xhtml esef-fr.xhtml
 	ixbrl-reporter $< report ixbrl > $@
 
 esef.json: ${INPUTS}
-	jsonnet ${TEMPLATE}/example.jsonnet -J . > $@
+	jsonnet ${TEMPLATE}/example.jsonnet -J . -o $@
 
 esef-fr.json: ${INPUTS}
-	jsonnet ${TEMPLATE}/example-fr.jsonnet -J . > $@
+	jsonnet ${TEMPLATE}/example-fr.jsonnet -J . -o $@
 

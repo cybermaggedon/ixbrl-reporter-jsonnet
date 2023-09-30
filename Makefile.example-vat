@@ -8,6 +8,5 @@ all: vat.xhtml
 	ixbrl-reporter $< report ixbrl > $@
 
 vat.json: ${INPUTS}
-	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . > $@
-
+	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . -o $@
 

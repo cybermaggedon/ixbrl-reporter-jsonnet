@@ -8,6 +8,6 @@ all: example-accts.xhtml
 	ixbrl-reporter $< report ixbrl > $@
 
 example-accts.json: ${INPUTS}
-	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . > $@
+	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . -o $@
 
 
