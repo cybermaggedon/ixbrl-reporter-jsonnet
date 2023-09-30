@@ -397,6 +397,8 @@
 		"dividends-paid"
 	    ],
 	    "cash-at-end-of-year": [
+		"cash-at-start-of-year",
+		"net-cash-change"
 	    ],
 	    "net-cash-change": [
                 "net-cash-from-operating-activities",
@@ -407,6 +409,10 @@
 		"current-account",
                 "reserve-account"
 	    ],
+	    "depreciation-total": [
+		"depreciation-initial",
+		"depreciation-charge"
+	    ]
 	}
 
     }

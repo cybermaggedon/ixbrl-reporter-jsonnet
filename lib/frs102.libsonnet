@@ -21,6 +21,7 @@ base + {
 		self + { segments: segs }
 	    else
 	        self + { segments: [ { [k]: v } ] },
+	reverse_sign():: self + { "reverse-sign": true },
 
     },
 
