@@ -26,11 +26,11 @@
 	"description": "Detailed Profit-and-Loss",
 	"computations": [
 	    "turnover",
-	    "gross-profit",
+	    "gross-profit-round",
 	    "total-costs",
 	    "profit-before-tax",
 	    "tax-due",
-	    "profit"
+	    "profit-after-tax"
 	]
     }
 ]

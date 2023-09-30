@@ -3,10 +3,6 @@ local base = import "base.libsonnet";
 
 base + {
 
-    accounts(line):: base.accounts.mapping[line],
-
-    inputs(id):: base.accounts.compound[id],
-
     components:: {
 
 	frs102(c)::

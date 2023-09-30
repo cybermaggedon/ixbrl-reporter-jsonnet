@@ -82,10 +82,7 @@
 	    "corporation-tax": [
 		"Equity:Corporation Tax"
 	    ],
-	    "tax-due": [
-		"corporation-tax"
-	    ],
-	    "ct-annual-investment-allowance": [
+	    "capital-investment": [
 		"Assets:Capital Equipment:Computer Equipment"
 	    ],
 
@@ -412,7 +409,131 @@
 	    "depreciation-total": [
 		"depreciation-initial",
 		"depreciation-charge"
-	    ]
+	    ],
+
+	    // FIXME: Accts vs CT
+
+	    // CT600 wants turnover as whole pounds.  This is the
+	    // un-rounded form.
+
+	    "gross-profit-raw": [ "turnover" ],
+	    "gross-profit-round": "gross-profit-raw",
+
+	    //	    "turnover": [ "income" ],
+
+	    "total-costs": [
+		"salaries",
+		"pensions",
+		"accountancy",
+		"bank-charges",
+		"office",
+		"software-expenses",
+		"subscriptions-costs",
+		"sundries",
+		"telecoms",
+		"travel"
+	    ],
+
+	    "profit-before-tax": [
+		"gross-profit-round",
+		"total-costs"
+	    ],
+
+	    "tax-due": [
+		"corporation-tax"
+	    ],
+
+	    "profit-after-tax": [
+		"profit-before-tax",
+		"tax-due"
+	    ],
+
+	    "rnd-qualifying-expenditure": [
+	    ],
+
+	    "rnd-enhanced-expenditure": "rnd-qualifying-expenditure",
+
+	    "rnd-creative-enhanced-expenditure": [
+		"rnd-enhanced-expenditure"
+	    ],
+
+	    "ct-annual-investment-allowance": "capital-investment",
+
+	    "profit-loss-per-accounts": [
+		"profit-before-tax"
+	    ],
+
+	    "ct-trading-profits-raw": [
+		"profit-loss-per-accounts",
+		"ct-annual-investment-allowance",
+		"rnd-enhanced-expenditure"
+	    ],
+
+	    "ct-trading-profits-if-pos": "ct-trading-profits-raw",
+
+	    "ct-trading-profits-if-neg": "ct-trading-profits-raw",
+
+	    "ct-trading-profits": "ct-trading-profits-if-pos",
+	    
+	    "ct-trading-losses": [ "ct-trading-profits-if-neg" ],
+
+	    "ct-net-trading-profits": [
+		"ct-trading-profits"
+	    ],		
+
+	    "profits-before-other-deductions-and-reliefs": [
+		"ct-net-trading-profits"
+	    ],
+
+	    "profits-before-charges-and-group-relief": [
+		"profits-before-other-deductions-and-reliefs"
+	    ],
+
+	    "total-profits-chargeable-to-corporation-tax": [
+		"profits-before-charges-and-group-relief"
+	    ],
+
+	    "ct-profit-before-tax-fy1-raw": "ct-net-trading-profits",
+
+	    "ct-profit-before-tax-fy1": "ct-profit-before-tax-fy1-raw",
+
+	    "ct-profit-before-tax-fy2-raw": "ct-net-trading-profits",
+
+	    "ct-profit-before-tax-fy2": "ct-profit-before-tax-fy2-raw",
+
+	    "ct-profit-before-tax-total": [
+		"ct-profit-before-tax-fy1",
+		"ct-profit-before-tax-fy2"
+	    ],
+
+	    "ct-tax-fy1": "ct-profit-before-tax-fy1",
+	    "ct-tax-fy2": "ct-profit-before-tax-fy2",
+
+	    "ct-tax-total": [
+		"ct-tax-fy1",
+		"ct-tax-fy2"
+	    ],
+
+	    "corporation-tax-chargeable-payable": [
+		"ct-tax-total"
+	    ],
+
+	    "net-corporation-tax-payable": [
+		"corporation-tax-chargeable-payable"
+	    ],
+
+	    "ct-tax-owed": [
+		"net-corporation-tax-payable"
+	    ],
+
+	    "tax-chargeable": [
+		"ct-tax-owed"
+	    ],
+
+	    "tax-payable": [
+		"tax-chargeable"
+	    ],
+
 	}
 
     },
@@ -437,18 +558,50 @@
 
     line(id, description):: $.computation(id, description) + {
         kind: "line",
-        accounts: $.accounts(id),
+        accounts: $.line_inputs(id),
     },
 
     sum(id, description):: $.computation(id, description) + {
         kind: "sum",
-        inputs: $.inputs(self.id),
+        inputs: $.compound_inputs(self.id),
     },
 
     group(id, description):: $.computation(id, description) + {
         kind: "group",
-        inputs: $.inputs(self.id),
+        inputs: $.compound_inputs(self.id),
     },
+
+    round(id, description):: $.computation(id, description) + {
+	kind: "round",
+	down():: self + { direction: "down" },
+	up():: self + { direction: "up" },
+	nearest():: self + { direction: "nearest" },
+        input: $.compound_inputs(self.id),
+    },
+
+    factor(id, description):: $.computation(id, description) + {
+	kind: "factor",
+	with_factor(f):: self + { factor: f },
+        input: $.compound_inputs(self.id),
+    },
+
+    compare(id, description):: $.computation(id, description) + {
+	kind: "compare",
+	greater():: self + { comparison: "greater" },
+	less():: self + { comparison: "less" },
+        input: $.compound_inputs(self.id),
+    },
+
+    apportion(id, description):: $.computation(id, description) + {
+	kind: "apportion",
+	whole_period(p):: self + { "whole-period": p },
+	proportion_period(p):: self + { "proportion-period": p },
+        input: $.compound_inputs(self.id),
+    },
+
+    line_inputs(line):: $.accounts.mapping[line],
+
+    compound_inputs(id):: $.accounts.compound[id],
 
 }
 

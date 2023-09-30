@@ -3,8 +3,6 @@ local base = import "base.libsonnet";
 
 base + {
 
-    accounts(line):: base.accounts.mapping[line],
-
     components:: {
 
 	corptax(c)::
