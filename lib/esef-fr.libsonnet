@@ -10,8 +10,10 @@ base + {
 	    {
 		report +: {
 		    "title": "none",
-		    "computations": import "esef-fr/esef-computations.jsonnet",
-		    "worksheets": import "esef/esef-worksheets.jsonnet",
+		    local comps = import "esef-fr/esef-computations.jsonnet",
+		    local ws = import "esef/esef-worksheets.jsonnet",
+		    "computations": comps($),
+		    "worksheets": ws,
 		},
 
 		with_title(val):: self + {

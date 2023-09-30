@@ -8,9 +8,12 @@ base + {
 	corptax(c)::
 	    $.config() +
 	    {
+
 		report +: {
-		    "computations": import "uk-corptax/ct-computations.jsonnet",
-		    "worksheets": import "uk-corptax/ct-worksheets.jsonnet",
+		    local comps = import "uk-corptax/ct-computations.jsonnet",
+		    local ws = import "uk-corptax/ct-worksheets.jsonnet",
+		    "computations": comps($),
+		    "worksheets": ws
 		},
 
 		with_accounting_standards(val):: self + {

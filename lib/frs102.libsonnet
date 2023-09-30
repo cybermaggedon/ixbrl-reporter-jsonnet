@@ -13,8 +13,10 @@ base + {
 		    "accounts-status": "none",
 		    "accounts-type": "none",
 		    "title": "none",
-		    "computations": import "frs102/frc102-computations.jsonnet",
-		    "worksheets": import "frs102/frc102-worksheets.jsonnet",
+		    local comps = import "frs102/frc102-computations.jsonnet",
+		    local ws = import "frs102/frc102-worksheets.jsonnet",
+		    "computations": comps($),
+		    "worksheets": ws,
 		},
 
 		with_accounting_standards(val):: self + {

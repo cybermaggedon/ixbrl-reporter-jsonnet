@@ -88,7 +88,20 @@
         }
     ],
     "note-templates": [],
-    "sign-reversed": {},
+    "sign-reversed": {
+	"purchase-equipment": true,
+	"other-operating-costs": true,
+	"income-tax": true,
+	"income-tax-paid": true,
+	"interest-paid": true,
+	"depreciation-and-amortisation": true,
+	"dividends-paid": true,
+	"personnel-costs": true,
+	"trade-and-other-receivables": true,
+	"financial-items-adjustment": true,
+	"net-cash-from-investing-activities": true,
+	"esef-net-cash-from-investing-activities": true,
+    },
     "tags": {
         "name-of-reporting-entity": "ifrs-full:NameOfReportingEntityOrOtherMeansOfIdentification",
         "domicile-of-entity": "ifrs-full:DomicileOfEntity",
@@ -118,6 +131,7 @@
         "non-current-assets": "ifrs-full:NoncurrentAssets",
         "debtors": "ifrs-full:TradeAndOtherCurrentReceivables",
         "vat-refund-owed": "ifrs-full:CurrentTaxAssetsCurrent",
+        "vat-refund-due": "ifrs-full:CurrentTaxAssetsCurrent",
         "bank": "ifrs-full:CashAndCashEquivalents",
         "current-assets": "ifrs-full:CurrentAssets",
         "total-assets": "ifrs-full:Assets",
@@ -138,16 +152,19 @@
         "inventories": "ifrs-full:AdjustmentsForDecreaseIncreaseInInventories",
         "trade-payables": "ifrs-full:AdjustmentsForIncreaseDecreaseInTradeAccountPayable",
         "net-cash-from-operating-activities": "ifrs-full:CashFlowsFromUsedInOperations",
+        "esef-net-cash-from-operating-activities": "ifrs-full:CashFlowsFromUsedInOperations",
         "proceeds-sale-equipment": "ifrs-full:ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
         "purchase-equipment": "ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
         "purchase-intangible-assets": "ifrs-full:ProceedsFromSalesOfIntangibleAssetsClassifiedAsInvestingActivities",
         "net-cash-from-investing-activities": "ifrs-full:CashFlowsFromUsedInInvestingActivities",
+        "esef-net-cash-from-investing-activities": "ifrs-full:CashFlowsFromUsedInInvestingActivities",	
         "proceeds-from-issuing-shares": "ifrs-full:ProceedsFromIssuingShares",
         "dividends-paid": "ifrs-full:DividendsPaidClassifiedAsFinancingActivities",
         "net-cash-from-financing-activities": "ifrs-full:CashFlowsFromUsedInFinancingActivities",
+        "esef-net-cash-from-financing-activities": "ifrs-full:CashFlowsFromUsedInFinancingActivities",	
         "cash-at-start-of-year": "ifrs-full:CashAndCashEquivalents",
-        "cash-at-end-of-year": "ifrs-full:CashAndCashEquivalents",
-        "net-cash-change": "ifrs-full:IncreaseDecreaseInCashAndCashEquivalents"
+        "esef-cash-at-end-of-year": "ifrs-full:CashAndCashEquivalents",
+        "esef-net-cash-change": "ifrs-full:IncreaseDecreaseInCashAndCashEquivalents"
     },
     "segment": {}
 }

@@ -4,10 +4,11 @@ INPUTS=$(wildcard ${TEMPLATE}/*)
 
 all: example-accts.xhtml
 
-%.xhtml: %.json
+FORCE:
+
+%.xhtml: %.json FORCE
 	ixbrl-reporter $< report ixbrl > $@
 
-example-accts.json: ${INPUTS}
+example-accts.json: ${INPUTS} FORCE
 	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . -o $@
-
 
