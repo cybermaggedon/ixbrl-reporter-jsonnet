@@ -226,7 +226,7 @@ function(accts)
     accts.sum(
 	"net-cash-change",
         "Net change in cash and cash equivalents"
-	// FIXME: in_year()???
+	// FIXME: in_year()???  Net cash change implies in year?
     ).at_end(),
 
     accts.group(

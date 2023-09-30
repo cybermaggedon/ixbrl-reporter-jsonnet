@@ -7,39 +7,6 @@ base + {
 
     inputs(id):: base.accounts.compound[id],
 
-    computation(id, description):: {
-        id: id,
-	description: description,
-	in_year():: self + { period: "in-year" },
-	at_end():: self + { period: "at-end" },
-	at_start():: self + { period: "at-start" },
-	note(n):: self + { note: n },
-	segment(k, v)::
-	    local elt = { [k]: v };
-  	    if std.objectHas(self, "segments") then
-	        local segs = self.segments + [{ [k]: v }];
-		self + { segments: segs }
-	    else
-	        self + { segments: [ { [k]: v } ] },
-	reverse_sign():: self + { "reverse-sign": true },
-
-    },
-
-    line(id, description):: $.computation(id, description) + {
-        kind: "line",
-        accounts: $.accounts(id),
-    },
-
-    sum(id, description):: $.computation(id, description) + {
-        kind: "sum",
-        inputs: $.inputs(self.id),
-    },
-
-    group(id, description):: $.computation(id, description) + {
-        kind: "group",
-        inputs: $.inputs(self.id),
-    },
-
     components:: {
 
 	frs102(c)::
