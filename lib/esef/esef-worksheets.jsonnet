@@ -30,10 +30,10 @@
         "id": "cash-flows",
         "kind": "simple",
         "computations": [
-            "net-cash-from-operating-activities",
-            "net-cash-from-investing-activities",
-            "net-cash-from-financing-activities",
-            "cash-at-end-of-year"
+            "esef-net-cash-from-operating-activities",
+            "esef-net-cash-from-investing-activities",
+            "esef-net-cash-from-financing-activities",
+            "esef-cash-at-end-of-year"
         ]
     }
 ]

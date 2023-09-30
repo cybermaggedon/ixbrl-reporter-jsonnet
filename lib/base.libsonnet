@@ -617,6 +617,41 @@
 		"total-liabilities"
 	    ],
 
+	    "esef-net-cash-from-operating-activities": [
+		"net-profit",
+		"depreciation-adjustment",
+		"financial-items-adjustment",
+		"income-tax-adjustment",
+		"trade-and-other-receivables",
+		"inventories",
+		"trade-payables",
+		"income-tax-paid"
+	    ],
+
+	    "esef-net-cash-from-investing-activities": [
+		"proceeds-sale-equipment",
+		"purchase-equipment",
+		"purchase-intangible-assets",
+		"interest-received"
+	    ],
+
+	    "esef-net-cash-from-financing-activities": [
+		"interest-paid",
+		"proceeds-from-issuing-shares",
+		"dividends-paid"
+            ],
+
+	    "esef-net-cash-change": [
+                "esef-net-cash-from-operating-activities",
+                "esef-net-cash-from-investing-activities",
+                "esef-net-cash-from-financing-activities"
+	    ],
+
+	    "esef-cash-at-end-of-year": [
+		"cash-at-start-of-year",
+         	"esef-net-cash-change"
+	    ],
+
 	}
 
     },

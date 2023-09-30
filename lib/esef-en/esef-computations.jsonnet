@@ -95,153 +95,79 @@ function(accts)
 
     accts.line("income-tax-paid", "Income tax").in_year(),
 
-    {
-        "id": "depreciation-adjustment",
-        "kind": "line",
-        "description": "Adjustment for depreciation",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "financial-items-adjustment",
-        "kind": "line",
-        "description": "Adjustment for financial items",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "income-tax-adjustment",
-        "kind": "line",
-        "description": "Adjustment for Income tax",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "trade-and-other-receivables",
-        "kind": "line",
-        "description": "Decrease (increase) in trade and other receivables",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "inventories",
-        "kind": "line",
-        "description": "Decrease (increase) in inventories",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "trade-payables",
-        "kind": "line",
-        "description": "Increase (decrease) in trade payables",
-        "period": "in-year",
-        "reverse-sign": true,
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "net-cash-from-operating-activities",
-        "kind": "group",
-        "description": "Net cash from operating activities",
-        "period": "in-year",
-        "inputs": [
-            "net-profit",
-            "depreciation-adjustment",
-            "financial-items-adjustment",
-            "income-tax-adjustment",
-            "trade-and-other-receivables",
-            "inventories",
-            "trade-payables",
-            "income-tax-paid"
-        ]
-    },
-    {
-        "id": "proceeds-sale-equipment",
-        "kind": "line",
-        "period": "in-year",
-        "description": "Proceeds from sale of equipment",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "purchase-equipment",
-        "kind": "line",
-        "period": "in-year",
-        "reverse-sign": true,
-        "description": "Purchase of property, plant and equipment",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "purchase-intangible-assets",
-        "kind": "line",
-        "period": "in-year",
-        "description": "Purchase of intangible assets",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "net-cash-from-investing-activities",
-        "kind": "group",
-        "description": "Net cash from investing activities",
-        "period": "in-year",
-        "inputs": [
-            "proceeds-sale-equipment",
-            "purchase-equipment",
-            "purchase-intangible-assets",
-            "interest-received"
-        ]
-    },
-    {
-        "id": "proceeds-from-issuing-shares",
-        "kind": "line",
-        "period": "in-year",
-        "description": "Issue of share capital",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "dividends-paid",
-        "kind": "line",
-        "description": "Dividends",
-        "period": "in-year",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "net-cash-from-financing-activities",
-        "kind": "group",
-        "description": "Net cash from financing activities",
-        "period": "in-year",
-        "inputs": [
-            "interest-paid",
-            "proceeds-from-issuing-shares",
-            "dividends-paid"
-        ]
-    },
-    {
-        "id": "cash-at-start-of-year",
-        "kind": "line",
-        "period": "at-start",
-        "description": "Cash at start of year",
-        "accounts": accts.line_inputs(self.id)
-    },
-    {
-        "id": "cash-at-end-of-year",
-        "kind": "group",
-        "description": "Cash and cash equivalents at end of year",
-        "inputs": [
-            "cash-at-start-of-year",
-            {
-                "id": "net-cash-change",
-                "kind": "sum",
-                "description": "Net change in cash and cash equivalents",
-                "period": "in-year",
-                "inputs": [
-                    "net-cash-from-operating-activities",
-                    "net-cash-from-investing-activities",
-                    "net-cash-from-financing-activities"
-                ]
-            }
-        ]
-    }
+    accts.line("depreciation-adjustment", "Adjustment for depreciation")
+	.in_year()
+	.reverse_sign(),
+
+    accts.line("financial-items-adjustment", "Adjustment for financial items")
+	.in_year()
+	.reverse_sign(),
+
+    accts.line("income-tax-adjustment", "Adjustment for Income tax")
+	.in_year()
+	.reverse_sign(),
+
+    accts.line(
+	"trade-and-other-receivables",
+        "Decrease (increase) in trade and other receivables"
+    )
+	.in_year()
+	.reverse_sign(),
+
+    accts.line("inventories", "Decrease (increase) in inventories")
+	.in_year()
+	.reverse_sign(),
+
+    accts.line("trade-payables", "Increase (decrease) in trade payables")
+	.in_year()
+	.reverse_sign(),
+
+    accts.group(
+	"esef-net-cash-from-operating-activities",
+        "Net cash from operating activities"
+    )
+	.in_year(),
+
+    accts.line("proceeds-sale-equipment", "Proceeds from sale of equipment")
+	.in_year(),
+
+    accts.line(
+	"purchase-equipment",
+	"Purchase of property, plant and equipment"
+    )
+	.in_year()
+	.reverse_sign(),
+
+    accts.line(
+	"purchase-intangible-assets",
+	"Purchase of intangible assets"
+    ).in_year(),
+
+    accts.group(
+	"esef-net-cash-from-investing-activities",
+        "Net cash from investing activities"
+    ).in_year(),
+
+    accts.line("proceeds-from-issuing-shares", "Issue of share capital")
+	.in_year(),
+
+    accts.line("dividends-paid", "Dividends").in_year(),
+
+    accts.group(
+	"esef-net-cash-from-financing-activities",
+        "Net cash from financing activities"
+    ).in_year(),
+
+    accts.line("cash-at-start-of-year", "Cash at start of year").at_start(),
+
+    accts.sum(
+	"esef-net-cash-change",
+        "Net change in cash and cash equivalents"
+    ).in_year(),
+
+    accts.group(
+	"esef-cash-at-end-of-year",
+        "Cash and cash equivalents at end of year"
+    ),
+    
 ]
