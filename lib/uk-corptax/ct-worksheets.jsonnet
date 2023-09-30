@@ -25,7 +25,7 @@
 	"kind": "simple",
 	"description": "Detailed Profit-and-Loss",
 	"computations": [
-	    "turnover",
+	    "ct-turnover",
 	    "gross-profit-round",
 	    "total-costs",
 	    "profit-before-tax",

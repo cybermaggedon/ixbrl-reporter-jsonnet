@@ -10,7 +10,7 @@ function(accts)
 	.segment("detailed-analysis", "item1")
 	.segment("countries-regions", "UK"),
 
-    accts.group("turnover", "Turnover / revenue").in_year(),
+    accts.group("ct-turnover", "Turnover / revenue").in_year(),
 
     accts.group("gross-profit-raw", "Gross profit unrounded").in_year(),
     

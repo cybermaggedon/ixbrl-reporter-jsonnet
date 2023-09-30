@@ -413,13 +413,15 @@
 
 	    // FIXME: Accts vs CT
 
+	    "ct-turnover": [
+		"income"
+	    ],
+
 	    // CT600 wants turnover as whole pounds.  This is the
 	    // un-rounded form.
 
-	    "gross-profit-raw": [ "turnover" ],
+	    "gross-profit-raw": [ "ct-turnover" ],
 	    "gross-profit-round": "gross-profit-raw",
-
-	    //	    "turnover": [ "income" ],
 
 	    "total-costs": [
 		"salaries",
