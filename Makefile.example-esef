@@ -4,11 +4,13 @@ INPUTS=$(wildcard ${TEMPLATE}/*)
 
 all: esef.xhtml esef-fr.xhtml
 
+FORCE:
+
 %.xhtml: %.json
 	ixbrl-reporter $< report ixbrl > $@
 
 esef.json: ${INPUTS} FORCE
-	jsonnet ${TEMPLATE}/example.jsonnet -J . -o $@
+	jsonnet ${TEMPLATE}/example-en.jsonnet -J . -o $@
 
 esef-fr.json: ${INPUTS} FORCE
 	jsonnet ${TEMPLATE}/example-fr.jsonnet -J . -o $@

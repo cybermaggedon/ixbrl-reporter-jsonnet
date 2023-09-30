@@ -15,7 +15,7 @@ cfgs="unaud-micro.jsonnet unaud-micro-rev.jsonnet aud-micro.jsonnet
     aud-micro-rev.jsonnet aud-small.jsonnet aud-small-rev.jsonnet 
     unaud-abr.jsonnet unaud-abr-rev.jsonnet unaud-full.jsonnet
     unaud-full-rev.jsonnet aud-full.jsonnet aud-full-rev.jsonnet
-    ct.jsonnet esef.jsonnet esef-fr.jsonnet"
+    ct.jsonnet esef-en.jsonnet esef-fr.jsonnet"
 
 for cfg in ${cfgs}
 do
