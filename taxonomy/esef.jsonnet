@@ -130,6 +130,7 @@
         "non-current-assets": "ifrs-full:NoncurrentAssets",
         "debtors": "ifrs-full:TradeAndOtherCurrentReceivables",
         "vat-refund-owed": "ifrs-full:CurrentTaxAssetsCurrent",
+        "vat-refund-due": "ifrs-full:CurrentTaxAssetsCurrent",
         "bank": "ifrs-full:CashAndCashEquivalents",
         "current-assets": "ifrs-full:CurrentAssets",
         "total-assets": "ifrs-full:Assets",

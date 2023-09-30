@@ -301,7 +301,9 @@
 		"interest-paid"
 	    ],
 	    zero: [],
+
 	    "fixed-assets": [ "tangible-assets" ],
+
             "current-assets": [
 		"debtors",
 		"vat-refund-due",
@@ -534,6 +536,85 @@
 
 	    "tax-payable": [
 		"tax-chargeable"
+	    ],
+
+	    // ESEF...
+
+	    "operating-revenue": [
+		"consultancy"
+	    ],
+
+	    "other-operating-costs": [
+		"accountancy",
+		"bank-charges",
+		"office",
+		"software",
+		"subscriptions",
+		"sundries",
+		"telecoms",
+		"travel"
+	    ],
+
+	    "operating-costs": [
+		"personnel-costs",
+		"depreciation-and-amortisation",
+		"other-operating-costs"
+	    ],
+
+	    "net-financial-items": [
+		"interest-received",
+		"interest-paid"
+	    ],
+
+	    "net-profit": [
+		"operating-revenue",
+		"operating-costs",
+		"net-financial-items",
+		"income-tax"
+	    ],
+
+	    "other-comprehensive-income": [],
+
+	    "comprehensive-income": [
+		"net-profit",
+		"other-comprehensive-income"
+	    ],
+
+	    "other-non-current-assets": [],
+
+	    "deferred-tax-assets": [],
+
+            "non-current-assets": [
+		"fixed-assets",
+		"other-non-current-assets",
+		"deferred-tax-assets"
+            ],
+
+	    "total-assets": [
+	        "non-current-assets",
+		"current-assets"
+	    ],
+
+	    "equity": [
+		"capital",
+		"retained-profit"
+            ],
+
+	    "non-current-liabilities": [],
+
+	    "current-liabilities": [
+		"trade-creditors",
+		"other-creditors"
+	    ],
+
+            "total-liabilities": [
+		"non-current-liabilities",
+		"current-liabilities"
+	    ],
+
+	    "total-equity-and-liabilities": [
+		"equity",
+		"total-liabilities"
 	    ],
 
 	}
