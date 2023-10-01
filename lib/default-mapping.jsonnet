@@ -322,7 +322,6 @@
 
 	"fixed-assets": [ "tangible-assets" ],
 
-
         "current-assets": [
 	    "debtors",
 	    "vat-refund-due",

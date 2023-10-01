@@ -29,7 +29,7 @@
 			},
 			{
                             "element": $.employeecountsnote(c)
-			}
+			},
                     ]
 		}
             }
