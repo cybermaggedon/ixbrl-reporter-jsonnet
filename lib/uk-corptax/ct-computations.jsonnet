@@ -111,6 +111,7 @@ function(accts)
     )
 	.down()
 	.in_year()
+	.reverse_sign()
 	.segment("business-type", "management-expenses"),
 
     accts.sum("profit-loss-per-accounts", "Profit (loss) per accounts")
