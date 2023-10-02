@@ -2,9 +2,10 @@
 // Load the library for the specify report type
 local l = import "lib/uk-corptax.libsonnet";
 
-// This block defines the report structure.  This structure describes an
-// unaudited Micro-entity accounts filing.  You shouldn't need to change
-// any of this
+// This block defines the report structure.  This structure describes a
+// corporation tax report.  There isn't a standard for this, this is
+// something we invented to capture the right information
+// You shouldn't need to change any of this
 local elts = {
 
     // Type of report
@@ -14,8 +15,7 @@ local elts = {
     "title": "Corporation Tax Statement",
 
     // Location of Gnucash accounts file
-    "accounts_file":
-    "example2.gnucash",
+    "accounts_file": "example2.gnucash",
 
     // Module used to load accounts: gnucash or piecash
     "accounts_kind": "gnucash",
@@ -116,7 +116,13 @@ local accts = {
         // This is used in DPL detailed analysis tags to connect the label
         // to the data.
 	.include_description_tags({
+
+	    // There isn't a DPL tag for shipping/imports so we put it
+	    // in other operational admin costs, and label it
+	    // with a detail label.  This causes ixbrl-report to tag the
+	    // account label with this tag
 	    "shipping": "dpl:DescriptionActivity",
+
 	})
 
         // Add custom iXBRL tags

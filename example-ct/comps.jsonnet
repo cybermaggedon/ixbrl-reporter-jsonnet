@@ -17,6 +17,7 @@ function(accts)
     // Define a shipping computation
     accts.library.line("shipping", "Shipping")
 	.in_year()
+	.segment("detailed-analysis", "item8")
 	.segment("expense-type", "administrative-expenses"),
 
     // Define an entertainment adjustment computation.  Note that this is

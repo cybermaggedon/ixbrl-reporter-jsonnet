@@ -27,8 +27,7 @@ local elts = {
     "title": "Unaudited Micro-Entity Accounts",
 
     // Location of Gnucash accounts file
-    "accounts_file":
-    "example2.gnucash",
+    "accounts_file": "example2.gnucash",
 
     // Module used to load accounts: gnucash or piecash
     "accounts_kind": "gnucash",
