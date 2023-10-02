@@ -131,45 +131,18 @@ local accts = {
     // This is used in DPL detailed analysis tags to connect the label
     // to the data.
     local mod_desc_tags = $.accounts.report.taxonomy["description-tags"] + {
-	"pension-setup-charges": "dpl:DescriptionActivity",
-	"pensions": "dpl:DescriptionActivity",
-	"cloud": "dpl:DescriptionActivity",
-	"telecoms": "dpl:DescriptionActivity",
 	"shipping": "dpl:DescriptionActivity",
-	"cryptocurrency-fees": "dpl:DescriptionActivity",
-	"bank-interest": "dpl:DescriptionActivity",
-	"bank-charges": "dpl:DescriptionActivity",
-	"billed-expenses": "dpl:DescriptionActivity",
-	"other-income": "dpl:DescriptionActivity",
-	"travel": "dpl:DescriptionActivity",
-	"billable-travel": "dpl:DescriptionActivity",
     },
 
     // Add custom iXBRL tags
     local mod_tags = $.accounts.report.taxonomy.tags + {
-	"pension-setup-charges": "uk-core:PensionCostsDefinedContributionPlan",
-	"cloud": "dpl:TelecommunicationsCosts",
 	"shipping": "dpl:OtherOperationalAdministrationCosts",
 	"adjustments-entertainment": "ct-comp:AdjustmentsEntertaining",
-	"cryptocurrency-fees": "dpl:BankCharges",
-	"bank-interest": "uk-core:InterestExpenseOnBankOverdraftsBankLoansSimilarBorrowings",
-	"bank-charges": "dpl:BankCharges",
-	"billed-expenses": "uk-core:TurnoverRevenue",
-	"other-income": "uk-core:TurnoverRevenue",
-	"billable-travel": "dpl:TravelSubsistenceCosts",
-	"other-staff-costs": "dpl:OtherStaffCosts",
     },
 
     // Sign-reversal configuration for custom fields
     local mod_rev = $.accounts.report.taxonomy["sign-reversed"] + {
-	"pension-setup-charges": true,
-	"cloud": true,
 	"shipping": true,
-	"adjustments-entertainment": false,
-	"cryptocurrency-fees": true,
-	"bank-interest": true,
-	"billable-travel": true,
-	"other-staff-costs": true,
     },
 
     // Merge updates to computations and taxonomy to the report.
