@@ -115,10 +115,16 @@ local accts = {
 
     },
 
+    // Loads computation over-rides.
+    local comp_updates = (import "comps.jsonnet")($),
+
     // Configure accounts from the report structure at the start of this
     // file
     accounts:: $.library.from_element_def(elts, self)
-        .with_metadata(self.metadata),
+        .with_metadata(self.metadata)
+
+        // Merge the standard computations with the over-rides we just loaded.
+	.include_computations(comp_updates),
 
     // Resources, used to load image and signature files.
     resource(x):: {
@@ -126,40 +132,8 @@ local accts = {
 	"signature": import "signature.jsonnet",
     }[x],
 
-    // Loads computation over-rides.
-    local comp_updates = (import "comps.jsonnet")($),
-
-    // Merge the standard computations with the over-rides we just loaded.
-    local comps = computations.update(
-	$.accounts.report.computations,
-	comp_updates
-    ),
-
-    // Update contexts.  Note code here makes no changes.
-    local ctxts = modify($.accounts.report.taxonomy.contexts),
-    // ...Make changes here...
-    local mod_ctxts = ctxts,
-
-    // Update metadata.  Note code here makes no changes.
-    local metadata = modify($.accounts.report.taxonomy.metadata),
-    // ...Make changes here...
-    local mod_metadata = metadata,
-
-    // Merge updates to computations and taxonomy to the report.
-    tailored:: self.accounts + {
-	
-	report +: {
-	    computations: comps,
-	    taxonomy +: {
-		contexts: mod_ctxts.val,
-		metadata: mod_metadata.val,
-	    }
-	}
-
-    }
-
 };
 
 // Output the report configuration
-accts.tailored
+accts.accounts
 
