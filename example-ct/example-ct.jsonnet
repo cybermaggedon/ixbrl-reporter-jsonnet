@@ -6,7 +6,6 @@ local l = import "lib/uk-corptax.libsonnet";
 local modify = import "lib/modify.libsonnet";
 local computations = import "lib/computations.libsonnet";
 
-
 // This block defines the report structure.  This structure describes an
 // unaudited Micro-entity accounts filing.  You shouldn't need to change
 // any of this
@@ -99,70 +98,44 @@ local accts = {
 
     },
     
-    // Configure accounts from the report structure at the start of this
-    // file
-    accounts:: $.library.from_element_def(elts, self)
-        .with_metadata(self.metadata),
-
     // Loads computation over-rides.
     local comp_updates = (import "comps.jsonnet")($),
 
-    // Merge the standard computations with the over-rides we just loaded.
-    local comps = computations.update(
-	$.accounts.report.computations,
-	comp_updates
-    ),
+    // Configure accounts from the report structure at the start of this
+    // file
+    accounts:: $.library.from_element_def(elts, self)
+        .with_metadata(self.metadata)
 
-    // Update contexts.  Note code here makes no changes.
-    local ctxts = modify($.accounts.report.taxonomy.contexts),
-    // ...Make changes here...
-    local mod_ctxts = ctxts.delete("previous-period"),
+        // Merge the standard computations with the over-rides we just loaded.
+	.include_computations(comp_updates)
 
-    // Update worksheets, makes no changes.
-    local wsheets = modify($.accounts.report.worksheets),
-    local mod_wsheets = wsheets,
+        // Delete unused context
+	.delete_context("previous-period")
 
-    // Update metadata.  Note code here makes no changes.
-    local metadata = modify($.accounts.report.taxonomy.metadata),
-    local mod_metadata = metadata.delete("average-employees-previous"),
+        // Delete a metadata item
+	.delete_metadata("average-employees-previous")
 
-    // Update description tags.  This is a tag which is applied to
-    // worksheet labels to connect the label to a item dimension.
-    // This is used in DPL detailed analysis tags to connect the label
-    // to the data.
-    local mod_desc_tags = $.accounts.report.taxonomy["description-tags"] + {
-	"shipping": "dpl:DescriptionActivity",
-    },
+        // Update description tags.  This is a tag which is applied to
+        // worksheet labels to connect the label to a item dimension.
+        // This is used in DPL detailed analysis tags to connect the label
+        // to the data.
+	.include_description_tags({
+	    "shipping": "dpl:DescriptionActivity",
+	})
 
-    // Add custom iXBRL tags
-    local mod_tags = $.accounts.report.taxonomy.tags + {
-	"shipping": "dpl:OtherOperationalAdministrationCosts",
-	"adjustments-entertainment": "ct-comp:AdjustmentsEntertaining",
-    },
+        // Add custom iXBRL tags
+	.include_tags({
+	    "shipping": "dpl:OtherOperationalAdministrationCosts",
+	    "adjustments-entertainment": "ct-comp:AdjustmentsEntertaining",
+	})
 
-    // Sign-reversal configuration for custom fields
-    local mod_rev = $.accounts.report.taxonomy["sign-reversed"] + {
-	"shipping": true,
-    },
+        // Sign-reversal configuration for custom fields
+	.include_sign_reverse({
+	    "shipping": true,
+	}),
 
-    // Merge updates to computations and taxonomy to the report.
-    tailored:: self.accounts + {
-	
-	report +: {
-	    computations: comps,
-	    worksheets: mod_wsheets.val,
-	    taxonomy +: {
-		contexts: mod_ctxts.val,
-		metadata: mod_metadata.val,
-		"description-tags": mod_desc_tags,
-		tags: mod_tags,
-		"sign-reversed": mod_rev
-	    }
-	}
-
-    }
 };
 
 // Output the report configuration
-accts.tailored
-
+accts.accounts
+//accts.tailored.report.computations

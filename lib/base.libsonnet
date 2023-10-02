@@ -24,7 +24,151 @@
 
 	with_metadata(m):: self + { metadata: m },
 
-	with_elements(e):: self + { report +: { elements: e } }
+	with_elements(e):: self + { report +: { elements: e } },
+
+	include_computations(updates)::
+            local clib = import "lib/computations.libsonnet";
+	    local comps = clib.update(
+                self.report.computations,
+                updates
+	    );
+	    self + {
+		report +: {
+		    computations: comps
+		}
+	    },
+
+	delete_worksheet(id)::
+	    local modify = import "lib/modify.libsonnet";
+	    local ws = modify(self.report.taxonomy.worksheets)
+	        .delete(id);
+	    self + {
+		report +: {
+		    worksheets: ws
+		}
+	    },
+
+	replace_worksheet(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local ws = modify(self.report.taxonomy.worksheets)
+	        .replace(id, val).val;
+	    self + {
+		report +: {
+		    worksheets: ws
+		}
+	    },
+
+	insert_worksheet(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local ws = modify(self.report.taxonomy.worksheets)
+	        .insert_after(id, val).val;
+	    self + {
+		report +: {
+		    worksheets: ws
+		}
+	    },
+
+	delete_context(id)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.contexts)
+  	        .delete(id).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			contexts: cs
+		    }
+		}
+	    },
+
+	replace_context(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.contexts)
+	        .replace(id, val).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			contexts: cs
+		    }
+		}
+	    },
+
+	insert_context(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.contexts)
+	        .insert_after(id, val).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			contexts: cs
+		    }
+		}
+	    },
+
+	delete_metadata(id)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.metadata)
+  	        .delete(id).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			metadatas: cs
+		    }
+		}
+	    },
+
+	replace_metadata(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.metadata)
+	        .replace(id, val).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			metadatas: cs
+		    }
+		}
+	    },
+
+	insert_metadata(id, val)::
+	    local modify = import "lib/modify.libsonnet";
+	    local cs = modify(self.report.taxonomy.metadata)
+	        .insert_after(id, val).val;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			metadatas: cs
+		    }
+		}
+	    },
+
+	include_description_tags(tags)::
+ 	    local new_tags = self.report.taxonomy["description-tags"] + tags;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			"description-tags": new_tags
+		    }
+		}
+	    },
+
+	include_tags(tags)::
+ 	    local new_tags = self.report.taxonomy.tags + tags;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			tags: new_tags
+		    }
+		}
+	    },
+
+	include_sign_reverse(upd)::
+ 	    local new_sr = self.report.taxonomy["sign-reversed"] + upd;
+	    self + {
+		report +: {
+		    taxonomy +: {
+			"sign-reversed": new_sr
+		    }
+		}
+	    },
 
     },
 
