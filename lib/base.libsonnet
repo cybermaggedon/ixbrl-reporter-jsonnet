@@ -40,7 +40,7 @@
 
 	delete_worksheet(id)::
 	    local modify = import "lib/modify.libsonnet";
-	    local ws = modify(self.report.taxonomy.worksheets)
+	    local ws = modify(self.report.worksheets)
 	        .delete(id);
 	    self + {
 		report +: {
@@ -50,7 +50,7 @@
 
 	replace_worksheet(id, val)::
 	    local modify = import "lib/modify.libsonnet";
-	    local ws = modify(self.report.taxonomy.worksheets)
+	    local ws = modify(self.report.worksheets)
 	        .replace(id, val).val;
 	    self + {
 		report +: {
@@ -60,7 +60,7 @@
 
 	insert_worksheet(id, val)::
 	    local modify = import "lib/modify.libsonnet";
-	    local ws = modify(self.report.taxonomy.worksheets)
+	    local ws = modify(self.report.worksheets)
 	        .insert_after(id, val).val;
 	    self + {
 		report +: {
