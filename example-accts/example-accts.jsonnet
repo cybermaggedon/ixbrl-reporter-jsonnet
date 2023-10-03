@@ -2,10 +2,6 @@
 // Load the library for the specify report type
 local l = import "lib/frs102.libsonnet";
 
-// Utility libraries
-local modify = import "lib/modify.libsonnet";
-local computations = import "lib/computations.libsonnet";
-
 // This block defines the report structure.  This structure describes an
 // unaudited Micro-entity accounts filing.  You shouldn't need to change
 // any of this
