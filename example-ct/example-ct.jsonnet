@@ -1,4 +1,49 @@
 
+//
+// This is a UK HMRC corptax statement with iXBRL.  This results in a single
+// document containing corporation tax 'computations' plus a DPL (detailed
+// profit and loss) statement.  For a corptax filing, that report would be
+// included in a CT electronic filing.  The annual company accounts filing
+// doesn't have enough detail and tagging to support the profit/loss
+// reporting that HMRC want, hence the DPL taxonomy allows describing a
+// profit/loss with the detail needed.
+//
+// Because DPL with detailed tagging is needed by HMRC, if you add
+// extra computations to this configuration, it is really necessary to think
+// about whether they should be tagged when they appear in reports.
+//
+// There are two main ways of changing computations which thinking about
+// tagging:
+// - Breaking down a computation.  Say, you might turn a single
+//   computation into multiple parts, e.g. income becomes various income
+//   lines which all add up to the whole income value.  Each of those parts
+//   needs to have dimensions to explain how they add up to the whole.
+//   This can be done by adding DetailedItem tags.
+// - Adding a new computation for which no tag exists.  This requires
+//   adding a tag and making sure something is picked which fits with the
+//   taxonomy.
+// 
+// The corptax filing is nowhere near as well defined as a CH annual filing.
+// Specifications are:
+// - The CT600 form plus guidance.  This form is not used if you file
+//   electronically, but the guidance explains what some boxes mean.
+// - The CT service specification which describes the CT filing process
+//   the 'Govtalk' header and the XML structure which makes up a CT filing.
+// - The CT (computations) and DPL (detailed profit/loss) taxonomies which
+//   describe the iXBRL which this report produces.  'Computations' means
+//   working out how much corptax to pay, which means taking profits,
+//   apply adjustments and rebates and splitting across financial years.
+//   DPL means describing company profits calcuations by explaining
+//   income and expenses in detail.  This report products CT and DPL in the
+//   same report, but it may be possible to file them separately.
+//   HMRC docs says that CT/DPL filing is required, but also not mandatory
+//   implying you can make a CT filing without this report.  At the end of
+//   the day, a corptax filing is about by being accountable to the
+//   administrators and explaining your workings, so you don't get audited.
+//   Makes sense to do a good job of the filing since it can be totally
+//   automated.
+//
+
 // Load the library for the specify report type
 local l = import "lib/uk-corptax.libsonnet";
 

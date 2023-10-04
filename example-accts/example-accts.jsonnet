@@ -1,4 +1,17 @@
 
+//
+// This is for an FRS-105 / Unaudited micro-entity annual accounts report.
+// This is appropriate for filing with UK Companies House as an annual report.
+// The micro-entity report is kinda bare, an abridged balance sheet.
+// Companies are still 'supposed' to product a non-abridger report for
+// members, which this would not meet.
+//
+// FRS-102/FRS-105 does not include a great deal of detail for
+// profit/loss detailed expenses.  Those details wouldn't appear in the
+// accounts anyway, so you don't have to worry about the tags if you
+// change how profit/loss is calculated for this report.
+//
+
 // Load the library for the specify report type
 local l = import "lib/frs102.libsonnet";
 
