@@ -20,7 +20,7 @@
         ],
 
 	debtors: [
-	    "Assets:Accounts Receivable",
+	    "Assets:Current Assets:Accounts Receivable (Debtors)",
         ],
 
 	"fixed-assets-initial": [
@@ -33,7 +33,7 @@
         ],
 
 	"trade-and-other-receivables": [
-	    "Assets:Accounts Receivable",
+	    "Assets:Current Assets:Accounts Receivable (Debtors)",
         ],
 
 	"capital-investment": [
@@ -88,55 +88,68 @@
 	],
 
 	"bank-charges": [
-	    "Expenses:General administrative expenses:Bank, credit card and other financial charges"
+	    "Expenses:Bank, credit card and other financial charges"
 	],
 
 	"bad-debts": [
-	    "Expenses:General administrative expenses:Bad debts"
+	    "Expenses:Bad debts"
 	],
 
 	"donations": [
-	    "Expenses:General administrative expenses:Donations"
+	    "Expenses:Donations"
 	],
 
 	depreciation: [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
 	],
 
 	entertaining: [
-	    "Expenses:General administrative expenses:Entertaining,Entertaining"
+	    "Expenses:Entertaining,Entertaining"
 	],
 	
 	insurance: [
-	    "Expenses:General administrative expenses:Insurance"
+	    "Expenses:Insurance"
 	],
 	
 	"loss-profit-on-disposal": [
-	    "Expenses:General administrative expenses:Profit/loss on disposal of assets"
+	    "Expenses:Profit/loss on disposal of assets"
 	],
 	
 	"depreciation-initial": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"depreciation-charge": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"depreciation-adjustment": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"interest-paid": [
-	    "Expenses:General administrative expenses:Interest paid"
+	    "Expenses:Interest paid"
+	],
+
+	"income": [
+	    "Revenue"
+	],
+
+	"profit-loss": [
+	    "Revenue",
+	    "Expenses"
 	],
 
 	"interest-received": [
-	    "Income:Interest Income"
+	    "Revenue:Interest Income"
+	],
+
+	"consultancy": [
+	    "Revenue:Sales"
 	],
 
 	office: [
-	    "Expenses:General administrative expenses:Interest paid"
+	    "Expenses:Interest paid"
 	],
 
 	pensions: [
@@ -166,7 +179,7 @@
         ],
 
 	sundries: [
-	    "Expenses:General administrative expenses:Sundry expenses (small miscellaneous expenses only)"
+	    "Expenses:Sundry expenses (small miscellaneous expenses only)"
 	],
 
 	taxes: [
@@ -177,15 +190,15 @@
 	],
 
 	"trade-creditors": [
-	    "Liabilities:Accounts Payable"
+	    "Liabilities:Current Liabilities:Accounts Payable"
         ],
 
 	travel: [
-	    "Expenses:General administrative expenses:Travel and subsistence"
+	    "Expenses:Travel and subsistence"
 	],
 
 	vehicle: [
-	    "Expenses:General administrative expenses:Vehicle expenses"
+	    "Expenses:Vehicle expenses"
 	],
 
 	"property-costs": [
@@ -194,11 +207,11 @@
 
 	// Liabilities
 	"other-creditors": [
-	    "Liabilities:Credit Card",
+	    "Liabilities:Current Liabilities:Credit Card",
         ],
 
 	"trade-payables": [
-	    "Liabilities:Accounts Payable",
+	    "Liabilities:Current Liabilities:Accounts Payable",
         ],
 
     },

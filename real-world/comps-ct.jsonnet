@@ -44,8 +44,8 @@ function(accts)
 	.segment("expense-type", "administrative-expenses"),
     
     accts.library.line(
-	"loss-profit-on-disposal",
-	"Loss/profit on disposal"
+	"capital-losses",
+	"Capital losses"
     )
 	.in_year()
 	.segment("expense-type", "administrative-expenses"),

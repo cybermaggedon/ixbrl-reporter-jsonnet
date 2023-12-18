@@ -8,55 +8,55 @@
 	],
 
 	"bank-charges": [
-	    "Expenses:General administrative expenses:Bank, credit card and other financial charges"
+	    "Expenses:Bank, credit card and other financial charges"
 	],
 
 	"bad-debts": [
-	    "Expenses:General administrative expenses:Bad debts"
+	    "Expenses:Bad debts"
 	],
 
 	"donations": [
-	    "Expenses:General administrative expenses:Donations"
+	    "Expenses:Donations"
 	],
 
 	depreciation: [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
 	],
 
 	"adjustments-depreciation": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
 	],
 
 	entertaining: [
-	    "Expenses:General administrative expenses:Entertaining"
+	    "Expenses:Entertainment"
 	],
 	
 	"adjustments-entertaining": [
-	    "Expenses:General administrative expenses:Entertaining"
+	    "Expenses:Entertainment"
 	],
 	
 	insurance: [
-	    "Expenses:General administrative expenses:Insurance"
+	    "Expenses:Insurance"
 	],
 	
 	"loss-profit-on-disposal": [
-	    "Expenses:General administrative expenses:Profit/loss on disposal of assets"
+	    "Expenses:Profit/loss on disposal of assets"
 	],
 	
 	"depreciation-initial": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"depreciation-charge": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"depreciation-adjustment": [
-	    "Expenses:General administrative expenses:Depreciation"
+	    "Expenses:Depreciation"
         ],
 
 	"interest-paid": [
-	    "Expenses:General administrative expenses:Interest paid"
+	    "Expenses:Interest paid"
 	],
 
 	"interest-received": [
@@ -64,7 +64,7 @@
 	],
 
 	office: [
-	    "Expenses:General administrative expenses:Interest paid"
+	    "Expenses:Interest paid"
 	],
 
 	pensions: [
@@ -94,7 +94,7 @@
         ],
 
 	sundries: [
-	    "Expenses:General administrative expenses:Sundry expenses (small miscellaneous expenses only)"
+	    "Expenses:Sundry expenses (small miscellaneous expenses only)"
 	],
 
 	taxes: [
@@ -109,11 +109,11 @@
         ],
 
 	travel: [
-	    "Expenses:General administrative expenses:Travel and subsistence"
+	    "Expenses:Travel and subsistence"
 	],
 
 	vehicle: [
-	    "Expenses:General administrative expenses:Vehicle expenses"
+	    "Expenses:Vehicle expenses"
 	],
 
 	"property-costs": [
@@ -131,11 +131,15 @@
 
 	// Income
 	income: [
-	    "Income"
+	    "Revenue"
+	],
+
+        consultancy: [
+	    "Revenue:Sales"
 	],
 
 	"main-income": [
-	    "Income"
+	    "Revenue"
 	],
 	
 	"capital-investment": [
@@ -145,6 +149,10 @@
         ],
 
 	"corporation-tax": [
+	],
+
+	"capital-losses": [
+	    "Expenses:Capital Losses"
 	],
 
     },
@@ -171,7 +179,7 @@
 	    "bad-debts",
 	    "donations",
 	    "entertaining",
-	    "loss-profit-on-disposal",
+	    "capital-losses",
 	    "taxes",
 	    "vehicle",
 	    "property-costs",

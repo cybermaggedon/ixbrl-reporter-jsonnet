@@ -19,10 +19,10 @@ local elts = {
     "title": "Corporation Tax Statement",
 
     // Location of Gnucash accounts file
-    "accounts_file": "./real-world/real-world.gnucash",
+    "accounts_file": "real-world/real-world.gnucash",
 
     // Module used to load accounts: gnucash or piecash
-    "accounts_kind": "piecash",
+    "accounts_kind": "gnucash",
 
     // Report elements
     "elements": [
