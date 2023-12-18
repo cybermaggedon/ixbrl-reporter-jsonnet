@@ -1,0 +1,106 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import csv
+import gnucash
+
+from gnucash.gnucash_core_c import (
+    ACCT_TYPE_ASSET, ACCT_TYPE_RECEIVABLE, ACCT_TYPE_INCOME,
+    GNC_OWNER_CUSTOMER, ACCT_TYPE_LIABILITY, ACCT_TYPE_EXPENSE,
+    ACCT_TYPE_ASSET, ACCT_TYPE_CASH, ACCT_TYPE_BANK, ACCT_TYPE_RECEIVABLE,
+    ACCT_TYPE_CREDIT, ACCT_TYPE_LIABILITY, ACCT_TYPE_PAYABLE,
+    ACCT_TYPE_EQUITY, ACCT_TYPE_INCOME, ACCT_TYPE_STOCK,
+)
+
+f = open("accounts-tree.csv")
+reader = csv.reader(f)
+
+astatus = {}
+
+mode = gnucash.SessionOpenMode.SESSION_NORMAL_OPEN
+mode = gnucash.SessionOpenMode.SESSION_NEW_OVERWRITE
+
+path = os.path.abspath("../real-accounts.gnucash")
+
+uri = "xml://" + str(path)
+
+session = gnucash.Session(uri, mode)
+
+book = session.book
+root = book.get_root_account()
+
+commod_table = book.get_table()
+GBP = commod_table.lookup('CURRENCY', 'GBP')
+
+acct_kinds = {
+    "EXPENSE": ACCT_TYPE_EXPENSE,
+    "ASSET": ACCT_TYPE_ASSET,
+    "CASH": ACCT_TYPE_CASH,
+    "BANK": ACCT_TYPE_BANK,
+    "RECEIVABLE": ACCT_TYPE_RECEIVABLE,
+    "LIABILITY": ACCT_TYPE_LIABILITY,
+    "CREDIT": ACCT_TYPE_CREDIT,
+    "PAYABLE": ACCT_TYPE_PAYABLE,
+    "INCOME": ACCT_TYPE_INCOME,
+    "EQUITY": ACCT_TYPE_EQUITY,
+    "STOCK": ACCT_TYPE_STOCK,
+}
+
+def doit(reader):
+
+    rownum = 0
+
+    for row in reader:
+
+        if rownum == 0:
+            rownum += 1
+            continue
+        else:
+            rownum += 1
+
+        atype = row[0]
+        aname = row[1]
+
+#         print(atype, aname)
+
+        aparts = aname.split(":")
+
+        st = astatus
+
+        par = root
+
+        for apart in aparts:
+
+            if apart not in st:
+                st[apart] = {
+                }
+
+                acct = gnucash.gnucash_core.Account(book)
+                par.append_child(acct)
+                acct.SetName(apart)
+
+                acct.SetType(acct_kinds[atype])
+
+                acct.SetCommodity(GBP)
+
+                st[apart]["_acct"] = acct
+
+            par = st[apart]["_acct"]
+            st = st[apart]
+
+        continue
+
+try:
+    doit(reader)
+except Exception as e:
+    print(e)
+    session.destroy()
+    raise e
+
+session.save()
+
+session.end()
+
+session.destroy()
+
