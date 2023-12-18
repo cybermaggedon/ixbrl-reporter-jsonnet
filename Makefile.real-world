@@ -1,5 +1,5 @@
 
-TEMPLATE=real-example
+TEMPLATE=real-world
 INPUTS=$(wildcard ${TEMPLATE}/*)
 
 all: accts.xhtml ct.xhtml

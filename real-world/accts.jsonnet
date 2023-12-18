@@ -23,10 +23,10 @@ local elts = {
     "title": "Unaudited Micro-Entity Accounts",
 
     // Location of Gnucash accounts file
-    "accounts_file": "books.gnucash",
+    "accounts_file": "real-world.gnucash",
 
     // Module used to load accounts: gnucash or piecash
-    "accounts_kind": "piecash",
+    "accounts_kind": "gnucash",
 
     // Report elements
     "elements": [

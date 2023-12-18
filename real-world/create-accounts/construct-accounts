@@ -21,7 +21,7 @@ astatus = {}
 mode = gnucash.SessionOpenMode.SESSION_NORMAL_OPEN
 mode = gnucash.SessionOpenMode.SESSION_NEW_OVERWRITE
 
-path = os.path.abspath("../real-accounts.gnucash")
+path = os.path.abspath("../real-world.gnucash")
 
 uri = "xml://" + str(path)
 
