@@ -97,7 +97,7 @@ function(accts)
 	"Total Assets Less Liabilities"
     ).at_end(),
 
-    accts.group(
+    accts.sum(
 	"creditors-after-1-year",
 	"Creditors: falling due after one year"
     )
