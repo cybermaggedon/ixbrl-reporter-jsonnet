@@ -111,7 +111,7 @@
 	    self + {
 		report +: {
 		    taxonomy +: {
-			metadatas: cs
+			metadata: cs
 		    }
 		}
 	    },
@@ -123,7 +123,7 @@
 	    self + {
 		report +: {
 		    taxonomy +: {
-			metadatas: cs
+			metadata: cs
 		    }
 		}
 	    },
@@ -135,7 +135,7 @@
 	    self + {
 		report +: {
 		    taxonomy +: {
-			metadatas: cs
+			metadata: cs
 		    }
 		}
 	    },
