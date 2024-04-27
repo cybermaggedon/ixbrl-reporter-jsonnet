@@ -58,7 +58,7 @@
 	],
 
 	// Accounts
-	"consultancy": [
+	"main-income": [
 	    "Income:Sales"
         ],
 
@@ -270,7 +270,7 @@
     compound_inputs: {
 
 	turnover: [
-	    "consultancy"
+	    "main-income"
 	],
 
 	"other-operating-income": [],
@@ -593,7 +593,7 @@
 	// ESEF...
 
 	"operating-revenue": [
-	    "consultancy"
+	    "main-income"
 	],
 
 	"other-operating-costs": [

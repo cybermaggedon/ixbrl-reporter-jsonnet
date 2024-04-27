@@ -1,6 +1,6 @@
 function(accts)
 [
-    accts.line("consultancy", "Consultancy").in_year(),
+    accts.line("main-income", "Main income").in_year(),
 
     accts.sum("operating-revenue", "Operating revenue").in_year(),
 
