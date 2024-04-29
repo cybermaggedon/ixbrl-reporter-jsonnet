@@ -64,7 +64,7 @@
 	],
 
 	office: [
-	    "Expenses:Interest paid"
+	    "Expenses:Administration and office expenses"
 	],
 
 	pensions: [
@@ -75,10 +75,12 @@
 
 	salaries: [
 	    "Expenses:Payroll Expenses:Salaries and wages",
+	    "Expenses:Payroll Expenses:Gifts and Trivial Benefits",
 	],
 
 	"salaries-expense": [
 	    "Expenses:Payroll Expenses:Salaries and wages",
+	    "Expenses:Payroll Expenses:Gifts and Trivial Benefits",
 	],
 
 	"software": [
@@ -98,7 +100,13 @@
 	],
 
 	taxes: [
-	    "Expenses:Taxes"
+	    "Expenses:Taxes:Capital Gains Tax",
+	    "Expenses:Taxes:Interest charged",
+	    "Expenses:Taxes:Local Taxes",
+	    "Expenses:Taxes:NI Contributions",
+	    "Expenses:Taxes:Other Taxes",
+	    "Expenses:Taxes:Property Taxes",
+	    "Expenses:Taxes:VAT",
 	],
 
 	telecoms: [
@@ -131,15 +139,11 @@
 
 	// Income
 	income: [
-	    "Revenue"
-	],
-
-        consultancy: [
 	    "Revenue:Sales"
 	],
 
 	"main-income": [
-	    "Revenue"
+	    "Revenue:Sales"
 	],
 	
 	"capital-investment": [
@@ -149,18 +153,54 @@
         ],
 
 	"corporation-tax": [
+            "Expenses:Taxes:Corporation Tax",
 	],
 
-	"capital-losses": [
+	"adjustments-exempt-dividends": [
+		"Revenue:Dividend Income"
+	],
+
+	"dividends": [
+		"Revenue:Dividend Income"
+	],
+
+	"capital-gains": [
+	    "Revenue:Capital Gains",
 	    "Expenses:Capital Losses"
 	],
+	
+	"interest-income": [
+	    "Revenue:Interest Income"
+	],
 
+	"other-income": [
+	    "Revenue:Other Income"
+	],
+	
+	"gifts-received": [
+	    "Revenue:Gifts received"
+	],
+	
     },
 
     compound_inputs +: {
 
 	turnover: [
 	    "main-income",
+            "capital-gains",
+            "gifts-received",
+            "other-income",
+            "interest-income",
+            "dividends",
+	],
+
+        "ct-turnover": [
+	    "main-income",
+            "capital-gains",
+            "gifts-received",
+            "other-income",
+            "interest-income",
+            "dividends",
 	],
 
 	"total-costs": [
@@ -179,7 +219,6 @@
 	    "bad-debts",
 	    "donations",
 	    "entertaining",
-	    "capital-losses",
 	    "taxes",
 	    "vehicle",
 	    "property-costs",
@@ -190,6 +229,7 @@
 	    "ct-annual-investment-allowance",
 	    "adjustments-depreciation",
 	    "adjustments-entertaining",
+            "adjustments-exempt-dividends",
 	],
 
     },
