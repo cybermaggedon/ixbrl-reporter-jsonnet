@@ -111,7 +111,12 @@
             "map": {
                 "item1": "ct-comp:Item1",
                 "item2": "ct-comp:Item2",
-                "item3": "ct-comp:Item3"
+                "item3": "ct-comp:Item3",
+                "item4": "ct-comp:Item4",
+                "item5": "ct-comp:Item5",
+                "item6": "ct-comp:Item6",
+                "item7": "ct-comp:Item7",
+                "item8": "ct-comp:Item8"
             }
         },
         "detailed-analysis": {
