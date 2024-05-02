@@ -135,6 +135,10 @@
 	    "Revenue"
 	],
 
+	"main-income": [
+	    "Revenue:Sales"
+	],
+
 	"profit-loss": [
 	    "Revenue",
 	    "Expenses"
