@@ -6,7 +6,7 @@ function(accts)
 
     accts.line("income", "Income from main trade")
 	.in_year()
-	.segment("activity", "m")
+//	.segment("main-industry-sector", "m")
 	.segment("detailed-analysis", "item1")
 	.segment("countries-regions", "UK"),
 
