@@ -14,6 +14,7 @@
 	"description": "Tax Calculation",
 	"computations": [
 	    "ct-trading-profits-raw",
+            "ct-trading-losses-brought-forward",
 	    "ct-net-trading-profits",
 	    "ct-trading-losses",
 	    "ct-profit-before-tax-total",

@@ -2,11 +2,11 @@ function(accts)
 [
 
     // FIXME: CT vs FRS definition
-    accts.line("main-income", "Main income").in_year(),
+    accts.line("consultancy", "Consultancy").in_year(),
 
     accts.line("income", "Income from main trade")
 	.in_year()
-//	.segment("main-industry-sector", "m")
+	.segment("activity", "m")
 	.segment("detailed-analysis", "item1")
 	.segment("countries-regions", "UK"),
 
@@ -145,6 +145,13 @@ function(accts)
 	.segment("business-type", "company"),
 
     accts.sum("ct-trading-losses", "Trading losses")
+	.in_year()
+	.segment("business-type", "company"),
+
+    accts.line(
+        "ct-trading-losses-brought-forward",
+        "Trading losses brought forward"
+    )
 	.in_year()
 	.segment("business-type", "company"),
 

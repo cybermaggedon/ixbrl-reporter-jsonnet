@@ -20,12 +20,13 @@
 			"description": "Trading losses brough forward",
 			"field": "160, 285",
 			"context": "report-period",
-			"kind": "money",
-			"value": 0
+			"computation": "ct-trading-losses-brought-forward",
+			"kind": "computation",
+			"period-config": "metadata.tax.period"
 		    },
 		    {
 			"id": "net-trading-profits",
-			"computation": "ct-trading-profits",
+			"computation": "ct-net-trading-profits",
 			"context": "report-period",
 			"description": "Net trading profits",
 			"field": "165",

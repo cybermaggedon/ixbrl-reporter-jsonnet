@@ -169,7 +169,6 @@
     },
     "namespaces": {
         "ct-comp": "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01",
-//        "dpl": "http://www.hmrc.gov.uk/schemas/ct/dpl/2021-01-01",
         "dpl": "http://xbrl.frc.org.uk/dpl/2023-01-01",
         "uk-core": "http://xbrl.frc.org.uk/fr/2023-01-01/core",
         "uk-bus": "http://xbrl.frc.org.uk/cd/2023-01-01/business",
@@ -177,7 +176,6 @@
     },
     "schema": [
         "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01/ct-comp-2023.xsd",
-//        "http://www.hmrc.gov.uk/schemas/ct/dpl/2021-01-01/dpl-2021.xsd"
         "https://xbrl.frc.org.uk/dpl/2023-01-01/dpl-2023-01-01.xsd"
     ],
     "sign-reversed": {
@@ -198,6 +196,7 @@
         "ct-tax-total": true,
         "ct-management-expenses": true,
 	"ct-trading-losses": true,
+        "ct-trading-losses-brought-forward": true,
         "management-expenses": true,
         "total-deductions-and-reliefs": true,
         "salaries": true,

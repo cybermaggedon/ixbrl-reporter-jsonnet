@@ -265,6 +265,9 @@
 	    "Equity:Shareholdings"
         ],
 
+	"ct-trading-losses-brought-forward": [
+	],
+	
     },
 
     compound_inputs: {
@@ -516,13 +519,11 @@
 	    "profit-before-tax"
 	],
 
-
 	"ct-trading-profits-raw": [
 	    "profit-loss-per-accounts",
 	    "ct-annual-investment-allowance",
 	    "rnd-enhanced-expenditure"
 	],
-
 
 	"ct-trading-profits-if-pos": "ct-trading-profits-raw",
 
@@ -532,9 +533,9 @@
 	
 	"ct-trading-losses": [ "ct-trading-profits-if-neg" ],
 
-
 	"ct-net-trading-profits": [
-	    "ct-trading-profits"
+	    "ct-trading-profits",
+            "ct-trading-losses-brought-forward"
 	],
 	
 	"profits-before-other-deductions-and-reliefs": [
