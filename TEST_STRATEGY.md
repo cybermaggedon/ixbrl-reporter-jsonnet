@@ -11,45 +11,84 @@ The project follows this workflow:
 2. **JSON Configuration** → ixbrl-reporter → iXBRL (XHTML) reports
 3. **iXBRL Reports** → Regulatory filing (Companies House, HMRC, ESEF)
 
+## Test Structure and Organization
+
+The test suite is organized into three distinct categories, each with a specific purpose:
+
+```
+tests/
+├── unit/          # Test individual library components
+├── integration/   # Test complete template configurations  
+└── contract/      # Test compliance with external interfaces
+```
+
 ## Testing Levels
 
-### 1. Unit Testing - Jsonnet Template Validation
+### 1. Unit Testing (`tests/unit/`)
+**Purpose**: Test individual library components in isolation  
+**Tool**: jsonnetunit  
+**Target**: Files under `lib/` directory
 
-#### 1.1 Syntax Validation
-- **Tool**: `jsonnet` command with `--dry-run` option
-- **Purpose**: Ensure all Jsonnet files are syntactically correct
-- **Implementation**:
-  ```bash
-  find . -name "*.jsonnet" -o -name "*.libsonnet" | while read f; do
-    jsonnet --dry-run "$f" || exit 1
-  done
-  ```
+**What to test**:
+- Individual Jsonnet library functions (`lib/*.libsonnet`)
+- Account mapping definitions (`lib/default-mapping.jsonnet`) 
+- Computation libraries (`lib/*/computations.jsonnet`)
+- Style and formatting utilities (`lib/style.jsonnet`)
 
-#### 1.2 Schema Validation
-- **Purpose**: Ensure generated JSON conforms to ixbrl-reporter's expected schema
-- **Implementation**: Create JSON schema definitions for:
-  - Metadata structure
-  - Computation definitions
-  - Element configurations
-  - Resource definitions
+**Example**:
+```bash
+jsonnet -J . -J jsonnetunit tests/unit/test_default_mapping.jsonnet
+```
 
-### 2. Integration Testing
+**Sample test structure**:
+- Verify library loads without errors
+- Test function inputs/outputs  
+- Validate data structure integrity
+- Check for required fields/functions
 
-#### 2.1 Configuration Generation Tests
-- **Purpose**: Verify Jsonnet templates produce valid JSON configurations
-- **Current Implementation**: `test/run_all` script
-- **Enhancements**:
-  - Add validation for required fields
-  - Check computation dependencies
-  - Verify account mappings exist
+### 2. Integration Testing (`tests/integration/`)
+**Purpose**: Test complete template configurations that generate full reports  
+**Tool**: jsonnetunit  
+**Target**: Example templates (`example-*/`, complete report workflows)
 
-#### 2.2 End-to-End Pipeline Tests
-- **Purpose**: Test complete workflow from Jsonnet → JSON → iXBRL
-- **Current Implementation**: Generates reports and compares KV output
-- **Enhancements**:
-  - Add XML validation against taxonomies
-  - Validate iXBRL structure
-  - Check for required tags
+**What to test**:
+- Complete template compilation (`example-accts.jsonnet`, `example-ct.jsonnet`)
+- Multi-file template dependencies  
+- Metadata + computation + mapping integration
+- Business rule validation (accounting logic)
+
+**Example**:
+```bash
+jsonnet -J . -J jsonnetunit tests/integration/test_example_accts.jsonnet
+```
+
+**Sample test structure**:
+- Verify template generates valid JSON configuration
+- Test business rules (balance sheet balances, date logic)
+- Validate cross-references between components
+- Check accounting period consistency
+
+### 3. Contract Testing (`tests/contract/`)
+**Purpose**: Verify outputs comply with external system interfaces (ixbrl-reporter schema)  
+**Tool**: jsonnetunit  
+**Target**: Output format compliance, external API contracts
+
+**What to test**:
+- ixbrl-reporter JSON schema compliance
+- Required fields for downstream tools
+- Data type validation  
+- Regulatory taxonomy compatibility
+
+**Example**:
+```bash
+jsonnet -J . -J jsonnetunit tests/contract/test_ixbrl_output_schema.jsonnet
+```
+
+**Sample test structure**:
+- Verify all required top-level fields exist
+- Test metadata structure matches ixbrl-reporter expectations
+- Validate computation array format
+- Check accounts configuration schema
 
 ### 3. Regression Testing
 
@@ -121,6 +160,19 @@ Create test scenarios for:
 
 ## Test Automation
 
+### Test Runner
+A unified test runner is provided for all test types:
+
+```bash
+# Run all tests
+./run_tests.sh
+
+# Run specific test categories  
+./run_tests.sh unit
+./run_tests.sh integration
+./run_tests.sh contract
+```
+
 ### Continuous Integration
 ```yaml
 # Example GitHub Actions workflow
@@ -131,24 +183,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true  # For jsonnetunit
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y jsonnet
           pip install ixbrl-reporter
-      - name: Run syntax validation
-        run: make validate-jsonnet
-      - name: Run integration tests
+      - name: Run jsonnetunit tests
+        run: ./run_tests.sh
+      - name: Run legacy integration tests  
         run: sh test/run_all
-      - name: Run compliance checks
-        run: make validate-ixbrl
 ```
 
 ### Pre-commit Hooks
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit
-# Validate Jsonnet syntax before commit
+# Run jsonnetunit tests before commit
+./run_tests.sh || exit 1
+
+# Validate Jsonnet syntax
 find . -name "*.jsonnet" -o -name "*.libsonnet" | while read f; do
   jsonnet --dry-run "$f" || exit 1
 done
