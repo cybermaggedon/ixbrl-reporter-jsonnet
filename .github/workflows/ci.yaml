@@ -1,0 +1,49 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ master ]
+
+permissions:
+  contents: read
+
+jobs:
+  jsonnet-tests:
+    name: Run Jsonnet Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Jsonnet
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jsonnet
+
+      - name: Clone jsonnetunit
+        run: |
+          git clone https://github.com/yugui/jsonnetunit.git
+
+      - name: Run jsonnetunit tests
+        run: |
+          ./run_tests.sh
+
+  legacy-tests:
+    name: Run Legacy Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jsonnet
+          pip install ixbrl-reporter ixbrl-parse
+
+      - name: Run legacy tests
+        run: |
+          test-examples/run-all
+

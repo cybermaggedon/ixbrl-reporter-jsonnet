@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Sorting strings depends on Locale.  Don't want this test script to fail
+# because sort works differently.  This affects MacOS vs Linux.
+export LANG=C.UTF-8
+export LC_ALL=C.UTF-8
+# export LC_ALL=en_GB.UTF-8
+
+log=test-examples/log
+output=test-examples/output
+
+mkdir -p ${output}
+
+cfgs="unaud-micro.jsonnet unaud-micro-rev.jsonnet aud-micro.jsonnet
+    aud-micro-rev.jsonnet aud-small.jsonnet aud-small-rev.jsonnet 
+    unaud-abr.jsonnet unaud-abr-rev.jsonnet unaud-full.jsonnet
+    unaud-full-rev.jsonnet aud-full.jsonnet aud-full-rev.jsonnet
+    ct.jsonnet esef-en.jsonnet esef-fr.jsonnet"
+
+for cfg in ${cfgs}
+do
+    echo ${cfg}...
+    json=${output}/tmp.json
+    out=${output}/${cfg%.jsonnet}.html
+    kv=${output}/${cfg%.jsonnet}.kv
+    cmp=${log}/${cfg%.jsonnet}.kv
+    jsonnet -J . test-examples/${cfg} > ${json}
+    ixbrl-reporter ${json} report ixbrl > ${out}
+    ixbrl-to-kv ${out} | \
+        grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' | \
+        sort > ${kv}
+    grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' ${cmp} | \
+        sort | cmp ${kv} -
+    if [ $? -ne 0 ]
+    then
+        echo 'File comparison fail...'
+        echo 'diff ${kv} ${cmp} >>>>'
+        grep -Ev 'VersionProductionSoftware|VersionOfProductionSoftware' \
+              ${cmp} | \
+            sort | cmp ${kv} -
+        sort ${cmp} | diff ${kv} -
+        exit 1
+    fi
+done
+
