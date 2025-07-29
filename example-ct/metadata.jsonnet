@@ -1,3 +1,12 @@
+// Company metadata for UK Corporation Tax iXBRL filing
+// This file contains all the company and tax information required
+// for generating compliant HMRC corporation tax reports with DPL (Detailed Profit & Loss)
+//
+// Structure:
+// - business: Core company information required for CT filing
+// - tax: Corporation tax specific information including UTR and financial year periods
+// - accounting: Accounting periods and settings for tax calculations
+
 {
     "business": {
         "activities": "Computer security consultancy and development services",

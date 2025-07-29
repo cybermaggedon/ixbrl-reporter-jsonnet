@@ -18,6 +18,8 @@ which extends JSON with programming constructs.  Jsonnet is specifically
 designed to make it easy to build configuration files; it supports object
 templating and extension.
 
+There's a contributed filing guide [here](docs/README.filing.md).
+
 ## Discuss
 
 There's a #ixbrl-reporter-jsonnet channel on our Discord server if you want
@@ -139,16 +141,18 @@ Output in `test/output`.
 
 ## Warranty
 
-This code comes with no warranty.  See the [LICENSE](LICENCE) file for
-details.  It is possible that this code could be useful to you in meeting
-regulatory reporting requirements for your business.  It is also possible
-that the software could report misleading information which could land you
-in a lot of trouble if used for regulatory compliance.  If you need
-certainty, you should check with a qualified accountant and/or qualified
-financial accounting engineer.
+This code and documentation comes with no warranty whatsoever.  See the
+[LICENSE](../LICENSE) file for details.  The contributors to this document are
+not accountants, and this is not accounting advice.
+
+It is possible that this code could be useful to you in meeting regulatory
+reporting requirements for your business.  It is also possible that the
+software could report misleading information which could land you in a lot of
+trouble.  Check everything, and if you don't know how to be compliant, ask a
+professional.
 
 ## License
 
-Copyright (c) Accounts Machine Limited, 2022
+Copyright (c) Cyberapocalypse Limited, 2025
 Licenced under the GPL version 3 licence, see the [LICENSE](LICENCE) file
 

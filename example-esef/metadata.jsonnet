@@ -1,3 +1,14 @@
+// Company metadata for ESEF (European Single Electronic Format) reporting
+// This file contains all the company information required for generating
+// ESEF-compliant annual financial reports for EU regulatory filing
+//
+// ESEF is mandatory for companies with securities admitted to trading on EU regulated markets
+// The format combines XHTML with inline XBRL tagging using the ESEF taxonomy
+//
+// Structure:
+// - business: Core company information for European reporting requirements
+// - accounting: Accounting periods and currency settings for ESEF reports
+
 {
     "business": {
         "activities": "Computer security consultancy and development services",
