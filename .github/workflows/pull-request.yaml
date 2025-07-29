@@ -42,8 +42,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jsonnet
-          # Install ixbrl-reporter and ixbrl-to-kv (would need actual package installation)
-          echo "Legacy test dependencies would be installed here"
+          pip install ixbrl-reporter ixbrl-parse
 
       - name: Run legacy tests
         run: |
