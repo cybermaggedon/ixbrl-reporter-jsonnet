@@ -5,6 +5,18 @@ Kindly contributed by @newbie in the Discord forum.
 
 Good luck and please suggest edits to this doc.
 
+## Warranty
+
+This code and documentation comes with no warranty whatsoever.  See the
+[LICENSE](../LICENSE) file for details.  The contributors to this document are
+not accountants, and this is not accounting advice.
+
+It is possible that this code could be useful to you in meeting regulatory
+reporting requirements for your business.  It is also possible that the
+software could report misleading information which could land you in a lot of
+trouble.  Check everything, and if you don't know how to be compliant, ask a
+professional.
+
 ## 1. install ixbrl-reporter and jsonnet
 
 ```
