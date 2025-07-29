@@ -23,13 +23,23 @@ echo ""
 echo "📈 PHASE PROGRESS"
 echo ""
 
-# Phase 1: Foundation (26 critical files)
+# Phase 0: Regulatory Compliance (4 CRITICAL taxonomy files)
+PHASE0_TAXONOMY=$(find tests/contract -name 'test_*taxonomy*' -o -name 'test_*frs102_taxonomy*' -o -name 'test_*ct_dpl_taxonomy*' -o -name 'test_*esef*taxonomy*' | wc -l)
+PHASE0_PERCENT=$((PHASE0_TAXONOMY * 100 / 4))
+echo "Phase 0 - Regulatory Compliance (CRITICAL): $PHASE0_TAXONOMY/4 files ($PHASE0_PERCENT%)"
+echo "  ├─ FRS-102 taxonomy: $(find tests/contract -name 'test_*frs102_taxonomy*' | wc -l)/1"
+echo "  ├─ CT-DPL taxonomy: $(find tests/contract -name 'test_*ct_dpl_taxonomy*' | wc -l)/1"
+echo "  ├─ ESEF taxonomy: $(find tests/contract -name 'test_*esef_taxonomy*' | wc -l)/1"
+echo "  └─ ESEF-FR taxonomy: $(find tests/contract -name 'test_*esef_fr_taxonomy*' | wc -l)/1"
+
+# Phase 1: Foundation (22 critical files - reduced due to taxonomy priority)
 PHASE1_UNIT=$(find tests/unit -name 'test_*generic*' -o -name 'test_*base*' -o -name 'test_*comp*' -o -name 'test_*default*' -o -name 'test_*style*' -o -name 'test_*modify*' -o -name 'test_*frs102.jsonnet' -o -name 'test_*uk-corptax.jsonnet' -o -name 'test_*uk-vat.jsonnet' -o -name 'test_*esef*.jsonnet' | wc -l)
-PHASE1_PERCENT=$((PHASE1_UNIT * 100 / 26))
-echo "Phase 1 - Foundation (Critical): $PHASE1_UNIT/26 files ($PHASE1_PERCENT%)"
+PHASE1_PERCENT=$((PHASE1_UNIT * 100 / 22))
+echo ""
+echo "Phase 1 - Foundation (Critical): $PHASE1_UNIT/22 files ($PHASE1_PERCENT%)"
 echo "  ├─ Generic libraries: $(find tests/unit -name 'test_*generic*' | wc -l)/6"
 echo "  ├─ Root libraries: $(find tests/unit -name 'test_*base*' -o -name 'test_*comp*' -o -name 'test_*default*' -o -name 'test_*style*' -o -name 'test_*modify*' | wc -l)/10"  
-echo "  └─ Core computations: $(find tests/unit -name 'test_*computations*' | wc -l)/9"
+echo "  └─ Core computations: $(find tests/unit -name 'test_*computations*' | wc -l)/5"
 
 # Phase 2: FRS102 (23 files)
 PHASE2_UNIT=$(find tests/unit -name 'test_*frs102*' | wc -l)
@@ -82,8 +92,12 @@ echo ""
 
 # Next steps recommendation
 echo "🎯 RECOMMENDED NEXT STEPS"
-if [ $PHASE1_PERCENT -lt 100 ]; then
-    echo "1. Complete Phase 1 (Foundation) - $((26 - PHASE1_UNIT)) files remaining"
+if [ $PHASE0_PERCENT -lt 100 ]; then
+    echo "1. URGENT: Complete Phase 0 (Regulatory Compliance) - $((4 - PHASE0_TAXONOMY)) files remaining"
+    echo "   Focus on: taxonomy/ files - CRITICAL for regulatory acceptance"
+    echo "   Missing: ESEF and ESEF-FR taxonomy tests"
+elif [ $PHASE1_PERCENT -lt 100 ]; then
+    echo "1. Complete Phase 1 (Foundation) - $((22 - PHASE1_UNIT)) files remaining"
     echo "   Focus on: lib/generic/, core libraries, critical computations"
 elif [ $PHASE2_PERCENT -lt 100 ]; then
     echo "1. Complete Phase 2 (FRS102) - $((23 - PHASE2_UNIT)) files remaining"

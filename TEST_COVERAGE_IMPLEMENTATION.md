@@ -8,8 +8,38 @@
 
 ## Strategic Implementation Approach
 
-### Phase 1: Foundation (Weeks 1-2) - 26 Critical Files
-**Goal**: Establish testing for core infrastructure components
+### Phase 0: Regulatory Compliance (Week 1) - 4 CRITICAL Taxonomy Files
+**Goal**: Ensure regulatory taxonomy mappings are correct - HIGHEST PRIORITY
+**Risk**: CRITICAL - Errors here cause regulatory filing rejection
+
+#### 0.1 Official Taxonomy Mappings (4 files)
+**Target**: `taxonomy/` - Official regulatory mappings
+- `frs102.jsonnet` - UK Companies House (FRC) taxonomy mapping
+- `ct-dpl.jsonnet` - UK HMRC Corporation Tax & DPL taxonomy mapping  
+- `esef.jsonnet` - European ESEF taxonomy mapping (English)
+- `esef-fr.jsonnet` - European ESEF taxonomy mapping (French)
+
+**Test Focus**:
+- Official schema URL validation (FRC, HMRC, ESMA)
+- Regulatory namespace compliance
+- Context mapping accuracy (business entity, periods)
+- Metadata reference integrity
+- Required context existence (business, report-period, previous-period)
+- Segment structure validation
+
+**Regulatory Requirements**:
+- **FRS-102**: Must reference official FRC schemas for Companies House acceptance
+- **CT-DPL**: Must comply with HMRC Corporation Tax taxonomy requirements
+- **ESEF**: Must reference ESMA taxonomy for European regulatory compliance
+- **Context Mapping**: Entity IDs, periods, and segments must map correctly to internal metadata
+
+**Deliverables**:
+- 4 contract test files in `tests/contract/`
+- Taxonomy validation patterns established
+- Regulatory compliance verification
+
+### Phase 1: Foundation (Weeks 2-3) - 22 Critical Files  
+**Goal**: Establish testing for core infrastructure components (reduced from 26 due to taxonomy priority)
 **Risk**: High - These components are used across all reports
 
 #### 1.1 Generic Library Components (6 files)
@@ -42,14 +72,13 @@
 - Account mapping accuracy
 - Style generation validation
 
-#### 1.3 Critical Computation Files (9 files)
-**Target**: Core mathematical/business logic
+#### 1.3 Critical Computation Files (5 files - core only)
+**Target**: Most critical mathematical/business logic
 - `lib/frs102/frc102-computations.jsonnet`
 - `lib/uk-corptax/ct-computations.jsonnet`
 - `lib/uk-vat/vat-computations.jsonnet`
 - `lib/esef-en/esef-computations.jsonnet`
 - `lib/esef-fr/esef-computations.jsonnet`
-- Example computations in `example-*/comps.jsonnet`
 
 **Test Focus**:
 - Mathematical accuracy
@@ -58,7 +87,7 @@
 - Edge case handling (zero values, negative amounts)
 
 **Deliverables**:
-- 26 unit test files in `tests/unit/`
+- 22 unit test files in `tests/unit/`
 - Test patterns established for each component type
 - Documentation for testing mathematical calculations
 
