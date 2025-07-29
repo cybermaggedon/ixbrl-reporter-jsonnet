@@ -1,3 +1,15 @@
+// Company metadata for iXBRL financial reporting
+// This file contains all the company and accounting information required
+// for generating compliant UK company accounts reports
+//
+// Structure:
+// - business: Core company information (name, directors, contact details, SIC codes)
+// - accountant: Details of the company's accountant (for unaudited accounts)
+// - auditor: Details of the company's auditor (if accounts are audited)
+// - directors: Directors' report information
+// - accounting: Accounting periods, currency settings, and signature details
+// - tax: Tax-related information including UTR and financial year periods
+
 {
     "business": {
         "activities": "Computer security consultancy and development services",
@@ -70,7 +82,7 @@
         "currency": "GBP",
         "decimals": 0,
         "scale": 0,
-        "currency-label": "\u00a3",
+        "currency-label": "£",
         "date": "2021-03-01",
         "periods": [
             {

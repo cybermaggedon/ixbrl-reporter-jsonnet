@@ -1,4 +1,10 @@
 
+// ESEF (European Single Electronic Format) English Language Example
+// This configuration generates ESEF-compliant financial reports for EU regulatory filing
+// ESEF is the European electronic reporting format required for annual financial reports
+// of companies with securities admitted to trading on EU regulated markets
+
+// Import the ESEF English language library
 local l = import "lib/esef-en.libsonnet";
 
 local notes = {
