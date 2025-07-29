@@ -37,9 +37,6 @@ local elts = {
                 {
                     "element": "profit-and-loss"
                 },
-                {
-                    "element": "revision-info"
-                },
 		{
 		    "element": "simple-notes"
 		}
@@ -49,14 +46,13 @@ local elts = {
 };
 
 local accts = {
-    metadata: import "test/metadata-acc-aud-rev.jsonnet",
+    metadata: import "test-examples/metadata-acc-aud.jsonnet",
     accounts:: l.from_element_def(elts, self).with_metadata(self.metadata),
     resource(x):: {
-	"logo": import "detail/logo.jsonnet",
-	"signature": import "detail/signature.jsonnet",
+	"logo": "logo",
+	"signature": "signature",
 	"directors-report": import "detail/directors-report.jsonnet",
-	"auditors-report": import "detail/revised-auditors-report.jsonnet",
-	"revision-info": import "detail/revision-info.jsonnet",
+	"auditors-report": import "detail/auditors-report.jsonnet",
 	"notes": import "detail/notes.jsonnet"
     }[x]
 };

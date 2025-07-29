@@ -35,7 +35,7 @@ local elts = {
 
 local accts = {
 
-    metadata:: import "test/metadata.jsonnet",
+    metadata:: import "test-examples/metadata.jsonnet",
 
     accounts:: l.from_element_def(elts, self).with_metadata(self.metadata),
 

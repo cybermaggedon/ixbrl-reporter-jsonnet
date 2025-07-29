@@ -3,10 +3,10 @@ local l = import "lib/frs102.libsonnet";
 
 local elts = {
     "element": "frs102",
-    "accounting_standards": "frs102",
+    "accounting_standards": "small-entities-regime",
     "accounts_status": "audited",
-    "accounts_type": "full-accounts",
-    "title": "Audited Full Accounts",
+    "accounts_type": "abridged-accounts",
+    "title": "Audited Small Company Accounts",
     "accounts_file": "example2.gnucash",
     "accounts_kind": "piecash",
     "elements": [
@@ -18,30 +18,30 @@ local elts = {
 		    "element": "title-page",
 		    "logo": "logo"
 		},
+                {
+                    "element": "consent"
+                },
 		{
 		    "element": "company-info"
 		},	    
-		{
-		    "element": "directors-report"
-		},	    
+                {
+                    "element": "directors-report"
+                },
 		{
 		    "element": "auditors-report"
 		},	    
 		{
 		    "element": "balance-sheet",
 		    "signature": "signature"
-		},	    
+		},
+                {
+                    "element": "profit-and-loss"
+                },
+                {
+                    "element": "revision-info"
+                },
 		{
-		    "element": "cash-flows"
-		},	    
-		{
-		    "element": "comprehensive-income"
-		},	    
-		{
-		    "element": "revision-info"
-		},	    
-		{
-		    "element": "notes"
+		    "element": "simple-notes"
 		}
 	    ]
 	}
@@ -49,7 +49,7 @@ local elts = {
 };
 
 local accts = {
-    metadata: import "test/metadata-acc-aud-rev.jsonnet",
+    metadata: import "test-examples/metadata-acc-aud-rev.jsonnet",
     accounts:: l.from_element_def(elts, self).with_metadata(self.metadata),
     resource(x):: {
 	"logo": import "detail/logo.jsonnet",
