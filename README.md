@@ -18,6 +18,8 @@ which extends JSON with programming constructs.  Jsonnet is specifically
 designed to make it easy to build configuration files; it supports object
 templating and extension.
 
+There's a contributed filing guide [here](docs/README.filing.md).
+
 ## Discuss
 
 There's a #ixbrl-reporter-jsonnet channel on our Discord server if you want
