@@ -4,15 +4,15 @@ json2yaml() {
     python -c 'import sys, yaml, json; print(yaml.dump(json.loads(sys.stdin.read())))'
 }
 
-JSONNET="jsonnet -J .. -J ../test"
+JSONNET="jsonnet -J .. -J ../test-examples"
 
-outdir=../../ixbrl-reporter
-test=${outdir}/test
-taxonomy=${outdir}/taxonomy
-report=${outdir}/report
+outdir=../../ixbrl-reporter/
+test=${outdir}/test/
+taxonomy=${outdir}/taxonomy/
+report=${outdir}/report/
 
 md() {
-    ${JSONNET} ../test/metadata${1}.jsonnet | \
+    ${JSONNET} ../test-examples/metadata${1}.jsonnet | \
 	json2yaml > ${test}/metadata${1}.yaml
 }
 
@@ -49,7 +49,7 @@ cfg esef-fr
 
 ${JSONNET} ../lib/style.jsonnet | json2yaml > ${test}/../report/style.yaml
 
-${JSONNET} ../test/detail/revision-info.jsonnet | \
+${JSONNET} ../test-examples/detail/revision-info.jsonnet | \
     json2yaml > ${test}/../detail/revision-info.yaml
 
 # ------
