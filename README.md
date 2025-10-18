@@ -129,12 +129,21 @@ make -f Makefile.example-esef
 
 Output in `esef.xhtml` and `esef-fr.xhtml`.
 
+### Test suite
+
+- git clone https://github.com/yugui/jsonnetunit.git
+- Install jsonnet
+- ./run_tests.sh
+
 ### Test suite / examples
 
-See the `test` directory.
+This is a regression test.  It process some template files and compares
+the results with expected output.
+
+See the `test-examples` directory.
 
 ```
-sh test/run_all
+sh test-examples/run-all
 ```
 
 Output in `test/output`.
