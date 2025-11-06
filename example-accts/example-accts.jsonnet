@@ -39,7 +39,7 @@ local elts = {
     "accounts_file": "example2.gnucash",
 
     // Module used to load accounts: gnucash or piecash
-    "accounts_kind": "gnucash",
+    "accounts_kind": "piecash",
 
     // Report elements
     "elements": [

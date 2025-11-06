@@ -68,6 +68,6 @@ test.suite({
 
     testAccountsKind: {
         actual: config.accounts.kind,
-        expect: "gnucash"
+        expect: "piecash"
     }
 })
