@@ -5,9 +5,8 @@ function(accts)
     // and countries-regions to England & Wales.
     accts.library.line("income", "Income from main trade")
 	.in_year()
-	.segment("activity", "m")
 	.segment("detailed-analysis", "item1")
-	.segment("countries-regions", "england-and-wales"),
+	.segment("countries-regions", "UK"),
 
     // Define an entertainment computation
     accts.library.line("entertainment", "Entertainment")
