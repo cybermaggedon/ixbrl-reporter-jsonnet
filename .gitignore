@@ -3,3 +3,4 @@ test-examples/output
 *.xhtml
 *.json
 *.gnucash.*.log
+jsonnetunit/
