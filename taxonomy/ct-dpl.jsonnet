@@ -168,15 +168,15 @@
         }
     },
     "namespaces": {
-        "ct-comp": "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01",
-        "dpl": "http://xbrl.frc.org.uk/dpl/2023-01-01",
-        "uk-core": "http://xbrl.frc.org.uk/fr/2023-01-01/core",
-        "uk-bus": "http://xbrl.frc.org.uk/cd/2023-01-01/business",
-        "uk-geo": "http://xbrl.frc.org.uk/cd/2023-01-01/countries"
+        "ct-comp": "http://www.hmrc.gov.uk/schemas/ct/comp/2024-01-01",
+        "dpl": "http://xbrl.frc.org.uk/dpl/2025-01-01",
+        "uk-core": "http://xbrl.frc.org.uk/fr/2025-01-01/core",
+        "uk-bus": "http://xbrl.frc.org.uk/cd/2025-01-01/business",
+        "uk-geo": "http://xbrl.frc.org.uk/cd/2025-01-01/countries"
     },
     "schema": [
-        "http://www.hmrc.gov.uk/schemas/ct/comp/2023-01-01/ct-comp-2023.xsd",
-        "https://xbrl.frc.org.uk/dpl/2023-01-01/dpl-2023-01-01.xsd"
+        "http://www.hmrc.gov.uk/schemas/ct/comp/2024-01-01/ct-comp-2024.xsd",
+        "https://xbrl.frc.org.uk/dpl/2025-01-01/dpl-2025-01-01.xsd"
     ],
     "sign-reversed": {
         "accountancy": true,
