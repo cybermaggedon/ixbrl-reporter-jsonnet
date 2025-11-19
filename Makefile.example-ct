@@ -1,14 +1,35 @@
+#
+# This makefile is for a single target and builds it everytime
+#
 
+#
+# use the following command
+# make -f Makefile.example-ct
+# or
+# make -f Makefile.example-ct  JSONNET_DATA=../ixbrl-reporter-jsonnet
+#
+# The first assumes your current directory is ixbrl-reporter-jsonnet.
+# The second assumes that
+# you are supplying the path to the directory ixbrl-reporter-jsonnet.
+#
+
+# directory name where the example is, also build output name
 TEMPLATE=example-ct
-INPUTS=$(wildcard ${TEMPLATE}/*)
 
-all: example-ct.xhtml
+#uncomment to default the JSONNET library to being at this path
+#JSONNET_DATA ?= ../ixbrl-reporter-jsonnet
+
+#default the JSONNET library to being at this path
+JSONNET_DATA ?= .
+
+all: ${TEMPLATE}.xhtml
 
 FORCE:
 
 %.xhtml: %.json FORCE
 	ixbrl-reporter $< report ixbrl > $@
 
-example-ct.json: ${INPUTS} FORCE
-	jsonnet ${TEMPLATE}/${TEMPLATE}.jsonnet -J . -o $@
+${TEMPLATE}.json: ${TEMPLATE}/${TEMPLATE}.jsonnet FORCE
+	jsonnet $< -J ${JSONNET_DATA} -o $@
+
 
