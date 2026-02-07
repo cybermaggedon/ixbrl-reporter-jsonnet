@@ -110,10 +110,18 @@ local elts = {
 		{
 		    "element": "detailed-profit-and-loss"
 		},
-		
+
 		// Corporation tax calculation
 		{
 		    "element": "tax-calculation"
+		},
+
+		// HMRC CT Computations Format v1.1 (new elements for comparison)
+		{
+		    "element": "accounts-adjustments-v1.1"
+		},
+		{
+		    "element": "capital-allowances-v1.1"
 		}
 	    ]
 	}

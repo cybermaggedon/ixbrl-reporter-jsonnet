@@ -88,6 +88,15 @@ base + {
 	    local obj = import "uk-corptax/detailed-profit-and-loss.libsonnet";
 	    obj.element(c),
 
+	// HMRC CT Computations Format v1.1
+	"accounts-adjustments-v1.1"(c)::
+	    local obj = import "uk-corptax/accounts-adjustments-v1.1.libsonnet";
+	    obj.element(c),
+
+	"capital-allowances-v1.1"(c)::
+	    local obj = import "uk-corptax/capital-allowances-v1.1.libsonnet";
+	    obj.element(c),
+
     },
 
     taxonomy(t):: {

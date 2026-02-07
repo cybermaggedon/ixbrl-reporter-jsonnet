@@ -33,5 +33,27 @@
 	    "tax-due",
 	    "profit-after-tax"
 	]
+    },
+    // HMRC CT Computations Format v1.1
+    {
+	"id": "accounts-adjustments-v1.1",
+	"kind": "simple",
+	"description": "Accounts Adjustments",
+	"computations": [
+	    "profit-loss-per-accounts",
+	    "adjustments-depreciation",
+	    "adjustments-entertainment",
+	    "ct-annual-investment-allowance",
+	    "rnd-enhanced-expenditure",
+	    "ct-trading-profits"
+	]
+    },
+    {
+	"id": "capital-allowances-v1.1",
+	"kind": "simple",
+	"description": "Capital Allowances",
+	"computations": [
+	    "ct-annual-investment-allowance"
+	]
     }
 ]
