@@ -21,6 +21,19 @@ Key principles:
 
 The implementation creates new report elements (worksheets, fact tables) that reference existing computations, not new accounting infrastructure.
 
+## Migration Strategy
+
+**Add new elements alongside existing ones.**
+
+The new HMRC v1.1 format elements are added as new components, not replacements. This allows:
+
+1. **Comparison** - Run both old and new elements in the same filing to verify the new presentation matches existing data
+2. **Validation** - Check that XBRL tags are correctly applied before removing old elements
+3. **Incremental adoption** - Companies can switch to new elements when ready
+4. **Safe rollback** - Old elements remain available if issues arise
+
+Once validated, old elements can be deprecated and removed from filings. The library retains both until migration is complete.
+
 ## Document Structure
 
 The HMRC format has two main sections:
@@ -291,6 +304,8 @@ These elements reference existing computations like `adjustments-depreciation`, 
 
 ### Element Definition
 
+During migration, include both old and new elements to compare outputs:
+
 ```jsonnet
 local elts = {
     "element": "corptax",
@@ -302,24 +317,25 @@ local elts = {
             "element": "composite",
             "id": "report",
             "elements": [
-                // Existing elements
+                // Existing elements (keep during migration)
                 { "element": "front-page" },
                 { "element": "capital-allowances" },
                 { "element": "profits" },
                 { "element": "losses" },
                 { "element": "tax-chargeable" },
-
-                // New HMRC v1.1 compliant elements
-                { "element": "ct-computations-v1.1" },
-
-                // DPL for HMRC
                 { "element": "detailed-profit-and-loss" },
-                { "element": "tax-calculation" }
+                { "element": "tax-calculation" },
+
+                // New HMRC v1.1 elements (add alongside existing)
+                { "element": "accounts-adjustments-v1.1" },
+                { "element": "capital-allowances-v1.1" },
             ]
         }
     ]
 };
 ```
+
+Once validated, remove the old elements that the new ones replace.
 
 ## XBRL Tag Reference
 
@@ -360,24 +376,25 @@ local elts = {
 
 ## Implementation Phases
 
-### Phase 1: Core Presentation
+### Phase 1: Add New Elements
 
-1. Create `accounts-adjustments-summary` element referencing existing computations
-2. Add XBRL tags to existing adjustment computations (depreciation, entertainment, etc.)
-3. Create `ct-computations-v1.1` composite element
+1. Create `accounts-adjustments-v1.1` element referencing existing computations
+2. Create `capital-allowances-v1.1` element referencing existing CA computations
+3. Add XBRL tags to existing computations (depreciation, entertainment, AIA, etc.)
+4. Include new elements in example-ct alongside existing elements
 
-### Phase 2: Capital Allowances Presentation
+### Phase 2: Validate
 
-1. Create `capital-allowances-summary` element
-2. Create `main-pool` worksheet element (if company has P&M data)
-3. Add XBRL tags to existing CA computations
+1. Build filing with both old and new elements
+2. Compare values between old worksheets and new HMRC format tables
+3. Verify XBRL tags are correctly applied
+4. Check output renders correctly
 
-### Phase 3: Conditional Elements
+### Phase 3: Migrate
 
-Only if the company has the relevant data:
-1. Special rate pool presentation
-2. Structures and buildings presentation
-3. R&D allowances presentation
+1. Once validated, update example-ct to use new elements only
+2. Remove redundant old elements from filing
+3. Keep old element definitions in library for backwards compatibility (or remove if not needed)
 
 ## Formatting Requirements
 
@@ -426,7 +443,7 @@ Capital Allowances - Main Pool
 
 3. **Omit null items**: Per HMRC spec, lines with no data are omitted entirely. This aligns naturally with our approach - if a computation doesn't exist, it won't appear.
 
-4. **Existing compatibility**: The current `tax-calculation` worksheet can continue alongside the new format elements.
+4. **Existing compatibility**: Current elements (`tax-calculation`, `capital-allowances`, etc.) remain unchanged. New v1.1 elements are added alongside for comparison before migration.
 
 5. **DPL requirement**: The HMRC computations format is separate from the DPL (Detailed Profit & Loss) requirement. Both may be needed in a CT filing.
 
