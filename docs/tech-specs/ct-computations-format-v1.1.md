@@ -6,6 +6,21 @@ This document describes how to implement the HMRC prescribed CT Computations for
 
 HMRC has published a prescribed format for corporation tax computations with specific XBRL tags. This spec covers implementation for typical small/medium trading companies, omitting specialized areas (mining, oil & gas, banking, tonnage tax, creatives).
 
+## Implementation Approach
+
+**This is a presentation problem, not an accounting problem.**
+
+The accounting data already exists in GnuCash and flows through existing computations. The HMRC format is a prescribed way of presenting that data with specific XBRL tags. We do not invent new accounting lines just because they appear in the HMRC spec.
+
+Key principles:
+
+1. **Use existing computations** - Map existing computation IDs to HMRC's prescribed layout
+2. **Add XBRL tags** - Apply ct-comp namespace tags to computations we already have
+3. **Omit what we don't have** - Per HMRC: "do not include null items". If the company doesn't have special rate pool assets, we don't create empty special rate pool lines
+4. **Presentation elements** - New worksheet/element definitions that arrange existing data in HMRC's format
+
+The implementation creates new report elements (worksheets, fact tables) that reference existing computations, not new accounting infrastructure.
+
 ## Document Structure
 
 The HMRC format has two main sections:
@@ -176,7 +191,7 @@ The current `ct-annual-investment-allowance` and `rnd-enhanced-expenditure` comp
 
 ### Part 2 Plant and Machinery - Main Pool
 
-The main pool calculation follows a specific sequence:
+The HMRC format prescribes this sequence for main pool presentation:
 
 ```
 Unrelieved Qualifying Expenditure b/f     MainPoolWrittenDownValue
@@ -189,73 +204,21 @@ Unrelieved Qualifying Expenditure b/f     MainPoolWrittenDownValue
 = Unrelieved Qualifying Expenditure c/f   MainPoolWrittenDownValue
 ```
 
-**New Element: Capital Allowances Worksheet**
+**Presentation approach:**
+
+If a company has capital allowances data, create a worksheet element that presents it in this format. The existing `ct-annual-investment-allowance` computation would be displayed here with the appropriate XBRL tag.
+
+For simple cases (e.g., company claims full AIA on all additions, no pool carried forward), only the relevant lines are shown - we don't create empty pool tracking lines.
+
+**XBRL tags for existing computations:**
 
 ```jsonnet
-// New element for capital-allowances-worksheet.libsonnet
-{
-    element(c):: {
-        kind: "worksheet",
-        title: "Capital Allowances - Main Pool",
-        computations: [
-            { id: "ca-main-pool-bf", description: "Unrelieved QE b/f" },
-            { id: "ca-main-pool-additions", description: "Qualifying expenditure added" },
-            { id: "ca-main-pool-aqe", description: "Available qualifying expenditure" },
-            { id: "ca-aia-qualifying", description: "Additions qualifying for AIA" },
-            { id: "ca-aia-limit", description: "AIA limit" },
-            { id: "ca-aia-claimed", description: "AIA claimed" },
-            { id: "ca-main-pool-post-aia", description: "AQE less AIA" },
-            { id: "ca-main-pool-disposals", description: "Total disposal receipts" },
-            { id: "ca-main-pool-balance", description: "Balance of qualifying expenditure" },
-            { id: "ca-main-pool-wda-rate", description: "WDA %" },
-            { id: "ca-main-pool-wda-available", description: "WDA available" },
-            { id: "ca-main-pool-wda-claimed", description: "WDA claimed" },
-            { id: "ca-main-pool-cf", description: "Unrelieved QE c/f" },
-            { id: "ca-main-pool-total", description: "Total capital allowances - main pool" }
-        ]
-    }
-}
-```
-
-**Required Computations:**
-
-```jsonnet
-// Main pool computations
-accts.library.line("ca-main-pool-bf", "Unrelieved QE brought forward")
-    .at_start(),
-
-accts.library.line("ca-main-pool-additions", "Qualifying expenditure added")
-    .in_year(),
-
-accts.library.sum("ca-main-pool-aqe", "Available qualifying expenditure")
-    .in_year(),
-
-accts.library.line("ca-aia-qualifying", "Additions qualifying for AIA")
-    .in_year(),
-
-accts.library.line("ca-aia-limit", "AIA limit")
-    .in_year(),
-
-accts.library.compare("ca-aia-claimed", "AIA claimed")
-    .less()
-    .in_year(),
-
-accts.library.factor("ca-main-pool-wda-available", "WDA available")
-    .with_factor(0.18)
-    .in_year(),
-
-// Tags
 .include_tags({
-    "ca-main-pool-bf": "ct-comp:MainPoolWrittenDownValue",
-    "ca-main-pool-additions": "ct-comp:MainPoolExpenditureQualifyingForWritingDownAllowance",
-    "ca-aia-qualifying": "ct-comp:MainPoolExpenditureQualifyingForAnnualInvestmentAllowance",
-    "ca-aia-claimed": "ct-comp:MainPoolAnnualInvestmentAllowance",
-    "ca-main-pool-disposals": "ct-comp:MainPoolTotalDisposalReceipts",
-    "ca-main-pool-wda-claimed": "ct-comp:MainPoolWritingDownAllowances",
-    "ca-main-pool-cf": "ct-comp:MainPoolWrittenDownValue",
-    "ca-main-pool-total": "ct-comp:MainPoolTotalAllowances",
+    "ct-annual-investment-allowance": "ct-comp:MainPoolAnnualInvestmentAllowance",
 })
 ```
+
+If more detailed pool tracking is needed for a specific company, those computations would be added in that company's `comps.jsonnet`, not in the library.
 
 ### Part 2 Plant and Machinery - Special Rate Pool
 
@@ -272,16 +235,7 @@ Similar structure to main pool but with 6% WDA rate.
 
 ### AIA Handling
 
-The Annual Investment Allowance (currently £1,000,000) applies across all pools but is typically claimed against main pool first.
-
-```jsonnet
-// AIA limit computation (considers short accounting periods)
-accts.library.apportion("ca-aia-limit-calculated", "AIA limit")
-    .whole_period({ start: "metadata.accounting.periods.0.start", end: "metadata.accounting.periods.0.end" })
-    .proportion_period({ days: 365 })
-    .with_base_amount(1000000)
-    .in_year()
-```
+The Annual Investment Allowance (currently £1,000,000) is already handled by the existing `ct-annual-investment-allowance` computation. The HMRC format simply requires the correct XBRL tag for presentation.
 
 ## Mapping to Existing Library
 
@@ -296,23 +250,20 @@ accts.library.apportion("ca-aia-limit-calculated", "AIA limit")
 | `rnd-enhanced-expenditure` | Part 7: R&D enhanced expenditure |
 | `ct-trading-profits` | Part 1: Adjusted Profit/(Loss) |
 
-### New Computations Needed
+### Presentation Elements Needed
 
-For full compliance, these computations would be added:
+New worksheet and element definitions to present existing data in HMRC format:
 
-**Section 1:**
-- `accounting-non-taxable-income-total` - Part 2 subtotal
-- `accounting-disallowable-total` - Part 3 subtotal
-- `accounting-taxable-income-total` - Part 4 subtotal
-- `accounting-allowable-total` - Part 5 subtotal
-- `non-accounting-income-total` - Part 6 subtotal
-- `non-accounting-allowable-total` - Part 7 subtotal
+**Section 1 worksheets:**
+- `accounts-adjustments-summary` - Groups existing adjustment computations
+- `disallowable-expenditure` - Lists addback items (depreciation, entertainment, etc.)
+- `allowable-expenditure` - Lists deduction items (capital allowances, R&D)
 
-**Section 2:**
-- `ca-main-pool-*` - Main pool sequence
-- `ca-special-rate-*` - Special rate pool sequence (if needed)
-- `ca-total-allowances` - Sum of all CA
-- `ca-total-balancing-charges` - Sum of all BC
+**Section 2 worksheets:**
+- `capital-allowances-summary` - Presents CA totals
+- `main-pool` - Shows pool calculation if company has P&M assets
+
+These elements reference existing computations like `adjustments-depreciation`, `ct-annual-investment-allowance`, `rnd-enhanced-expenditure` - they don't create new accounting data.
 
 ## Report Element Structure
 
@@ -407,25 +358,26 @@ local elts = {
 | `SpecialRatePoolWritingDownAllowance` | SR WDA claimed |
 | `SpecialRatePoolTotalAllowances` | Total SR pool CA |
 
-## Implementation Approach
+## Implementation Phases
 
-### Phase 1: Core Adjustments
+### Phase 1: Core Presentation
 
-1. Add missing adjustment computations to `ct-computations.jsonnet`
-2. Add XBRL tags for Part 1 and Part 3 items
-3. Create `accounts-adjustments-summary` element
+1. Create `accounts-adjustments-summary` element referencing existing computations
+2. Add XBRL tags to existing adjustment computations (depreciation, entertainment, etc.)
+3. Create `ct-computations-v1.1` composite element
 
-### Phase 2: Capital Allowances
+### Phase 2: Capital Allowances Presentation
 
-1. Add main pool computation sequence
-2. Create `main-pool` worksheet element
-3. Add capital allowances summary
+1. Create `capital-allowances-summary` element
+2. Create `main-pool` worksheet element (if company has P&M data)
+3. Add XBRL tags to existing CA computations
 
-### Phase 3: Optional Pools
+### Phase 3: Conditional Elements
 
-1. Special rate pool (if company has qualifying assets)
-2. Short-life assets (if elections made)
-3. Structures and buildings (if applicable)
+Only if the company has the relevant data:
+1. Special rate pool presentation
+2. Structures and buildings presentation
+3. R&D allowances presentation
 
 ## Formatting Requirements
 
@@ -470,8 +422,12 @@ Capital Allowances - Main Pool
 
 1. **Implementation date**: HMRC has removed the mandatory implementation date. The format is guidance for now.
 
-2. **Minimal approach**: For small companies with simple affairs, only implement the lines actually needed. HMRC states "do not include null items".
+2. **Presentation only**: This is about presenting existing accounting data in HMRC's prescribed format. We don't create accounting lines for data we don't have.
 
-3. **Existing compatibility**: The current `tax-calculation` worksheet can continue alongside the new format elements.
+3. **Omit null items**: Per HMRC spec, lines with no data are omitted entirely. This aligns naturally with our approach - if a computation doesn't exist, it won't appear.
 
-4. **DPL requirement**: The HMRC computations format is separate from the DPL (Detailed Profit & Loss) requirement. Both may be needed in a CT filing.
+4. **Existing compatibility**: The current `tax-calculation` worksheet can continue alongside the new format elements.
+
+5. **DPL requirement**: The HMRC computations format is separate from the DPL (Detailed Profit & Loss) requirement. Both may be needed in a CT filing.
+
+6. **Company-specific extensions**: If a particular company needs detailed pool tracking or other computations, those are added in that company's `comps.jsonnet` and `mapping.jsonnet`, not in the library.
