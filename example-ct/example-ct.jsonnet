@@ -122,7 +122,10 @@ local elts = {
 		},
 		{
 		    "element": "capital-allowances-v1.1"
-		}
+		},
+                {
+                    "element": "tmp"
+                }
 	    ]
 	}
     ]
@@ -137,6 +140,14 @@ local accts = {
     // This overrides the standard library object loaded at the start
     // with local customisation
     library:: l + {
+
+	// This adds a new element kind to the report
+	// which is loaded from a local file
+        components +: {
+            "tmp"(c)::
+   	        local obj = import "tmp.libsonnet";
+	        obj.element(c),
+        },
 
 	// Over-ride the default accounts mapping.  Default accounts mapping
 	// is in default-mapping.jsonnet, and mappings defined in the file
