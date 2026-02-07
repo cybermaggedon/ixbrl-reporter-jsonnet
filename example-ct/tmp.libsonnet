@@ -22,8 +22,45 @@
 	// The element is a 'page'.
 	kind: "page",
 
+        local title = function(title) {
+            "tag": "h2",
+            "content": title,
+        },
+
         local table = function(content) {
             "tag": "table",
+            "attributes": {
+                "style":
+                    "border: 3px groove black; " +
+                    ""
+//                    "border-collapse: collapse; "
+            },
+            "content": content,
+        },
+
+        local row = function(content) {
+            "tag": "tr",
+            "content": content,
+        },
+
+        local cell = function(content) {
+            "tag": "td",
+            "attributes": {
+                "style":
+                    "border: 3px inset black; " +
+                    "padding: 0.5rem; "
+            },
+            "content": content,
+        },
+
+        local cell_right = function(content) {
+            "tag": "td",
+            "attributes": {
+                "style":
+                    "border: 3px inset black; " +
+                    "text-align: right; " +
+                    "padding: 0.5rem; "
+            },
             "content": content,
         },
 
@@ -39,112 +76,18 @@
                     "tag": "div",
                     "content": [
 
-			{
-
-			    // A div
-			    "tag": "h2",
-			    "content": "Hello world"
-                        },
-
-                        {
-                            "tag": "table",
-                            "attributes": {
-                                "style": "border: 1px solid black",
-                            },
-                            "content": [
-                                {
-                                    "tag": "tr",
-                                    "content": [
-                                        {
-                                            "tag": "td",
-                                            "attributes": {
-                                                "style": "border: 1px solid black",
-                                            },
-                                            "content": "Key 1",
-                                        },
-                                        {
-                                            "tag": "td",
-                                            "attributes": {
-                                                "style": "border: 1px solid black",
-                                            },
-                                            "content": "Value 1",
-                                        },
-                                    ],
-                                },
-                                {
-                                    "tag": "tr",
-                                    "content": [
-                                        {
-                                            "tag": "td",
-                                            "attributes": {
-                                                "style": "border: 1px solid black",
-                                            },
-                                            "content": "Key 2",
-                                        },
-                                        {
-                                            "tag": "td",
-                                            "attributes": {
-                                                "style": "border: 1px solid black",
-                                            },
-                                            "content": "Value 2",
-                                        },
-                                        {
-                                            "tag": "td",
-                                            "attributes": {
-                                                "style": "border: 1px solid black",
-                                            },
-                                            "content": "expand:~(gross-profit-raw)",
-                                        },
-                                    ],
-                                }
-                            ],
-                        },
-
-/*
-			// Standard page header
-		    	local obj = import "lib/frs102/header.libsonnet";
-			obj.element(
-
-			    c,
-
-			    // This is the heading
-			    "Notes to the accounts",
-			    "expand:~[gross-profit]"
-
-			),
-*/
-/*
-			{
-
-			    // A div
-			    "tag": "div",
-			    "content": [
-
-				// Heading for this notes
-				{
-				    "element": {
-					"kind": "noteheading",
-					"title": "Champagne",
-					"level": 1
-				    }
-				},
-
-				// Note body
-				{
-
-				    // A paragraph.  The paragraph
-				    // text contains an expansion which
-				    // puts the value for the entertainment
-				    // computation into the text.
-				    "tag": "p",
-				    "content": "expand:The company spend on" +
-				    "champagne this year was " +
-				    "£ ~(entertainment)."
-
-				}
-			    ]
-			}
-*/
+			title("Hello world"),
+                        table([
+                            row([
+                                cell(""),
+                                cell_right("£"),
+                            ]),
+                            row([
+                                cell("Profit (loss) per statutory accounts"),
+                                cell("expand:~(profit-loss-per-accounts)"),
+                            ]),
+                        ],)
+                        
                     ]
 		}
             }
