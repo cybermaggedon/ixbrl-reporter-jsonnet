@@ -217,6 +217,9 @@
 	    else
 	        self + { segments: [ { [k]: v } ] },
 	reverse_sign():: self + { "reverse-sign": true },
+	suppress_if_zero():: self + { "suppress-if-zero": true },
+	zero_if_less_than_zero():: self + { "zero-if": "less-than-zero" },
+	zero_if_greater_than_zero():: self + { "zero-if": "greater-than-zero" },
 
     },
 
