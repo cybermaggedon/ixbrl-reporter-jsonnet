@@ -1,0 +1,9 @@
+example.gnucash
+*~
+*.back
+*.log
+*gnucash.*.gnucash
+accts.json
+corptax.json
+*.xhtml
+*.gnucash
