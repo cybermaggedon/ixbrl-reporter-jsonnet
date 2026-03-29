@@ -17,7 +17,7 @@
 
 TEMPLATE=my_accounts
 #INPUTS=$(wildcard ${TEMPLATE}/*)
-JSONNET=../ixbrl-reporter-jsonnet
+JSONNET ?= ../ixbrl-reporter-jsonnet
 GNUCASH_FILE=real-world/real-world.gnucash
 CT_SRC=my_accounts/corptax.jsonnet  my_accounts/comps-ct.jsonnet my_accounts/mapping-ct.jsonnet my_accounts/metadata-ct.jsonnet
 CH_SRC=my_accounts/accts.jsonnet my_accounts/comps-accts.jsonnet my_accounts/logo.jsonnet\
@@ -45,6 +45,51 @@ accts.json: ${CH_SRC}
 	jsonnet $< -J ${JSONNET}  > $@
 
 
+
+
+
+
+############################################################
+# Companies House trial to fetch - and confirm credentials #
+############################################################
+# assumes in python venv
+ch-trial: ch-filing-config.json
+	cd ../companies-house-filing && python -m ch_filing  -c ../my-accounts/ch-filing-config.json --state ../my-accounts/state.json  --get-company-data
+	ls -ltr ../companies-house-filing
+
+
+
+#
+# Legally binding submission
+#
+companies-house-submit-accounts: ch-filing-config.json
+	cd ../companies-house-filing && python -m ch_filing   -c ../my-accounts/ch-filing-config.json --state ../my-accounts/state.json --accounts ../my-accounts/accts.xhtml --submit
+
+
+# call this by `make -f Makefile companies-house-check-submission SUBMISSION_ID=S00001`
+# SUBMISSION_ID is returned from companies house when calling 'make companies-house-submit-accounts'
+SUBMISSION_ID?=S00001
+companies-house-check-submission: ch-filing-config.json
+	cd ../companies-house-filing && python -m ch_filing    -c ../my-accounts/ch-filing-config.json --state ../my-accounts/state.json    -G -i ${SUBMISSION_ID}
+
+
+
+########################################
+# Credentials (and dates)
+########################################
+# Create the Companies House credentials
+# WARNING: ch-filing-config.json should not be version controlled, neither should credentials/ch-pw.jsonnet
+# both contain a password
+ch-filing-config.json: credentials/ch-filing-config.jsonnet    credentials/ch-local-credentials.jsonnet   credentials/ch-pw.jsonnet
+	jsonnet $<   > $@
+
+
+
+
+########################################
+# Corporation Tax - CT600 form
+########################################
+
 ct600:
 
 CT600_SPEC=spec-ct600-2025-v3.json
@@ -55,32 +100,33 @@ ct600-fill:
 
 
 
-
-# assumes in python venv
-ch-trial: ch-filing-config.json
-	cd ../companies-house-filing && python -m ch_filing  -c ../my-accounts/ch-filing-config.json --state ../my-accounts/state.json  --get-company-data
-	ls -ltr ../companies-house-filing
-
-ch-trial1:
-	cd ../companies-house-filing && python -m ch_filing  -c ../my-accounts/ch-filing-config1.json --state ../my-accounts/state.json  --get-company-data
-	ls -ltr ../companies-house-filing
-
+############################################################
+# Corporate Tax trial to confirm credentials               #
+# and trial submission                                     #
+############################################################
 ct-trial: corptax.xhtml ct-filing-config-TIL.json
 	cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-TIL.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit
 
 
+############################################################
+# Corporate Tax trial to confirm credentials               #
+# and trial submission, with a readable output             #
+############################################################
 TMPF=/tmp/ct-trial.log
-ct-trial-formatted: corptax.xhtml ct-filing-config-TIL.json   accts.xhtml   ct600-fill
+ct-trial-formatted:         corptax.xhtml   ct-filing-config-TIL.json   accts.xhtml   ct600-fill
 	cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-TIL.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit  > ${TMPF}
 	# report if successful, or show the errors
 	grep "was successful." ${TMPF} || ( grep  '<'  ${TMPF} | xmllint --format - )
 
-clean: 
-	- rm -f *.xhtml *.json
-	#gnucash logs and backups
-	- rm -f *.log     *gnucash.*.gnucash
 
-accts-rebuild.xhtml: clean all
+
+#
+# Legally binding submission
+#
+corporation-tax-submission: corptax.xhtml   ct-filing-config-live.json   accts.xhtml   ct600-fill
+	cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-live.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit  > ${TMPF}
+	# report if successful, or show the errors
+	grep "was successful." ${TMPF} || ( grep  '<'  ${TMPF} | xmllint --format - )
 
 
 
@@ -98,11 +144,17 @@ ct-filing-config-live.json:   credentials/ct-filing-config-live.jsonnet   creden
 	jsonnet $<   > $@
 
 
-# Create the Corporate Tax Credentials json file, used by ct600
-# WARNING: ch-filing-config.json should not be version controlled, neither should credentials/ch-pw.jsonnet
-# both contain a password
-ch-filing-config.json: credentials/ch-filing-config.jsonnet    credentials/ch-local-credentials.jsonnet   credentials/ch-pw.jsonnet
-	jsonnet $<   > $@
 
-#%.json: %.jsonnet
-#	jsonnet $< -J $*  > $@
+
+
+
+#****************************************
+#  Utility
+#****************************************/
+
+clean: 
+	- rm -f *.xhtml *.json
+	#gnucash logs and backups
+	- rm -f *.log     *gnucash.*.gnucash
+
+accts-rebuild.xhtml: clean all
