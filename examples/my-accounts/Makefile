@@ -53,7 +53,7 @@ accts.json: ${CH_SRC}
 # Companies House trial to fetch - and confirm credentials #
 ############################################################
 # assumes in python venv
-ch-trial: ch-filing-config.json
+ch-trial: ch-filing-config.json    accts.xhtml
 	cd ../companies-house-filing && python -m ch_filing  -c ../my-accounts/ch-filing-config.json --state ../my-accounts/state.json  --get-company-data
 	ls -ltr ../companies-house-filing
 
@@ -104,7 +104,7 @@ ct600-fill:
 # Corporate Tax trial to confirm credentials               #
 # and trial submission                                     #
 ############################################################
-ct-trial: corptax.xhtml ct-filing-config-TIL.json
+ct-trial:                   corptax.xhtml   ct-filing-config-TIL.json    accts.xhtml   ct600-fill
 	cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-TIL.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit
 
 
@@ -113,10 +113,23 @@ ct-trial: corptax.xhtml ct-filing-config-TIL.json
 # and trial submission, with a readable output             #
 ############################################################
 TMPF=/tmp/ct-trial.log
-ct-trial-formatted:         corptax.xhtml   ct-filing-config-TIL.json   accts.xhtml   ct600-fill
-	cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-TIL.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit  > ${TMPF}
+ct-trial-formatted:         corptax.xhtml   ct-filing-config-TIL.json        accts.xhtml   ct600-fill
+	- cd ../ct600 && export PYTHONPATH=../ixbrl-parse//:$$PYTHONPATH && python -m ct600 --config ../my-accounts/ct-filing-config-TIL.json --accounts ../my-accounts/accts.xhtml --computations ../my-accounts/corptax.xhtml --form-values  ../my-accounts/form-values.yaml --submit  > ${TMPF}
 	# report if successful, or show the errors
 	grep "was successful." ${TMPF} || ( grep  '<'  ${TMPF} | xmllint --format - )
+
+
+
+
+#
+# Showing tags in a formatted manner
+#
+#    assumes ixbrl-parse installed
+#
+show-tags: corptax.xhtml
+	ixbrl-dump ../my-accounts/corptax.xhtml
+
+
 
 
 
