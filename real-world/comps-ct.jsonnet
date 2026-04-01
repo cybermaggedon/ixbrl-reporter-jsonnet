@@ -26,6 +26,7 @@ function(accts)
 	"Telecoms"
     )
 	.in_year()
+	.segment("detailed-analysis", "item1")
 	.segment("expense-type", "administrative-expenses"),
         
     accts.library.line(
@@ -54,6 +55,7 @@ function(accts)
 	"Taxes"
     )
 	.in_year()
+	.segment("detailed-analysis", "item2")
 	.segment("expense-type", "administrative-expenses"),
     
     accts.library.line(

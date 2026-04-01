@@ -125,33 +125,23 @@ local accts = {
         // This is used in DPL detailed analysis tags to connect the label
         // to the data.
 	.include_description_tags({
-	    "pension-setup-charges": "dpl:DescriptionActivity",
-	    "pensions": "dpl:DescriptionActivity",
-	    "off-payroll-working-income": "dpl:DescriptionActivity",
-	    "off-payroll-working-expenses": "dpl:DescriptionActivity",
-	    "cloud": "dpl:DescriptionActivity",
-	    "telecoms": "dpl:DescriptionActivity",
-	    "shipping": "dpl:DescriptionActivity",
-	    "cryptocurrency-fees": "dpl:DescriptionActivity",
-	    "bank-interest": "dpl:DescriptionActivity",
-	    "bank-charges": "dpl:DescriptionActivity",
-	    "billed-expenses": "dpl:DescriptionActivity",
-	    "other-income": "dpl:DescriptionActivity",
-	    "travel": "dpl:DescriptionActivity",
-	    "billable-travel": "dpl:DescriptionActivity",
-	    "main-income": "dpl:DescriptionActivity",
 	    "capital-gains": "dpl:DescriptionActivity",
+	    "dividends": "dpl:DescriptionActivity",
 	    "gifts-received": "dpl:DescriptionActivity",
 	    "interest-income": "dpl:DescriptionActivity",
-	    "dividends": "dpl:DescriptionActivity",
+	    "main-income": "dpl:DescriptionActivity",
+	    "other-income": "dpl:DescriptionActivity",
+
 	    "taxes": "dpl:DescriptionActivity",
+	    "telecoms": "dpl:DescriptionActivity",
+
 	})
 
         // Add custom iXBRL tags
 	.include_tags({
 	    "adjustments-exempt-dividends": 
-		"ct-comp:AdjustmentsExemptDividendsOrDistributionsPerAccounts",
-		"pension-setup-charges": "uk-core:PensionCostsDefinedContributionPlan",
+	    "ct-comp:AdjustmentsExemptDividendsOrDistributionsPerAccounts",
+	    "pension-setup-charges": "uk-core:PensionCostsDefinedContributionPlan",
 	    "off-payroll-working-income": "uk-core:TurnoverRevenue",
 	    "off-payroll-working-expenses": "uk-core:WagesSalaries",
 	    "cloud": "dpl:TelecommunicationsCosts",
@@ -165,24 +155,24 @@ local accts = {
 	    "other-income": "uk-core:TurnoverRevenue",
 	    "billable-travel": "dpl:TravelSubsistenceCosts",
 	    "other-staff-costs": "dpl:OtherStaffCosts",
-            "main-income": "uk-core:TurnoverRevenue",
-            "capital-gains": "uk-core:GainLossOnDisposalsPropertyPlantEquipment",
-            "gifts-received": "uk-core:TurnoverRevenue",
-            "interest-income": "uk-core:TurnoverRevenue",
-            "dividends": "uk-core:TurnoverRevenue",
-            "entertaining": "dpl:ClientEntertainingCosts",
-            "bad-debts": "dpl:BadDebtsImpairmentLosses",
-            "donations": "dpl:CharitableDonations",
-            "taxes": "dpl:OtherCosts",
-            "vehicle": "dpl:VehicleCosts",
-            "property-costs": "uk-core:RepairsMaintenanceExpenseProperty-related",
+	    "main-income": "uk-core:TurnoverRevenue",
+	    "capital-gains": "uk-core:GainLossOnDisposalsPropertyPlantEquipment",
+	    "gifts-received": "uk-core:TurnoverRevenue",
+	    "interest-income": "uk-core:TurnoverRevenue",
+	    "dividends": "uk-core:TurnoverRevenue",
+	    "entertaining": "dpl:ClientEntertainingCosts",
+	    "bad-debts": "dpl:BadDebtsImpairmentLosses",
+	    "donations": "dpl:CharitableDonations",
+	    "taxes": "dpl:OtherCosts",
+	    "vehicle": "dpl:VehicleCosts",
+	    "property-costs": "uk-core:RepairsMaintenanceExpenseProperty-related",
 	})
 
         // Sign-reversal configuration for custom fields
 	.include_sign_reverse({
 	    "pension-setup-charges": true,
 	    "adjustments-exempt-dividends": true,
-            "off-payroll-working-expenses": true,
+	    "off-payroll-working-expenses": true,
 	    "cloud": true,
 	    "shipping": true,
 	    "adjustments-entertainment": false,
@@ -190,12 +180,12 @@ local accts = {
 	    "bank-interest": true,
 	    "billable-travel": true,
 	    "other-staff-costs": true,
-            "entertaining": true,
-            "bad-debts": true,
-            "donations": true,
-            "taxes": true,
-            "vehicle": true,
-            "property-costs": true,
+	    "entertaining": true,
+	    "bad-debts": true,
+	    "donations": true,
+	    "taxes": true,
+	    "vehicle": true,
+	    "property-costs": true,
 	}),
 
 };
