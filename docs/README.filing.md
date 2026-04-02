@@ -53,19 +53,6 @@ jsonnet -J . real-world/accts.jsonnet -o example-accts.json
 
 This needs to run from within the `ixbrl-reporter-jsonnet` directory (start terminal/powershell there).
 
-In the resulting json file in line 3 replace: 
-
-```
-"kind": "gnucash" 
-```
-
-with: 
-
-```
-"kind": "piecash"
-```
-
-Note: this may not be needed in the latest version of the software as it makes it piecash by default
 
 Note: previous instructions had the below command line
 
@@ -93,8 +80,11 @@ The required code is here: https://github.com/cybermaggedon/companies-house-fili
 
 1. Replace the `accts.html` file with the previously generated `report.xhtml` file (rename it `accts.html` and copy it in the `companies-house-filing-master` directory)
 2. Edit the `config.json` file to match our details
-3. All dates (`"made-up-date"`, `"date-signed"`, and `"date"`), need to be today's date
+3. Dates (`"date-signed"`, and `"date"`), need to be today's date; `"made-up-date"` set to the date your accounts were made up to.
 4. Package reference is `4047`
+
+- Company type should be `0` for a limited company
+- Username and password are the Companies House presenter credentials
 
 Once you put the details, there's a test call you can make:
 
@@ -198,29 +188,27 @@ Start terminal in `ct600-fill-master` directory and run:
 ```
 python scripts\ct600-fill --input "C:\path\to\ixbrl-reporter-jsonnet-master\form-values.yaml" --output output.pdf
 ```
-
-### 4.5 Edit the config.json file to match your details
-
-- Company type should be `0` for a limited company
-- Username and password are the Companies House presenter credentials
+### 4.5 Edit the config-til.json file to match your details
+`"username"` is Government Gateway user ID which looks like a 12 character identity
+`"password"` is the password associated with the username
 
 ### 4.6 Test runs
 
 Use `--output-ct` to generate the CT XML doc. It doesn't file anything but you know you have all the configuration set up right:
 
 ```
-python -m ct600 --config config.json --accounts report.xhtml --computations report-ct.xhtml --form-values form-values.yaml --output-ct > output.xml
+python -m ct600 --config config-til.json --accounts report.xhtml --computations report-ct.xhtml --form-values form-values.yaml --output-ct > output.xml
 ```
 
 ### 4.7 Test-in-Live submission
 
-This tests the submission process with HMRC server. The same source files are used and a slightly modified config file (named `config-TIL-tvps.json`). The command is similar:
+This tests the submission process with HMRC server. The same source files are used and a slightly modified config file (named `config-til.json`). The command is similar:
 
 ```
-python -m ct600 --config config-TIL-tvps.json --accounts report.xhtml --computations report-ct.xhtml --form-values form-values.yaml --submit
+python -m ct600 --config config-til.json --accounts report.xhtml --computations report-ct.xhtml --form-values form-values.yaml --submit
 ```
 
-**CRITICALLY:** The thing that makes it Test In Live is the `class` in the `config-TIL.json` having `-TIL` at the end. Don't get it wrong or you'll do a real filing.
+**CRITICALLY:** The thing that makes it Test In Live is the `class` in the `config-til.json` having `-TIL` at the end. Don't get it wrong or you'll do a real filing.
 
 - Username/password are your Government Gateway ID credentials (without the spaces)
 
@@ -228,7 +216,7 @@ The weird thing about a Test In Live filing is that if it works, you get a filin
 
 ### 4.8 Live submission
 
-If tests work and we are happy with everything, we can submit a live filing by changing `HMRC-CT-CT600-TIL` to `HMRC-CT-CT600` or deleting the class line at the `config.json` file (as `HMRC-CT-CT600` is the default one). Alternatively we can have a separate config file for live, named `config-live.json` and run that:
+If tests work and we are happy with everything, we can submit a live filing by changing `HMRC-CT-CT600-TIL` to `HMRC-CT-CT600` or deleting the class line at the `config-til.json` file (as `HMRC-CT-CT600` is the default one). Alternatively we can have a separate config file for live, named `config-live.json` and run that:
 
 ```
 python -m ct600 --config config-live.json --accounts report.xhtml --computations report-ct.xhtml --form-values form-values.yaml --submit
