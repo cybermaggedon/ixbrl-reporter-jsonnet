@@ -550,11 +550,16 @@
 	    "profits-before-charges-and-group-relief"
 	],
 
-	"ct-profit-before-tax-fy1-raw": "ct-net-trading-profits",
+	// The FY rows (CT600 boxes 335/385) apportion box 315, the total
+	// profits chargeable to Corporation Tax -- not just the trading
+	// profits.  The two only coincide while the computation set has
+	// no non-trade income (chargeable gains, non-trading loan
+	// relationship credits, property income).
+	"ct-profit-before-tax-fy1-raw": "total-profits-chargeable-to-corporation-tax",
 
 	"ct-profit-before-tax-fy1": "ct-profit-before-tax-fy1-raw",
 
-	"ct-profit-before-tax-fy2-raw": "ct-net-trading-profits",
+	"ct-profit-before-tax-fy2-raw": "total-profits-chargeable-to-corporation-tax",
 
 	"ct-profit-before-tax-fy2": "ct-profit-before-tax-fy2-raw",
 
