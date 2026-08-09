@@ -232,6 +232,37 @@ function(accts)
 	.in_year()
     	.segment("business-type", "company"),
 
+    // Marginal relief (CT600 box 435).  The box was relabelled from
+    // "Marginal relief for ring fence trades" to plain "Marginal relief"
+    // from April 2023, when marginal relief for profits between the small
+    // profits and main rate limits was reintroduced; the taxonomy concept
+    // keeps the legacy name.  The default is a line with no mapped
+    // accounts, i.e. zero.  To claim relief, override this computation
+    // with a constant in your computations file, e.g.:
+    //
+    //   accts.library.computation(
+    //       "marginal-rate-relief-for-ring-fence-trades-payable",
+    //       "Marginal relief"
+    //   )
+    //       .in_year()
+    //       .segment("business-type", "company")
+    //   + { kind: "constant", values: { "2026-03-31": 2921.96 } },
+    //
+    // A "constant" computation needs an entry for EVERY period the
+    // report evaluates: a report with a previous-period comparative also
+    // needs a key for that period end (typically 0).
+    //
+    // The value must be POSITIVE: tax liabilities are negative in the
+    // internal sign convention (their display sign is reversed by the
+    // taxonomy), so summing a positive relief into
+    // corporation-tax-chargeable-payable reduces the liability.
+    accts.line(
+	"marginal-rate-relief-for-ring-fence-trades-payable",
+	"Marginal relief"
+    )
+	.in_year()
+    	.segment("business-type", "company"),
+
     accts.sum(
 	"corporation-tax-chargeable-payable",
 	"Corporation tax chargeable payable"
