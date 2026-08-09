@@ -267,6 +267,9 @@
 
 	"ct-trading-losses-brought-forward": [
 	],
+
+	"marginal-rate-relief-for-ring-fence-trades-payable": [
+	],
 	
     },
 
@@ -572,7 +575,8 @@
 	],
 
 	"corporation-tax-chargeable-payable": [
-	    "ct-tax-total"
+	    "ct-tax-total",
+	    "marginal-rate-relief-for-ring-fence-trades-payable"
 	],
 
 	"net-corporation-tax-payable": [
