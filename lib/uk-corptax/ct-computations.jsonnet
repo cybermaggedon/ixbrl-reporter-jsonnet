@@ -176,9 +176,24 @@ function(accts)
     	.segment("business-type", "company"),
 
     accts.group(
+	"total-profits-chargeable-to-corporation-tax-raw",
+	"Profits chargeable to Corporation Tax (unrounded)"
+    )
+	.in_year()
+        .segment("business-type", "company"),
+
+    // CT600 box 315 is a whole-pound figure, and the FY apportionment
+    // rows (ct-profit-before-tax-fy1/fy2) are rounded individually while
+    // tagging the same ct-comp:TotalProfitsChargeableToCorporationTax
+    // concept via ct-profit-before-tax-total.  If any pence reach this
+    // computation, the two facts diverge and HMRC (ChRIS) rejects the
+    // submission: error 3314, "Inconsistent duplicate fact values".
+    // Rounding down here keeps every use of the concept whole-pound.
+    accts.round(
 	"total-profits-chargeable-to-corporation-tax",
 	"Profits chargeable to Corporation Tax"
     )
+	.down()
 	.in_year()
         .segment("business-type", "company"),
 
