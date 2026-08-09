@@ -546,9 +546,12 @@
 	    "profits-before-other-deductions-and-reliefs"
 	],
 
-	"total-profits-chargeable-to-corporation-tax": [
+	"total-profits-chargeable-to-corporation-tax-raw": [
 	    "profits-before-charges-and-group-relief"
 	],
+
+	"total-profits-chargeable-to-corporation-tax":
+	    "total-profits-chargeable-to-corporation-tax-raw",
 
 	"ct-profit-before-tax-fy1-raw": "ct-net-trading-profits",
 
