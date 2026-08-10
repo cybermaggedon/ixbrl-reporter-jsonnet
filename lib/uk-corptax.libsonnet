@@ -12,7 +12,10 @@ base + {
 		report +: {
 		    local comps = import "uk-corptax/ct-computations.jsonnet",
 		    local ws = import "uk-corptax/ct-worksheets.jsonnet",
-		    "computations": comps($),
+		    "computations": comps(
+			$,
+			if std.objectHas(c, "metadata") then c.metadata else {}
+		    ),
 		    "worksheets": ws
 		},
 
