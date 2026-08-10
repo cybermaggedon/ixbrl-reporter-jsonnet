@@ -263,13 +263,6 @@ so they cannot disagree:
 }
 ```
 
-On older library versions the 19% rate is hard-coded in TWO places
-which must be changed together: the `ct-tax-fy1`/`ct-tax-fy2` factors
-in `lib/uk-corptax/ct-computations.jsonnet` and the box 340/390
-`value` fields in `lib/uk-corptax/tax-chargeable.libsonnet`.  If they
-drift apart, the CT600 fails HMRC validation because box 345 no
-longer equals box 335 x box 340.
-
 ### 5.2 Claiming marginal relief
 
 Marginal relief is:
