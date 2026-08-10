@@ -444,7 +444,5 @@ Three lanes, in increasing realism:
 | Error | Meaning | Fix |
 |---|---|---|
 | 9240: "If the associated companies section is present then either Box 326 or Boxes 327 and 328 must be completed" | Ticking box 329 creates the AssociatedCompanies XML section, making box 326 mandatory | Set box 326 to `0` (zero associated companies) |
-| `'' is not a valid value for 'gYear'` (Computations) | A single-FY period emitted an empty FinancialYear2CoveredByTheReturn fact | Recent library versions omit FY2 facts when `metadata.tax.fy2.year` is empty |
 | `xbrldie:PrimaryItemDimensionallyInvalidError` | An adjustment fact is missing trade hypercube dimensions | Full trade signature -- see section 7 |
-| 3314: "Inconsistent duplicate fact values (ct-comp:TotalProfitsChargeableToCorporationTax)" | Box 315 fact carries pence while the FY1+FY2 total (same concept) is rounded | Recent library versions round the total down to whole pounds |
 | 1607: "The UTR on the Computation must match the UTR on the CT600..." | Envelope/form UTR differs from the computations TaxReference fact (common when using the SDST test UTR in only one place) | Same UTR in form-values box 3 and `metadata.tax.utr`; same period end in both documents |
