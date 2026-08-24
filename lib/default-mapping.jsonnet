@@ -546,7 +546,7 @@
 	    "profits-before-other-deductions-and-reliefs"
 	],
 
-	"total-profits-chargeable-to-corporation-tax": [
+	"total-profits-chargeable-to-corporation-tax-raw": [
 	    "profits-before-charges-and-group-relief"
 	],
 
@@ -555,7 +555,10 @@
 	// profits.  The two only coincide while the computation set has
 	// no non-trade income (chargeable gains, non-trading loan
 	// relationship credits, property income).
-	"ct-profit-before-tax-fy1-raw": "total-profits-chargeable-to-corporation-tax",
+	"total-profits-chargeable-to-corporation-tax":
+	    "total-profits-chargeable-to-corporation-tax-raw",
+
+	"ct-profit-before-tax-fy1-raw": "ct-net-trading-profits",
 
 	"ct-profit-before-tax-fy1": "ct-profit-before-tax-fy1-raw",
 
