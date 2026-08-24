@@ -1,4 +1,17 @@
-function(accts)
+function(accts, metadata={})
+
+// Tax rates (percent, e.g. 19 or 25) for the FY1/FY2 tax
+// computations, taken from metadata.tax.fy1.rate / metadata.tax.fy2.rate
+// when present, 19 otherwise (the historical hard-coded behaviour).
+local fy1_rate = if std.objectHas(metadata, "tax")
+    && std.objectHas(metadata.tax, "fy1")
+    && std.objectHas(metadata.tax.fy1, "rate")
+    then metadata.tax.fy1.rate else 19;
+local fy2_rate = if std.objectHas(metadata, "tax")
+    && std.objectHas(metadata.tax, "fy2")
+    && std.objectHas(metadata.tax.fy2, "rate")
+    then metadata.tax.fy2.rate else 19;
+
 [
 
     // FIXME: CT vs FRS definition
@@ -229,16 +242,15 @@ function(accts)
 	.in_year()
     	.segment("business-type", "company"),
 
-    // FIXME: Should be defined as a constant somewhere else
     // FIXME: Deal with multiple tax bands
-    accts.factor("ct-tax-fy1", "FY1 (19%)")
-	.with_factor(-0.19)
+    accts.factor("ct-tax-fy1", "FY1 (" + std.toString(fy1_rate) + "%)")
+	.with_factor(-fy1_rate / 100)
 	.in_year()
 	.reverse_sign()
     	.segment("business-type", "company"),
 
-    accts.factor("ct-tax-fy2", "FY2 (19%)")
-	.with_factor(-0.19)
+    accts.factor("ct-tax-fy2", "FY2 (" + std.toString(fy2_rate) + "%)")
+	.with_factor(-fy2_rate / 100)
 	.in_year()
 	.reverse_sign()
     	.segment("business-type", "company"),

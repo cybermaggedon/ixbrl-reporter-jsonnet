@@ -61,7 +61,10 @@
 			"description": "FY1 first rate of tax (%)",
 			"field": "340",
 			"kind": "number",
-			"value": 19
+			"value": if std.objectHas(c.metadata, "tax")
+			    && std.objectHas(c.metadata.tax, "fy1")
+			    && std.objectHas(c.metadata.tax.fy1, "rate")
+			    then c.metadata.tax.fy1.rate else 19
 		    },
 		] + (if has_fy2 then [
 		    {
@@ -70,7 +73,10 @@
 			"description": "FY2 first rate of tax (%)",
 			"field": "390",
 			"kind": "number",
-			"value": 19
+			"value": if std.objectHas(c.metadata, "tax")
+			    && std.objectHas(c.metadata.tax, "fy2")
+			    && std.objectHas(c.metadata.tax.fy2, "rate")
+			    then c.metadata.tax.fy2.rate else 19
 		    },
 		] else []) + [
 		    {
