@@ -561,7 +561,7 @@
 	"total-profits-chargeable-to-corporation-tax":
 	    "total-profits-chargeable-to-corporation-tax-raw",
 
-	"ct-profit-before-tax-fy1-raw": "ct-net-trading-profits",
+	"ct-profit-before-tax-fy1-raw": "total-profits-chargeable-to-corporation-tax",
 
 	"ct-profit-before-tax-fy1": "ct-profit-before-tax-fy1-raw",
 
