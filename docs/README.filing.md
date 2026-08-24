@@ -234,3 +234,215 @@ Thank you for your submission
 Submission was successful. Delete request...
 Completed.
 ```
+
+## 5. Corporation Tax rates and marginal relief (FY2023 onwards)
+
+Since 1 April 2023 there are two Corporation Tax rates: the 19% small
+profits rate (augmented profits up to £50,000) and the 25% main rate
+(from £250,000), with marginal relief tapering the charge between the
+two limits.  The limits are divided by one plus the number of
+associated companies, and prorated by days/365 for accounting periods
+shorter than 12 months.
+
+### 5.1 Setting the tax rate
+
+Recent library versions read the rate from the CT metadata; the same
+value drives both the tax computation and the box 340/390 rate facts,
+so they cannot disagree:
+
+```jsonnet
+"tax": {
+    "fy1": {
+        "name": "FY1",
+        "year": "2025",
+        "start": "2025-04-06",
+        "end": "2026-03-31",
+        "rate": 25
+    },
+    ...
+}
+```
+
+### 5.2 Claiming marginal relief
+
+Marginal relief is:
+
+    MR = 3/200 x (U' - A) x N/A
+
+where U' is the (prorated) upper limit, N the taxable total profits
+(CT600 box 315) and A the augmented profits (N plus exempt
+distributions received, CT600 box 620).
+
+Worked example: 360-day accounting period, taxable profits £60,000,
+no exempt distributions, no associated companies:
+
+    U'  = 250,000 x 360/365            = 246,575.34
+    MR  = 3/200 x (246,575.34 - 60,000) =   2,798.63
+    tax = 60,000 x 25% - 2,798.63       =  12,201.37
+
+The library's default marginal relief computation is zero.  To claim
+relief, override it in your computations file with a constant:
+
+```jsonnet
+accts.library.computation(
+    "marginal-rate-relief-for-ring-fence-trades-payable",
+    "Marginal relief"
+)
+    .in_year()
+    .segment("business-type", "company")
++ {
+    kind: "constant",
+    values: { "2026-03-31": 2798.63 },
+},
+```
+
+Notes:
+
+- The computation id must be exactly
+  `marginal-rate-relief-for-ring-fence-trades-payable` -- it is the
+  taxonomy tag key.  CT600 box 435 was relabelled from "Marginal
+  relief for ring fence trades" to plain "Marginal relief" from April
+  2023; the XML element and taxonomy concept keep the legacy name and
+  now carry standard marginal relief.
+- The value must be POSITIVE.  Tax liabilities are negative in the
+  internal sign convention (the taxonomy reverses their display
+  sign), so a positive relief summed into
+  `corporation-tax-chargeable-payable` reduces the liability.  If
+  your tax gets BIGGER, you have the sign backwards.
+- A `constant` computation needs a `values` entry for every period
+  the report evaluates.  A report with a previous-period comparative
+  needs a key for that period end too (typically 0).
+- The constant is year-specific: recompute it every filing.
+- On the CT600 side: tick box 329 (chargeable at the small profits
+  rate OR entitled to marginal relief), and note that ticking 329
+  makes box 326 (number of associated companies) mandatory -- enter 0
+  if there are none.
+
+## 6. Non-trade income: bank interest and CT600 box 170
+
+Bank interest is a non-trading loan relationship credit (CT600 box
+170), not trade income, but it sits inside profit-per-accounts.  To
+report it correctly, deduct it from the trade computation and add it
+back as non-trade income:
+
+```jsonnet
+// Deduct from trading profit.  This concept lives in the trade
+// hypercubes and needs the full trade dimensional signature (see
+// section 7).
+accts.library.line(
+    "adjustments-non-trading-loan-relationship-credits-per-accounts",
+    "Less: non-trading loan relationship credits (bank interest)"
+)
+    .in_year()
+    .reverse_sign()
+    .segment("business-name", "metadata.business.company-name")
+    .segment("business-type", "trade")
+    .segment("loss-reform", "post-loss-reform")
+    .segment("territory", "uk"),
+
+// Report as box 170 income.
+accts.library.line(
+    "profits-and-gains-from-non-trading-loan-relationships",
+    "Non-trading loan relationship profits (bank interest)"
+)
+    .in_year()
+    .segment("business-type", "company"),
+```
+
+with the mapping additions:
+
+```jsonnet
+line_inputs +: {
+    "adjustments-non-trading-loan-relationship-credits-per-accounts": [
+        "Income:Interest",
+    ],
+    "profits-and-gains-from-non-trading-loan-relationships": [
+        "Income:Interest",
+    ],
+},
+compound_inputs +: {
+    "ct-trading-profits-raw": [
+        // ...existing members...,
+        "adjustments-non-trading-loan-relationship-credits-per-accounts",
+    ],
+    "profits-before-other-deductions-and-reliefs": [
+        "ct-net-trading-profits",
+        "profits-and-gains-from-non-trading-loan-relationships",
+    ],
+},
+```
+
+The FY1/FY2 rows of the CT600 (boxes 335/385) apportion box 315 --
+the total profits chargeable -- so recent library versions point the
+FY apportionment at `total-profits-chargeable-to-corporation-tax`.
+If yours apportions `ct-net-trading-profits`, box 335 will not
+reconcile to box 315 once box 170 income exists.
+
+Fill box 170 in the form values by hand (`ct600
+--output-form-values` does not seed it from older computations).
+
+## 7. iXBRL dimensions on adjustment facts
+
+The `ct-comp:Adjustments...PerAccounts` concepts are bound to the
+trade hypercubes and are only dimensionally valid with the full trade
+signature:
+
+```jsonnet
+.segment("business-name", "metadata.business.company-name")
+.segment("business-type", "trade")
+.segment("loss-reform", "post-loss-reform")
+.segment("territory", "uk")
+```
+
+Tagging one with `business-type: company` instead produces an HMRC
+rejection like:
+
+    xbrldie:PrimaryItemDimensionallyInvalidError: The item
+    '...AdjustmentsNon-tradingLoanRelationshipCreditsPerAccounts' is
+    not dimensionally valid.  The hypercube '...UKTradeHypercube'
+    requires dimension '...BusinessNameDimension' but it is not
+    reported. [...]
+
+The error lists each candidate hypercube's missing dimension; the fix
+is the full signature above, not chasing the dimensions one at a
+time.  Income-summary concepts (`NetTradingProfits`,
+`ProfitsAndGainsFromNon-tradingLoanRelationships`, ...) take
+`business-type: company`.  Note the business name is a TYPED
+dimension member in the output XML (`xbrldi:typedMember`), which
+explicit-member regex checks will miss.
+
+## 8. Testing against HMRC before you file
+
+Three lanes, in increasing realism:
+
+1. **Local emulator** (`corptax-test-service`, in the ct600 package):
+   full GovTalk submit/poll/delete protocol offline.  Create a
+   `received/` directory in its working directory first -- it saves
+   the decoded submission there.
+2. **HMRC vendor test service (TPVS)**: the real ChRIS validation
+   engine -- schema, business rules AND XBRL dimensional checks --
+   against the test transaction engine at
+   `https://test-transaction-engine.tax.service.gov.uk/submission`
+   with `GatewayTest` set to `"1"`, the normal `HMRC-CT-CT600` class,
+   and SDST-issued test credentials and test UTR.  The test UTR must
+   go in BOTH form-values box 3 AND `metadata.tax.utr` (rule 1607
+   cross-checks the CT600 against the attached computations).
+   Validation failures come back as a generic GovTalk 3001 error
+   wrapping a detailed `ErrorResponse` in the Body -- read the raw
+   XML for the actual rule numbers.
+3. **Test-In-Live** (section 4.7): the LIVE engine with the
+   `HMRC-CT-CT600-TIL` class and your real Government Gateway
+   credentials.  SDST test credentials here fail immediately with
+   error 1046 and no correlation ID.  A successful TIL run either
+   returns an inline receipt marked "THIS IS A TESTNOTE: NO
+   SUBMISSION HAS BEEN MADE", or errors after a correlation ID was
+   issued with the confirmation arriving by email -- both shapes
+   occur.
+
+## 9. HMRC validation errors seen in the wild (ChRIS)
+
+| Error | Meaning | Fix |
+|---|---|---|
+| 9240: "If the associated companies section is present then either Box 326 or Boxes 327 and 328 must be completed" | Ticking box 329 creates the AssociatedCompanies XML section, making box 326 mandatory | Set box 326 to `0` (zero associated companies) |
+| `xbrldie:PrimaryItemDimensionallyInvalidError` | An adjustment fact is missing trade hypercube dimensions | Full trade signature -- see section 7 |
+| 1607: "The UTR on the Computation must match the UTR on the CT600..." | Envelope/form UTR differs from the computations TaxReference fact (common when using the SDST test UTR in only one place) | Same UTR in form-values box 3 and `metadata.tax.utr`; same period end in both documents |
