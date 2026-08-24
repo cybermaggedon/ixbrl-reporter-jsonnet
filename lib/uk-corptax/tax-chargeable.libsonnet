@@ -104,11 +104,12 @@
 		    },
 		    {
 			"context": "report-period",
-			"description": "Marginal relief for ring fence trades",
+			"description": "Marginal relief",
 			"field": "435",
 			"id": "marginal-rate-relief-for-ring-fence-trades-payable",
-			"kind": "money",
-			"value": 0
+			"kind": "computation",
+			"computation": "marginal-rate-relief-for-ring-fence-trades-payable",
+			"period-config": "metadata.tax.period"
 		    },
 		    {
 			"computation": "corporation-tax-chargeable-payable",
