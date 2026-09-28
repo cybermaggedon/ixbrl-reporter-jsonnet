@@ -166,6 +166,6 @@ professional.
 
 ## License
 
-Copyright (c) Cyberapocalypse Limited, 2025
+Copyright (c) cybermaggedon, 2024-2026
 Licenced under the GPL version 3 licence, see the [LICENSE](LICENCE) file
 
