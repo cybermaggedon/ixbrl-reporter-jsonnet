@@ -17,7 +17,7 @@
 		    },
 		    {
 			"id": "trading-losses-brought-forward",
-			"description": "Trading losses brough forward",
+			"description": "Trading losses brought forward",
 			"field": "160, 285",
 			"context": "report-period",
 			"computation": "ct-trading-losses-brought-forward",
