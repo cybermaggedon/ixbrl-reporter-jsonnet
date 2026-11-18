@@ -29,7 +29,7 @@
 	// Add cash-on-hand account to the current account
 	"current-account": [
 	    "Cash",
-            "Bank Accounts:Current Account"
+	    "Bank Accounts:Current Account"
 	],
 
     },
