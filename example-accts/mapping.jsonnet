@@ -26,6 +26,12 @@
 	    "Expenses:VAT Purchases:Shipping Charges"
 	],
 
+	// Add cash-on-hand account to the current account
+	"current-account": [
+	    "Cash",
+            "Bank Accounts:Current Account"
+	],
+
     },
 
     // Defines the mapping between 'sum/group' computations and other
