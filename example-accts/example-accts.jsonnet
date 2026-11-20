@@ -3,7 +3,7 @@
 // This is for an FRS-105 / Unaudited micro-entity annual accounts report.
 // This is appropriate for filing with UK Companies House as an annual report.
 // The micro-entity report is kinda bare, an abridged balance sheet.
-// Companies are still 'supposed' to product a non-abridger report for
+// Companies are still 'supposed' to product a non-abridged report for
 // members, which this would not meet.
 //
 // FRS-102/FRS-105 does not include a great deal of detail for
